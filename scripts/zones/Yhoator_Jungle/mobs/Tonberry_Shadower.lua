@@ -2,11 +2,7 @@
 -- Area: Yhoator Jungle
 --  MOB: Tonberry Shadower
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

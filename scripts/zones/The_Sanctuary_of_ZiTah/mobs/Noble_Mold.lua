@@ -2,11 +2,7 @@
 -- Area: The Sanctuary of Zi'Tah
 --  MOB: Noble Mold
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
@@ -15,10 +11,6 @@ function onMobDeath(mob, player, isKiller)
     checkRegime(player, mob, 116, 2);
 
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

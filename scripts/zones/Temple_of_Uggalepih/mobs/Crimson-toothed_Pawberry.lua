@@ -3,16 +3,8 @@
 --  MOB: Crimson-toothed Pawberry
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     SetServerVariable("[POP]Crimson-toothed_Pawberry",os.time() + 900); -- 15min

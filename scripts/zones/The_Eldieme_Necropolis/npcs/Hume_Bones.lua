@@ -1,18 +1,14 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- NPC:  Hume Bones
+--  NPC: Hume Bones
 -- Involved in Quests: Blue Ribbon Blues
 -- !pos 299 0.1 19 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -30,10 +26,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     if (player:getVar("Lich_C_Magnus_Died") == 1 and player:hasItem(12521) == false) then
         if (player:getFreeSlotsCount() >= 1) then
@@ -48,18 +40,10 @@ function onTrigger(player,npc)
     end
 end;
 --
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

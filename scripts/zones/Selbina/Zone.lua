@@ -10,9 +10,6 @@ require("scripts/globals/zone");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Selbina/TextIDs");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -21,14 +18,10 @@ function onInitialize(zone)
 
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
     local cs = -1;
 
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 220) then
             cs = 0x00ca;
             player:setPos(32.500,-2.500,-45.500,192);
@@ -44,10 +37,6 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -56,26 +45,14 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onTransportEvent
------------------------------------
-
 function onTransportEvent(player,transport)
     player:startEvent(200);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

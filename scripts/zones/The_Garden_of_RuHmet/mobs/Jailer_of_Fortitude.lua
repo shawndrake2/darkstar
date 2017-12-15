@@ -2,13 +2,9 @@
 -- Area: The Garden of Ru'Hmet
 --  NM:  Jailer of Fortitude
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/limbus");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -19,10 +15,6 @@ function onMobSpawn(mob)
     mob:AnimationSub(1);
     mob:setModelId(1169);
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob, target)
     local delay = mob:getLocalVar("delay");
@@ -47,10 +39,6 @@ function onMobFight(mob, target)
     end
 end;
 
------------------------------------
--- onMagicHit Action
------------------------------------
-
 function onMagicHit(caster,target,spell)
     if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= SPELLGROUP_BLUE ) then
         -- Handle mimicked spells
@@ -63,19 +51,11 @@ function onMagicHit(caster,target,spell)
     return 1;
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     -- Despawn the pets if alive
     DespawnMob(Kf_Ghrah_WHM);
     DespawnMob(Kf_Ghrah_BLM);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- Set 15 mins respawn

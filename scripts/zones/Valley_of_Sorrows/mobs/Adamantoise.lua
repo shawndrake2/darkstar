@@ -2,21 +2,13 @@
 -- Area: Valley of Sorrows
 --  HNM: Adamantoise
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
-
------------------------------------
--- onMobSpawn
------------------------------------
 
 function onMobSpawn(mob)
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
@@ -24,17 +16,9 @@ function onMobSpawn(mob)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     player:addTitle(TORTOISE_TORTURER);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local Adamantoise = mob:getID();

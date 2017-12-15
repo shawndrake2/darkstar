@@ -4,33 +4,18 @@
 -- Mission 9-2 BASTOK BCNM Fight
 -----------------------------------
 
-
------------------------------------
--- onMobFight
------------------------------------
 function onMobFight(mob, target)
     -- printf("mobtp %u",mob:getTP());
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
 function onMobDeath(mob, player, isKiller)
     player:startEvent(32004,3,3,1,3,3,3,3,3);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("finishCSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("finishCSID: %u",csid);

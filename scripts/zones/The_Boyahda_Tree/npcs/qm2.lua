@@ -1,30 +1,22 @@
 -----------------------------------
 -- Area: The Boyahda Tree
--- NPC: qm2 (???)
+--  NPC: qm2 (???)
 -- Involved in Quest: Searching for the Right Words
 -- !pos 34.651 -20.183 -61.647 153
 -----------------------------------
 package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/The_Boyahda_Tree/TextIDs");
-require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
--- Notes: does ??? depop when Agas is spawned?
--- current implementation: when Agas is active, triggering ??? will result in detarget
-
 function onTrigger(player,npc)
+    -- Notes: does ??? depop when Agas is spawned?
+    -- current implementation: when Agas is active, triggering ??? will result in detarget
 
     local SearchingForWords = player:getQuestStatus(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS);
     local zoneHour = VanadielHour();
@@ -54,18 +46,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -75,5 +59,4 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED, MOONDROP);
         player:setVar("Searching_AgasKilled", 0);
     end
-
 end;

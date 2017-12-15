@@ -2,11 +2,7 @@
 -- Area: Yhoator Jungle
 --  NM:  Hoar-knuckled Rimberry
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -2,29 +2,17 @@
 -- Area: Uleguaerand Range
 --  HNM: Jormungand
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/titles");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
     mob:SetMobSkillAttack(0); -- resetting so it doesn't respawn in flight mode.
     mob:AnimationSub(0); -- subanim 0 is only used when it spawns until first flight.
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     if (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON) == false and mob:actionQueueEmpty() == true) then
@@ -60,17 +48,9 @@ function onMobFight(mob,target)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
     player:addTitle(WORLD_SERPENT_SLAYER);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     mob:setRespawnTime(math.random(259200,432000)); -- 3 to 5 days

@@ -1,22 +1,14 @@
 -----------------------------------
 -- Area: West Sarutabaruta
--- NPC:  Signpost (18 total)
+--  NPC: Signpost (18 total)
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/West_Sarutabaruta/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -40,20 +32,13 @@ function onTrigger(player,npc)
         player:messageSpecial(SIGN_17);
     end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---print("CSID: %u",csid);
---print("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -2,11 +2,7 @@
 -- Area: Yhoator Jungle
 --  MOB: Tonberry Hexer
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

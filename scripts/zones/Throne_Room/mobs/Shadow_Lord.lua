@@ -3,20 +3,12 @@
 --  MOB: Shadow Lord
 -- Mission 5-2 BCNM Fight
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob,target)
     -- 1st form
@@ -80,10 +72,6 @@ function onMobFight(mob,target)
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 
     if (mob:getID() < 17453060) then
@@ -101,10 +89,6 @@ function onMobDeath(mob, player, isKiller)
 
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
     -- reset everything on despawn
     mob:AnimationSub(0);
@@ -114,18 +98,10 @@ function onMobDespawn(mob)
     mob:delStatusEffect(EFFECT_PHYSICAL_SHIELD);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("updateCSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("finishCSID: %u",csid);

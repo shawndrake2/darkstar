@@ -1,28 +1,20 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC:  qm2 (???)
+--  NPC: qm2 (???)
 -- Involved in Quests: Atop the Highest Mountains (for Boreal Tiger)
 -- !pos 341 -29 370 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/zones/Xarcabard/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (OldSchoolG2 == false or GetMobByID(17236204):isDead()) then
@@ -37,18 +29,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

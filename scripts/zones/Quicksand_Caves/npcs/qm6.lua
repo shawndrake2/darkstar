@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
--- NPC:  ??? (qm6)
+--  NPC: ??? (qm6)
 -- Bastok Mission 8.1 "The Chains That Bind Us"
 -- !pos -469 0 620 208
 -----------------------------------
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
             player:startEvent(11);
         end
 
-    -- DEFAULT DIALOG        
+    -- DEFAULT DIALOG
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end

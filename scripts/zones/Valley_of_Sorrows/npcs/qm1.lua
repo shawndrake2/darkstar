@@ -9,9 +9,6 @@ package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
 require("scripts/zones/Valley_of_Sorrows/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onSpawn Action
 -----------------------------------
 
 function onSpawn(npc)
@@ -19,10 +16,6 @@ function onSpawn(npc)
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
     local Adamantoise = GetMobAction(17301537);
@@ -49,26 +42,14 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

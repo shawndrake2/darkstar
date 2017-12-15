@@ -4,16 +4,8 @@
 -- Zilart Mission 4 BCNM Fight
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
 
 function onMobEngaged(mob,target)
     local mobid = mob:getID();
@@ -22,10 +14,6 @@ function onMobEngaged(mob,target)
         GetMobByID(i):updateEnmity(target);
     end
 end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     local elemental = mob:getID()+1;

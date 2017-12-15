@@ -4,14 +4,10 @@
 -- Involved in Quests: Atop the Highest Mountains
 -- !pos -21 -25 -490 112
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Xarcabard/TextIDs");
-
------------------------------------
--- onMobSpawn
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -20,10 +16,6 @@ function onMobSpawn(mob)
         GetNPCByID(17236310):showNPC(0);
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     if (OldSchoolG2) then

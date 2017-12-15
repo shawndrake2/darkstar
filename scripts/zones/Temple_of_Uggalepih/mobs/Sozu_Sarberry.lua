@@ -3,16 +3,8 @@
 --  NM:  Sozu Sarberry
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     local kills = player:getVar("EVERYONES_GRUDGE_KILLS");

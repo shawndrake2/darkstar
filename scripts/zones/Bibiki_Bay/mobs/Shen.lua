@@ -3,16 +3,8 @@
 --  MOB: Shen
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
 
@@ -28,21 +20,12 @@ function onMobFight(mob,target)
 
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMonsterMagicPrepare
------------------------------------
-
 function onMonsterMagicPrepare(mob,target)
-
     -- casts Water IV, Waterga III, Flood, Drown
-    rnd = math.random();
+    local rnd = math.random();
 
     if (rnd < 0.5) then
         return 201; -- waterga 3

@@ -4,16 +4,8 @@
 -- Involved with San d'Oria quest "Knight Stalker"
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     local Cleuvarion = GetMobAction(17428807);

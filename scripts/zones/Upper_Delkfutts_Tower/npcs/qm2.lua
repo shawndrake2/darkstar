@@ -1,15 +1,11 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
--- NPC:  ???
+--  NPC: ???
 -- !pos -302.000 -159.000 21.000 158
 -----------------------------------
 package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,10 +17,6 @@ function onTrade(player,npc,trade)
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 end;

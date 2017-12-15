@@ -1,17 +1,13 @@
 -----------------------------------
---  Area: Tahrongi Canyon
---  NPC:  qm2 (???)
+-- Area: Tahrongi Canyon
+--  NPC: qm2 (???)
 --  Note: Used to spawn Yara Ma Yha Who
 -- !pos 271 0.001 -334 117
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/zones/Tahrongi_Canyon/TextIDs");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -40,10 +36,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger
------------------------------------
-
 function onTrigger(player,npc)
     if (GetServerVariable("[POP]Yara-Ma-Yha-Who-Timer") < os.time()) then -- Checks to make sure trade has not been made in past 50 minutes
         player:messageSpecial(SPROUT_LOOKS_WITHERED);
@@ -52,18 +44,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

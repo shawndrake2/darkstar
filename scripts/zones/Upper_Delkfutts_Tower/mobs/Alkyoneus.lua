@@ -3,23 +3,11 @@
 --  MOB: Alkyoneus
 -----------------------------------
 
------------------------------------
--- OnMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
-end; 
-
------------------------------------
--- OnMobDeath Action
------------------------------------
+end;
 
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     GetNPCByID(17424518):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);

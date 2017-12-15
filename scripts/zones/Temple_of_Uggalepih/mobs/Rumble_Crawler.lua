@@ -2,20 +2,12 @@
 -- Area: Temple Of Uggalepih
 --  MOB: Rumble Crawler
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
     checkGoVregime(player,mob,791,2);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- Rumble Crawler that spawns in place of Habetrot

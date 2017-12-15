@@ -1,16 +1,12 @@
 -----------------------------------
--- Area:  VeLugannon Palace
--- NPC:   qm2 (???)
+-- Area: VeLugannon Palace
+--  NPC: qm2 (???)
 -- Notes: Used to spawn Brigandish Blade
 -- !pos 0.1 0.1 -286 177
 -----------------------------------
 package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/VeLugannon_Palace/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,26 +18,14 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:startEvent(2);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

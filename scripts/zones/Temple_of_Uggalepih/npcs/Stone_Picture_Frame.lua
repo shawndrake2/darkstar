@@ -1,25 +1,17 @@
 -----------------------------------
--- Area:  Temple of Uggalepih
--- NPC:   Stone Picture Frame
+-- Area: Temple of Uggalepih
+--  NPC: Stone Picture Frame
 -- Notes: Opens door to Den of Rancor using Painbrush of Souls
 -- !pos -52.239 -2.089 10.000 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local X = player:getXPos();
@@ -60,18 +52,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);

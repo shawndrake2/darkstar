@@ -1,25 +1,17 @@
 -----------------------------------
 -- Area: Valkurm Dunes
--- NPC:  qm3 (???)
+--  NPC: qm3 (???)
 -- Involved In Quest: Yomi Okuri
 -- !pos -767 -4 192 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/zones/Valkurm_Dunes/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -40,18 +32,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
@@ -63,5 +47,4 @@ function onEventFinish(player,csid,option)
         SpawnMob(17199567):updateClaim(player); -- Doman
         SpawnMob(17199568):updateClaim(player); -- Onryo
     end
-
 end;

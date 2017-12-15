@@ -2,7 +2,6 @@
 -- Area: The Sanctuary of Zi'Tah
 --  MOB: Myxomycete
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/weather");
 
@@ -38,20 +37,12 @@ function onMobRoam(mob)
 
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 
     checkRegime(player, mob, 115, 1);
     checkRegime(player, mob, 116, 2);
 
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

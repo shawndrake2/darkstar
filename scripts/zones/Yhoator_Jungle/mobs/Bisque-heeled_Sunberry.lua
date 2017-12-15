@@ -2,11 +2,7 @@
 -- Area: Yhoator Jungle
 --  NM:  Bisque-heeled Sunberry
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
@@ -18,10 +14,6 @@ function onMobDeath(mob, player, isKiller)
         player:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDespawn(mob)
     -- Set Bisque-heeled Sunberry's spawnpoint and respawn time (1-2 hours)

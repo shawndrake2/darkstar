@@ -3,19 +3,11 @@
 --  NM:  Archlich Taber'quoan
 -- Mission 5-1 BCNM Fight
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob, target)
     local BattleTime = mob:getBattleTime();
@@ -73,10 +65,6 @@ function onMobFight(mob, target)
         end
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(ARCHMAGE_ASSASSIN);

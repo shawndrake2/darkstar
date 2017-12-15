@@ -12,29 +12,14 @@
 -- TODO: Diabolos Prime
 -- Note: Diabolos Prime fight drops all tiles at once.
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob)
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
 

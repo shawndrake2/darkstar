@@ -1,15 +1,11 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? (Beryl-footed Molberry NM)
+--  NPC: ??? (Beryl-footed Molberry NM)
 -- !pos -57 0 4 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,10 +21,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(NM_OFFSET);

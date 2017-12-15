@@ -1,21 +1,14 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- Mob:  Sturm
+--  MOB: Sturm
 -- Involved in Quest: A New Dawn (BST AF3)
 -----------------------------------
-
 require("scripts/globals/quests");
-
------------------------------------
--- OnMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- OnMobDeath Action
------------------------------------
 function onMobDeath(mob, player, isKiller)
 
     local ANewDawn = player:getQuestStatus(JEUNO,A_NEW_DAWN);
@@ -31,5 +24,4 @@ function onMobDeath(mob, player, isKiller)
             DespawnMob(i);
         end
     end
-
 end;

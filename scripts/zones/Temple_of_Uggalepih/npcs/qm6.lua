@@ -1,15 +1,11 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? (Sacrificial Goblet NM)
+--  NPC: ??? (Sacrificial Goblet NM)
 -- !pos 300 1 255 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,10 +19,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(NOTHING_OUT_OF_ORDINARY);

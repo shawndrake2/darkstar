@@ -5,30 +5,19 @@
 package.loaded[ "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" ] = nil;
 -----------------------------------
 require( "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" );
-require( "scripts/globals/titles" );
 require( "scripts/globals/ability" );
-require( "scripts/globals/pets" );
 require( "scripts/globals/status" );
-
------------------------------------
--- onMobInitialize Action
+require( "scripts/globals/titles" );
+require( "scripts/globals/pets" );
 -----------------------------------
 
 function onMobInitialize( mob )
-end
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+end;
 
 function onMobSpawn(mob)
     mob:setMod(MOD_WINDRES, -64);
     mob:setLocalVar("numAdds", 1);
-end
-
------------------------------------
--- onMobFight Action
------------------------------------
+end;
 
 function onMobFight( mob, target )
     if (mob:getHPP() < math.random(50,60) and mob:getLocalVar("astralFlow") == 0) then
@@ -83,11 +72,7 @@ function onMobFight( mob, target )
             GetMobByID( pets ):updateEnmity( target );
         end
     end
-end
-
------------------------------------
--- onMobDeath
------------------------------------
+end;
 
 function onMobDeath(mob, player, isKiller)
     -- Award title and cleanup..
@@ -99,11 +84,7 @@ function onMobDeath(mob, player, isKiller)
     DespawnMob( 17506672 );
     DespawnMob( 17506673 );
     DespawnMob( 17506674 );
-end
-
------------------------------------
--- OnMobDespawn
------------------------------------
+end;
 
 function onMobDespawn( mob )
     -- Despawn pets..

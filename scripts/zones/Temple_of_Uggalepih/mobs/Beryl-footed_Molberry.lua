@@ -3,16 +3,8 @@
 --  NM:  Beryl-footed Molberry
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     SetServerVariable("[POP]Beryl-footed_Molberry",os.time() + 900); -- 15min
