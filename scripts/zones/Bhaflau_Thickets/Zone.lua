@@ -4,6 +4,7 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
+package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 require("scripts/zones/Bhaflau_Thickets/TextIDs");
 require("scripts/zones/Bhaflau_Thickets/MobIDs");

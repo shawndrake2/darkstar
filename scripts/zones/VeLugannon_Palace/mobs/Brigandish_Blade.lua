@@ -2,20 +2,33 @@
 -- Area: VeLugannon Palace
 --  NM:  Brigandish Blade
 -----------------------------------
-require("scripts/zones/VeLugannon_Palace/MobIDs");
-require("scripts/globals/settings");
+
 require("scripts/globals/status");
+
+-----------------------------------
+-- onMobInitialize
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
 end;
 
+-----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+
 function onMobSpawn(mob)
 end;
 
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 function onMobDeath(mob, player, isKiller)
 end;
 
+-----------------------------------
+-- onAdditionalEffect Action
+-----------------------------------
 function onAdditionalEffect(mob,target,damage)
     local rand = math.random(1,10);
     if ((rand >= 4) or (target:hasStatusEffect(EFFECT_TERROR) == true)) then -- 30% chance to terror
@@ -27,6 +40,10 @@ function onAdditionalEffect(mob,target,damage)
     end
 end;
 
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
 function onMobDespawn(mob)
-    GetNPCByID(BRIGANDISH_BLADE_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(17502582):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

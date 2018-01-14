@@ -4,14 +4,16 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
+package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-require("scripts/zones/South_Gustaberg/TextIDs");
-require("scripts/globals/icanheararainbow");
-require("scripts/globals/chocobo_digging");
-require("scripts/globals/settings");
+
+require("scripts/globals/zone");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/globals/zone");
+require("scripts/globals/settings");
+require("scripts/globals/icanheararainbow");
+require("scripts/zones/South_Gustaberg/TextIDs");
+require("scripts/globals/chocobo_digging");
 
 -----------------------------------
 -- Chocobo Digging vars

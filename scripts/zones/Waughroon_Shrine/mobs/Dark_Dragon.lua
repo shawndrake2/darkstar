@@ -1,19 +1,22 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Dark Dragon
+--  MOB: Black Dragon
 -- Mission 2-3 BCNM Fight
 -----------------------------------
 
 require("scripts/globals/titles");
-require("scripts/globals/status");
 
-function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
-end;
+-----------------------------------
+-- onMobSpawn Action
+-----------------------------------
 
 function onMobSpawn(mob)
 end;
 
+-----------------------------------
+-- onMobDeath Action
+-----------------------------------
+
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(DARK_DRAGON_SLAYER);
+    player:addTitle(BLACK_DRAGON_SLAYER);
 end;

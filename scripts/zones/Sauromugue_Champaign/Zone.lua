@@ -4,6 +4,7 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
+package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 require("scripts/zones/Sauromugue_Champaign/TextIDs");
 require("scripts/zones/Sauromugue_Champaign/MobIDs");

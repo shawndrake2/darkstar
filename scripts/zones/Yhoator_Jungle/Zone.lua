@@ -4,6 +4,7 @@
 --
 -----------------------------------
 package.loaded[ "scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
+package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 require("scripts/zones/Yhoator_Jungle/TextIDs");
 require("scripts/zones/Yhoator_Jungle/MobIDs");

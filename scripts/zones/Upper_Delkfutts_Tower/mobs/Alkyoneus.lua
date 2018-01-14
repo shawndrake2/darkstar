@@ -2,12 +2,25 @@
 -- Area: Upper Delkfutt's Tower
 --  MOB: Alkyoneus
 -----------------------------------
-require("scripts/zones/Upper_Delkfutts_Tower/MobIDs");
-require("scripts/globals/settings");
+
+-----------------------------------
+-- OnMobSpawn Action
+-----------------------------------
+
+function onMobSpawn(mob)
+end; 
+
+-----------------------------------
+-- OnMobDeath Action
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
 
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
 function onMobDespawn(mob)
-    GetNPCByID(ALKYONEUS_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(17424518):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

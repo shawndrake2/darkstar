@@ -4,6 +4,7 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
+package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 require("scripts/zones/Eastern_Altepa_Desert/MobIDs");

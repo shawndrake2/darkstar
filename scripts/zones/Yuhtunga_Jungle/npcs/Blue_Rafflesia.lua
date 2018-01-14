@@ -6,12 +6,19 @@
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
-require("scripts/zones/Yuhtunga_Jungle/MobIDs");
-require("scripts/globals/quests");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end;
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
 
 function onTrigger(player,npc)
     local evenmoreTravelsStatus = player:getQuestStatus(OUTLANDS, EVEN_MORE_GULLIBLES_TRAVELS)
@@ -19,9 +26,9 @@ function onTrigger(player,npc)
     local scentDay = player:getVar("RafflesiaScentDay");
     local currentDay = VanadielDayOfTheYear();
     local scentReady = ((scentDay < currentDay) or (scentDay > currentDay and player:getVar("RafflesiaScentYear") < VanadielYear()));
-    local offset = npc:getID() - BLUE_RAFFLESIA_OFFSET;
+    local npcId = npc:getID();
 
-    if (offset == 0) then
+    if (npcId == 17281586) then
         if (evenmoreTravelsStatus == QUEST_ACCEPTED and questprogress == 1 and player:getVar("FirstBlueRafflesiaCS") == 0) then -- Player is on quest, first time.
             player:startEvent(21);
         elseif (evenmoreTravelsStatus == QUEST_COMPLETED and scentReady == true and player:getVar("BathedInScent") == 0 and player:getVar("FirstBlueRafflesiaCS") == 0) then -- Repeating
@@ -29,7 +36,7 @@ function onTrigger(player,npc)
         else
             player:messageSpecial(FLOWER_BLOOMING);
         end
-    elseif (offset == 1) then
+    elseif (npcId == 17281587) then
         if (evenmoreTravelsStatus == QUEST_ACCEPTED and questprogress == 1 and player:getVar("SecondBlueRafflesiaCS") == 0) then
             player:startEvent(22);
         elseif (evenmoreTravelsStatus == QUEST_COMPLETED and scentReady == true and player:getVar("BathedInScent") == 0 and player:getVar("SecondBlueRafflesiaCS") == 0) then
@@ -37,7 +44,7 @@ function onTrigger(player,npc)
         else
             player:messageSpecial(FLOWER_BLOOMING);
         end
-    elseif (offset == 2) then
+    elseif (npcId == 17281588) then
         if (evenmoreTravelsStatus == QUEST_ACCEPTED and questprogress == 1 and player:getVar("ThirdBlueRafflesiaCS") == 0) then
             player:startEvent(23);
         elseif (evenmoreTravelsStatus == QUEST_COMPLETED and scentReady == true and player:getVar("BathedInScent") == 0 and player:getVar("ThirdBlueRafflesiaCS") == 0) then
@@ -48,13 +55,25 @@ function onTrigger(player,npc)
     end
 end;
 
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
 function onEventUpdate(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
 end;
 
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
 function onEventFinish(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
     local evenmoreTravelsStatus = player:getQuestStatus(OUTLANDS, EVEN_MORE_GULLIBLES_TRAVELS)
 
-    -- Set BathedInScent to 1 if they touched all 3 Rafflesia for EVEN_MORE_GULLIBLES_TRAVELS which opens the quest The Opo-Opo and I
+-- Set BathedInScent to 1 if they touched all 3 Rafflesia for EVEN_MORE_GULLIBLES_TRAVELS which opens the quest The Opo-Opo and I
     if (csid == 21 and option == 1) then
         if (player:getVar("SecondBlueRafflesiaCS") == 1 and player:getVar("ThirdBlueRafflesiaCS") == 1) then -- This is 3rd Rafflessia clicked, progressing.
             player:setVar("SecondBlueRafflesiaCS", 0);

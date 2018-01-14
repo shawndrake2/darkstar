@@ -5,29 +5,46 @@
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
-require("scripts/zones/The_Shrine_of_RuAvitau/MobIDs");
-require("scripts/globals/status");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
-    if (trade:hasItemQty(1195,1) and trade:getItemCount() == 1) then -- Trade Ro'Maeve Water
-        for i = OLLAS_OFFSET, OLLAS_OFFSET + 2 do
-            if (GetMobByID(i):isSpawned()) then
-                return;
-            end
-        end
+
+    if (GetMobAction(17506667) == 0 and GetMobAction(17506668) == 0 and GetMobAction(17506669) == 0 and
+    trade:hasItemQty(1195,1) and trade:getItemCount() == 1) then -- Trade Ro'Maeve Water
         player:tradeComplete();
-        SpawnMob(OLLAS_OFFSET):updateClaim(player);
+        SpawnMob(17506667):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
+
 end;
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(SMALL_HOLE_HERE);
 end;
 
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
 function onEventUpdate(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
 function onEventFinish(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

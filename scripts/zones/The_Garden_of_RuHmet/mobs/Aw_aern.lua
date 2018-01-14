@@ -70,14 +70,13 @@ function onMobDespawn(mob)
     -- If the mob killed was the randomized PH, then Ix'Aern (DRG) in the specific spot, unclaimed and not aggroed.
     if (IxAernDRG_PH == currentMobID) then
         -- Select spawn location based on ID
-        local offset = currentMobID - AwAernDRGGroups[1];
-        if (offset >=0 and offset <=3) then
+        if (currentMobID >= 16920777 and currentMobID < 16920781) then
             GetMobByID(IxAernDRG):setSpawn(-520, 5, -520, 225); -- Bottom Left
-        elseif (offset >= 4 and offset <= 7) then
+        elseif (currentMobID >= 16920781 and currentMobID < 16920785) then
             GetMobByID(IxAernDRG):setSpawn(-520, 5, -359, 30); -- Top Left
-        elseif (offset >= 8 and offset <= 11) then
+        elseif (currentMobID >= 16920785 and currentMobID < 16920789) then
             GetMobByID(IxAernDRG):setSpawn(-319, 5, -359, 95); -- Top Right
-        elseif (offset >= 12 and offset <= 15) then
+        elseif (currentMobID >= 16920789 and currentMobID < 16920793) then
             GetMobByID(IxAernDRG):setSpawn(-319, 5, -520, 156); -- Bottom Right
         end;
         SpawnMob(IxAernDRG);

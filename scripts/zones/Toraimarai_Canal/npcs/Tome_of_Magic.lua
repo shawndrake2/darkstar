@@ -5,26 +5,65 @@
 -- @zone 169
 -- !pos 142 13 -13 169 <many>
 -----------------------------------
-require("scripts/zones/Toraimarai_Canal/MobIDs");
+package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
+require("scripts/zones/Toraimarai_Canal/TextIDs");
+-----------------------------------
+
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 require("scripts/globals/missions");
 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
+
 function onTrade(player,npc,trade)
+
 end;
 
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+
 function onTrigger(player,npc)
-    local offset = npc:getID() - TOME_OF_MAGIC_OFFSET;
-    
-    if (offset == 4 and player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
+
+local CurrentMission = player:getCurrentMission(WINDURST);
+local npcId = npc:getID();
+
+    if (npcId == 17469832) then
+            if (CurrentMission == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
         player:startEvent(69);
-    elseif (offset >= 0 and offset <= 3) then
-        player:startEvent(65 + offset);
+        end
+    elseif (npcId == 17469828) then
+        player:startEvent(65);
+    elseif (npcId == 17469829) then
+        player:startEvent(66);
+    elseif (npcId == 17469830) then
+        player:startEvent(67);
+    elseif (npcId == 17469831) then
+        player:startEvent(68);
     end
 end;
 
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
 function onEventUpdate(player,csid,option)
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
+
 end;
 
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
 function onEventFinish(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+
     if (csid == 69) then
         player:setVar("MissionStatus",2);
     end

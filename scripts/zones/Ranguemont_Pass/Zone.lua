@@ -4,10 +4,16 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
+package.loaded["scripts/zones/Ranguemont_Pass/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Ranguemont_Pass/TextIDs");
 require("scripts/zones/Ranguemont_Pass/MobIDs");
-require("scripts/globals/conquest");
+require("scripts/globals/settings");
+require("scripts/globals/zone");
+
+-----------------------------------
+-- onInitialize
+-----------------------------------
 
 function onInitialize(zone)
     -- pick a random Taisaijin PH and set its do not disturb time
@@ -17,12 +23,21 @@ function onInitialize(zone)
     ph:setLocalVar("phIndex",phIndex);
 end;
 
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
+
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
+
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -32,11 +47,27 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
+
 function onRegionEnter(player,region)
 end;
 
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
 function onEventUpdate(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
 function onEventFinish(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -5,24 +5,44 @@
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
-require("scripts/zones/The_Shrine_of_RuAvitau/MobIDs");
-require("scripts/globals/status");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
-    if (not GetMobByID(ULLIKUMMI):isSpawned() and trade:hasItemQty(2388,1) and trade:getItemCount() == 1) then -- Trade Diorite
+
+    if (GetMobAction(17506418) == 0 and trade:hasItemQty(2388,1) and trade:getItemCount() == 1) then -- Trade Diorite
         player:tradeComplete();
-        SpawnMob(ULLIKUMMI):updateClaim(player);
+        SpawnMob(17506418):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end;
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 end;
 
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
 function onEventUpdate(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
 function onEventFinish(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

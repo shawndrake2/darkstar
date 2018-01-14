@@ -5,6 +5,7 @@
 -- !pos 491 20 301 123
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
+package.loaded["scripts/zones/Yuhtunga_Jungle/MobIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 require("scripts/zones/Yuhtunga_Jungle/MobIDs");

@@ -6,21 +6,44 @@
 package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Wajaom_Woodlands/TextIDs");
-require("scripts/zones/Wajaom_Woodlands/MobIDs");
+require("scripts/globals/status");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
-    if (trade:hasItemQty(2580,1) and trade:getItemCount() == 1 and not GetMobByID(VULPANGUE):isSpawned()) then -- Trade Hellcage Butterfly
-        player:tradeComplete();
-        SpawnMob(VULPANGUE):updateClaim(player);
+    local mobID = 16986428;
+    if (trade:hasItemQty(2580,1) and trade:getItemCount() == 1) then -- Trade Hellcage Butterfly
+        if (GetMobAction(mobID) == ACTION_NONE) then
+            player:tradeComplete();
+            SpawnMob(mobID):updateClaim(player);
+        end
     end
 end;
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(NOTHING_HAPPENS);
 end;
 
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
 function onEventUpdate(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
 function onEventFinish(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

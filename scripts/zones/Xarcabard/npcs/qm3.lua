@@ -6,18 +6,27 @@
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Xarcabard/TextIDs");
-require("scripts/zones/Xarcabard/MobIDs");
+
 require("scripts/globals/keyitems");
-require("scripts/globals/settings");
 require("scripts/globals/quests");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/zones/Xarcabard/TextIDs");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+
 function onTrigger(player,npc)
-    if (not OldSchoolG2 or GetMobByID(BOREAL_COEURL):isDead()) then
-        if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(SQUARE_FRIGICITE)) then
+    if (OldSchoolG2 == false or GetMobByID(17236203):isDead()) then
+        if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(SQUARE_FRIGICITE) == false) then
             player:addKeyItem(SQUARE_FRIGICITE);
             player:messageSpecial(KEYITEM_OBTAINED, SQUARE_FRIGICITE);
         else
@@ -28,8 +37,20 @@ function onTrigger(player,npc)
     end
 end;
 
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
 function onEventUpdate(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
 function onEventFinish(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

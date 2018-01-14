@@ -7,16 +7,23 @@
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Caedarva_Mire/TextIDs");
-require("scripts/zones/Caedarva_Mire/MobIDs");
-require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/keyitems");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+
 function onTrigger(player,npc)
     if (player:hasCompletedMission(TOAU,LOST_KINGDOM)) then
-        if (not player:hasKeyItem(EPHRAMADIAN_GOLD_COIN)) then
+        if(player:hasKeyItem(EPHRAMADIAN_GOLD_COIN) == false) then
             player:addKeyItem(EPHRAMADIAN_GOLD_COIN);
             player:messageSpecial(KEYITEM_OBTAINED,EPHRAMADIAN_GOLD_COIN);
         end
@@ -24,8 +31,8 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(VIAL_OF_SPECTRAL_SCENT) and player:getVar("AhtUrganStatus") == 0) then
             player:startEvent(8);
         elseif (player:getVar("AhtUrganStatus") == 1) then
-            if (not GetMobByID(JAZARAAT):isSpawned()) then
-                SpawnMob(JAZARAAT):updateEnmity(player);
+            if (GetMobAction(17101146) == 0) then
+                SpawnMob(17101146):updateEnmity(player);
             end
         elseif (player:getVar("AhtUrganStatus") == 2) then
             player:startEvent(9);
@@ -41,10 +48,22 @@ function onTrigger(player,npc)
     end
 end;
 
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
 function onEventUpdate(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
 function onEventFinish(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 8) then
         player:setVar("AhtUrganStatus", 1);
     elseif (csid == 9) then

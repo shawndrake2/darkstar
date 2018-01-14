@@ -5,24 +5,31 @@
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-require("scripts/zones/Temple_of_Uggalepih/MobIDs");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
+
+    respawn = GetServerVariable("[POP]Crimson-toothed_Pawberry");
+
     -- Trade Uggalepih Offering
-    if (
-        trade:hasItemQty(1183,1) and trade:getItemCount() == 1 and
-        os.time() > GetServerVariable("[POP]Crimson-toothed_Pawberry") and
-        not GetMobByID(CRIMSON_TOOTHED_PAWBERRY):isSpawned() and
-        not GetMobByID(CRIMSON_TOOTHED_PAWBERRY + 2):isSpawned()
-    ) then
+    if (trade:hasItemQty(1183,1) and trade:getItemCount() == 1 and respawn <= os.time()) then
         player:tradeComplete();
-        SpawnMob(CRIMSON_TOOTHED_PAWBERRY):updateClaim(player);
-        SpawnMob(CRIMSON_TOOTHED_PAWBERRY + 2):updateClaim(player);
+        SpawnMob(17428813):updateClaim(player);
+        SpawnMob(17428815):updateClaim(player);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
+
 end;
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(NM_OFFSET + 1);

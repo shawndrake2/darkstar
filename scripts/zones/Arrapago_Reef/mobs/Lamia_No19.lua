@@ -3,14 +3,29 @@
 --  MOB: Medusa
 -----------------------------------
 
+require("scripts/globals/titles");
+
+-----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+
 function onMobSpawn(mob)
 end;
 
+-----------------------------------
+-- onMobEngaged Action
+-----------------------------------
+
 function onMobEngaged(mob,target)
-    local mobId = mob:getID();
-    SpawnMob(mobId+1):updateEnmity(target);
-    SpawnMob(mobId+2):updateEnmity(target);
+
+    SpawnMob(16998869):updateEnmity(target);
+    SpawnMob(16998870):updateEnmity(target);
+
 end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

@@ -6,17 +6,27 @@
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-require("scripts/zones/Temple_of_Uggalepih/MobIDs");
+
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
+
     -- Trade Bee Larvae
-    if (trade:hasItemQty(1267,1) and trade:getItemCount() == 1 and not GetMobByID():isSpawned(DEATH_FROM_ABOVE)) then
+    if (trade:hasItemQty(1267,1) and trade:getItemCount() == 1) then
         player:tradeComplete();
-        SpawnMob(DEATH_FROM_ABOVE):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        SpawnMob(17428810):updateClaim(player);
+        -- Note: The ??? reappears after 15 minutes
     end
+
 end;
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(NM_OFFSET + 4);

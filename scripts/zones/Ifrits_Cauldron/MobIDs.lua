@@ -1,5 +1,3 @@
 ASH_DRAGON              = 17617147;
 
-BOMB_QUEEN              = 17617158;
-
 FLAME_SPOUT_OFFSET      = 17617209;

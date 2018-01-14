@@ -90,7 +90,7 @@ end;
 
 function onZoneWeatherChange(weather)
     if (GetMobAction(KREUTZET) == 24 and (weather == WEATHER_WIND or weather == WEATHER_GALES)) then
-        SpawnMob(KREUTZET); -- Kreutzet
+        SpawnMob(17240413); -- Kreutzet
     elseif (GetMobAction(KREUTZET) == 16 and (weather ~= WEATHER_WIND and weather ~= WEATHER_GALES)) then
         DespawnMob(KREUTZET);
     end

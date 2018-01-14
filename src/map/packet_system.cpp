@@ -4313,20 +4313,16 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     switch (data.ref<uint32>(0x04))
     {
-    case NFLAG_INVITE:
-        // /invite [on|off]
+    case 0x0001:
         PChar->nameflags.flags ^= FLAG_INVITE;
-        //PChar->menuConfigFlags.flags ^= NFLAG_INVITE;
         break;
-    case NFLAG_AWAY:
-        // /away | /online
+    case 0x0002:
         if (data.ref<uint8>(0x10) == 1)
             PChar->nameflags.flags |= FLAG_AWAY;
         if (data.ref<uint8>(0x10) == 2)
             PChar->nameflags.flags &= ~FLAG_AWAY;
         break;
-    case NFLAG_ANON:
-        // /anon [on|off]
+    case 0x0004:
         PChar->nameflags.flags ^= FLAG_ANON;
         if (PChar->nameflags.flags & FLAG_ANON)
         {
@@ -4337,69 +4333,25 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->pushPacket(new CMessageSystemPacket(0, 0, 176));
         }
         break;
-    case NFLAG_AUTOTARGET:
-        // /autotarget [on|off]
+    case 0x4000:
         if (data.ref<uint8>(0x10) == 1)
             PChar->m_hasAutoTarget = false;
         if (data.ref<uint8>(0x10) == 2)
             PChar->m_hasAutoTarget = true;
         break;
-    case NFLAG_AUTOGROUP:
-        // /autogroup [on|off]
-        if (data.ref<uint8>(0x10) == 1)
-            PChar->menuConfigFlags.flags |= NFLAG_AUTOGROUP;
-        if (data.ref<uint8>(0x10) == 2)
-            PChar->menuConfigFlags.flags &= ~NFLAG_AUTOGROUP;
+    case 0x8000:
+        //if(data.ref<uint8>(0x10) == 1)    // autogroup on
+        //if(data.ref<uint8>(0x10) == 2)    // autogroup off
         break;
-    case NFLAG_MENTOR:
-        // /mentor [on|off]
-        if (data.ref<uint8>(0x10) == 1)
-            PChar->menuConfigFlags.flags |= NFLAG_MENTOR;
-        else if (data.ref<uint8>(0x10) == 2)
-            PChar->menuConfigFlags.flags &= ~NFLAG_MENTOR;
-        break;
-    case NFLAG_NEWPLAYER:
-        // Cancel new adventurer status.
-        if (data.ref<uint8>(0x10) == 1)
-            PChar->menuConfigFlags.flags |= NFLAG_NEWPLAYER;
-        break;
-    case NFLAG_DISPLAY_HEAD:
-    {
-        // /displayhead [on|off]
-        auto flags = PChar->menuConfigFlags.byte4;
-        auto param = data.ref<uint8>(0x10);
-        if (param == 1)
-            PChar->menuConfigFlags.flags |= NFLAG_DISPLAY_HEAD;
-        else if (param == 2)
-            PChar->menuConfigFlags.flags &= ~NFLAG_DISPLAY_HEAD;
-
-        // This should only check that the display head bit has changed, since
-        // a user gaining mentorship or losing new adventurer status at the
-        // same time this code is called. Since it is unlikely that situation
-        // would occur and the negative impact would be displaying the headgear
-        // message twice, it isn't worth checking. If additional bits are found
-        // in this flag, that assumption may need to be re-evaluated.
-        if (flags != PChar->menuConfigFlags.byte4)
-        {
-            PChar->pushPacket(new CCharAppearancePacket(PChar));
-            PChar->pushPacket(new CMessageStandardPacket(param == 1 ? 0x105 : 0x104));
-        }
+    case 0x200000:
+        //if(data.ref<uint8>(0x10) == 1)    // party request on
+        //if(data.ref<uint8>(0x10) == 2)    // party request off
         break;
     }
-    case NFLAG_RECRUIT:
-        // /recruit [on|off]
-        if (data.ref<uint8>(0x10) == 1)
-         PChar->menuConfigFlags.flags |= NFLAG_RECRUIT;
-        if (data.ref<uint8>(0x10) == 2)
-         PChar->menuConfigFlags.flags &= ~NFLAG_RECRUIT;
-        break;
-    }
-
     charutils::SaveCharStats(PChar);
-    charutils::SaveMenuConfigFlags(PChar);
+
+    PChar->updatemask |= UPDATE_HP;
     PChar->pushPacket(new CMenuConfigPacket(PChar));
-    PChar->pushPacket(new CCharUpdatePacket(PChar));
-    PChar->pushPacket(new CCharSyncPacket(PChar));
     return;
 }
 

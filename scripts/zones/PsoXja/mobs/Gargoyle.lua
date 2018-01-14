@@ -2,17 +2,36 @@
 -- Area: Pso'xja
 --  MOB: Gargoyle
 -----------------------------------
-require("scripts/zones/PsoXja/MobIDs");
 
-function onMobDeath(mob, player, isKiller)
-    if (isKiller) then
-        local mobId = mob:getID();
-        local offset = mobId - GARGOYLE_OFFSET;
-        if (offset < 16) then
-            GetNPCByID(STONE_DOOR_OFFSET + offset):openDoor(30);
-        end
-    end
+
+-----------------------------------
+-- onMobSpawn
+-----------------------------------
+
+function onMobSpawn(mob)
 end;
 
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
 function onMobDespawn(mob)
+
+    for i = 0, 16, 1 do
+
+    local GargoyleOffset = 16814082 + (i-1);
+    local DoorOffset = 16814445 + (i);
+
+        if (mob:getID() == GargoyleOffset) then
+            GetNPCByID(DoorOffset):openDoor(30);
+        end
+    end
+
 end;
