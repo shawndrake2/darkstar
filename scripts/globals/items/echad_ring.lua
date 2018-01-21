@@ -4,8 +4,8 @@
 -- Experience point bonus
 -----------------------------------------
 -- Bonus: +300% (original: 150%)
--- Duration: 24 hours (original: 720 min)
--- Max bonus: 3000000 exp (original: 30000 exp)
+-- Duration: 720 min
+-- Max bonus: 60000 exp (original: 30000 exp)
 -----------------------------------------
 require("scripts/globals/status");
 -----------------------------------------
@@ -19,5 +19,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-   target:addStatusEffect(EFFECT_DEDICATION,300,0,86400,0,3000000);
+   target:addStatusEffect(EFFECT_DEDICATION,300,0,43200,0,60000);
 end;
