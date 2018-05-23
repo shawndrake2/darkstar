@@ -12,32 +12,32 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 
 local keyitems = {
     [0] = {
-        id = GOLD_PURIFICATION,
+        id = dsp.ki.GOLD_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = GOLD_ENSORCELLMENT,
+        id = dsp.ki.GOLD_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = CHAINWORK,
+        id = dsp.ki.CHAINWORK,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = SHEETING,
+        id = dsp.ki.SHEETING,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = CLOCKMAKING,
+        id = dsp.ki.CLOCKMAKING,
         rank = 3,
         cost = 10000
     },
     [5] = {
-        id = WAY_OF_THE_GOLDSMITH,
+        id = dsp.ki.WAY_OF_THE_GOLDSMITH,
         rank = 9,
         cost = 20000
     }
@@ -95,16 +95,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 340) then
         unionRepresentativeTriggerFinish(player, option, target, 3, "guild_goldsmithing", keyitems, items);
     end
 end;
 
 function onEventFinish(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 340) then
         unionRepresentativeTriggerFinish(player, option, target, 3, "guild_goldsmithing", keyitems, items);
     elseif (csid == 341) then

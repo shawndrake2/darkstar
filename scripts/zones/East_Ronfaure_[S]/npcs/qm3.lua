@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(CRYSTAL_WAR,STEAMED_RAMS) == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(CHARRED_PROPELLER)) then
+        if (player:hasKeyItem(dsp.ki.CHARRED_PROPELLER)) then
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
         else
             player:startEvent(1);
@@ -27,15 +27,13 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);
     if (csid == 1) then
-        player:addKeyItem(CHARRED_PROPELLER);
-        player:messageSpecial(KEYITEM_OBTAINED,CHARRED_PROPELLER);
+        player:addKeyItem(dsp.ki.CHARRED_PROPELLER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CHARRED_PROPELLER);
     end
 end;

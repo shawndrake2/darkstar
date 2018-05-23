@@ -56,8 +56,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
@@ -79,7 +77,7 @@ function onEventFinish(player,csid,option)
         player:setVar("EVEN_MORE_GULLIBLES_PROGRESS", 1);
         player:setTitle(286);
         player:addKeyItem(256);
-        player:messageSpecial(KEYITEM_OBTAINED,TREASURE_MAP);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TREASURE_MAP);
     elseif (csid == 152) then
         player:setVar("EVEN_MORE_GULLIBLES_PROGRESS", 0);
         player:addFame(KAZHAM, 30);

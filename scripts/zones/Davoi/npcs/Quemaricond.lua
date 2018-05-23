@@ -49,18 +49,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 117) then
         player:setVar("MissionStatus",4);
-        player:addKeyItem(ROYAL_KNIGHTS_DAVOI_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:addKeyItem(dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
     end
 
     npc:wait(0);

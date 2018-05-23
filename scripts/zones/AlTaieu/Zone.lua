@@ -40,18 +40,14 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1) then
         player:setVar("PromathiaStatus",1);
-        player:addKeyItem(LIGHT_OF_ALTAIEU);
-        player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_ALTAIEU);
-        player:addTitle(SEEKER_OF_THE_LIGHT);
+        player:addKeyItem(dsp.ki.LIGHT_OF_ALTAIEU);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LIGHT_OF_ALTAIEU);
+        player:addTitle(dsp.title.SEEKER_OF_THE_LIGHT);
     elseif (csid == 167) then
         player:setVar("PromathiaStatus",1);
     end

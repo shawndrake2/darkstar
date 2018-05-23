@@ -49,13 +49,9 @@ Fame = player:getFameLevel(WINDURST);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 487) then
         player:addQuest(WINDURST,TWINSTONE_BONDING);
@@ -74,7 +70,7 @@ function onEventFinish(player,csid,option)
                 player:addFame(WINDURST,80);
                 player:addItem(17154);
                 player:messageSpecial(ITEM_OBTAINED,17154);
-                player:addTitle(BOND_FIXER);
+                player:addTitle(dsp.title.BOND_FIXER);
             end
         else
             player:addFame(WINDURST,10);

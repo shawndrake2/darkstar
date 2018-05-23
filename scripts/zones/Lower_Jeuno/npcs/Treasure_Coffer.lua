@@ -19,13 +19,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     local random = 0;
     local prize = 0;
@@ -62,7 +58,7 @@ function onEventFinish(player,csid,option)
             end
 
         elseif (option == 1) then
-            if (player:hasKeyItem(CRIMSON_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.CRIMSON_KEY) == true) then
                 random = math.random(1,1003);
                 if (random >= 1 and random <= 70) then -- Gold Obi
                     prize = 13206;
@@ -667,7 +663,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(CRIMSON_KEY);
+                    player:delKeyItem(dsp.ki.CRIMSON_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -676,7 +672,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 2) then
-            if (player:hasKeyItem(VIRIDIAN_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.VIRIDIAN_KEY) == true) then
                 random = math.random(1,1056);
                 if (random >= 1 and random <= 65) then -- Aurora Mantle
                     prize = 13639;
@@ -736,7 +732,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(VIRIDIAN_KEY);
+                    player:delKeyItem(dsp.ki.VIRIDIAN_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -745,7 +741,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 3) then
-            if (player:hasKeyItem(AMBER_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.AMBER_KEY) == true) then
                 random = math.random(1,961);
                 if (random >= 1 and random <= 111) then -- Beak Necklace
                     prize = 16263;
@@ -799,7 +795,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(AMBER_KEY);
+                    player:delKeyItem(dsp.ki.AMBER_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -808,7 +804,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 4) then
-            if (player:hasKeyItem(AZURE_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.AZURE_KEY) == true) then
                 random = math.random(1,960);
                 if (random >= 1 and random <= 106) then -- Beak Mantle
                     prize = 13597;
@@ -858,7 +854,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(AZURE_KEY);
+                    player:delKeyItem(dsp.ki.AZURE_KEY);
                     player:setVar("LastAzureKey", os.date("%j"));
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
@@ -868,7 +864,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 5) then
-            if (player:hasKeyItem(IVORY_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.IVORY_KEY) == true) then
                 random = math.random(1,1172);
                 if (random >= 1 and random <= 62) then -- Angels Earring
                     prize = 13357;
@@ -912,7 +908,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(IVORY_KEY);
+                    player:delKeyItem(dsp.ki.IVORY_KEY);
                     player:setVar("LastIvoryKey", os.date("%j"));
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
@@ -922,7 +918,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 6) then
-            if (player:hasKeyItem(EBON_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.EBON_KEY) == true) then
                 random = math.random(1,997);
                 if (random >= 1 and random <= 31) then -- Angels Ring
                     prize = 13463;
@@ -978,7 +974,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(EBON_KEY);
+                    player:delKeyItem(dsp.ki.EBON_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -987,7 +983,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 8) then
-            if (player:hasKeyItem(WHITE_CORAL_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.WHITE_CORAL_KEY) == true) then
                 random = math.random(1,997);
                 if (random >= 1 and random <= 31) then -- Brass Mask
                     prize = 12433;
@@ -1033,7 +1029,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(WHITE_CORAL_KEY);
+                    player:delKeyItem(dsp.ki.WHITE_CORAL_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -1042,7 +1038,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 9) then
-            if (player:hasKeyItem(BLUE_CORAL_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.BLUE_CORAL_KEY) == true) then
                 random = math.random(1,1002);
                 if (random >= 1 and random <= 42) then -- Cuir Bouilli
                     prize = 12571;
@@ -1078,7 +1074,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(BLUE_CORAL_KEY);
+                    player:delKeyItem(dsp.ki.BLUE_CORAL_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -1087,7 +1083,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 10) then
-            if (player:hasKeyItem(PEACH_CORAL_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.PEACH_CORAL_KEY) == true) then
                 random = math.random(1,1103);
                 if (random >= 1 and random <= 66) then -- Carapace Harness
                     prize = 13712;
@@ -1139,7 +1135,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(PEACH_CORAL_KEY);
+                    player:delKeyItem(dsp.ki.PEACH_CORAL_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -1148,7 +1144,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 11) then
-            if (player:hasKeyItem(BLACK_CORAL_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.BLACK_CORAL_KEY) == true) then
                 random = math.random(1,1015);
                 if (random >= 1 and random <= 90) then -- Beak Helm
                     prize = 13698;
@@ -1186,7 +1182,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(BLACK_CORAL_KEY);
+                    player:delKeyItem(dsp.ki.BLACK_CORAL_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -1195,7 +1191,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 12) then
-            if (player:hasKeyItem(RED_CORAL_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.RED_CORAL_KEY) == true) then
                 random = math.random(1,1017);
                 if (random >= 1 and random <= 109) then -- Alloy Torque
                     prize = 16289;
@@ -1233,7 +1229,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(RED_CORAL_KEY);
+                    player:delKeyItem(dsp.ki.RED_CORAL_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -1242,7 +1238,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 13) then
-            if (player:hasKeyItem(ANGEL_SKIN_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.ANGEL_SKIN_KEY) == true) then
                 random = math.random(1,1047);
                 if (random >= 1 and random <= 65) then -- Altius Mantle
                     prize = 16254;
@@ -1290,7 +1286,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(ANGEL_SKIN_KEY);
+                    player:delKeyItem(dsp.ki.ANGEL_SKIN_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -1299,7 +1295,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 15) then
-            if (player:hasKeyItem(MOOGLE_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.MOOGLE_KEY) == true) then
                 random = math.random(1,1100);
                 if (random >= 1 and random <= 167) then -- Studded Bandana
                     prize = 12442;
@@ -1317,7 +1313,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(MOOGLE_KEY);
+                    player:delKeyItem(dsp.ki.MOOGLE_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -1326,7 +1322,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 16) then
-            if (player:hasKeyItem(BIRD_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.BIRD_KEY) == true) then
                 random = math.random(1,972);
                 if (random >= 1 and random <= 143) then -- Ebony Sabots
                     prize = 12987;
@@ -1370,7 +1366,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(BIRD_KEY);
+                    player:delKeyItem(dsp.ki.BIRD_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -1379,7 +1375,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 17) then
-            if (player:hasKeyItem(CACTUAR_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.CACTUAR_KEY) == true) then
                 random = math.random(1,935);
                 if (random >= 1 and random <= 109) then -- Nodowa
                     prize = 13111;
@@ -1421,7 +1417,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(CACTUAR_KEY);
+                    player:delKeyItem(dsp.ki.CACTUAR_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -1430,7 +1426,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 18) then
-            if (player:hasKeyItem(BOMB_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.BOMB_KEY) == true) then
                 random = math.random(1,901);
                 if (random >= 1 and random <= 308) then -- Battle Boots
                     prize = 12980;
@@ -1450,7 +1446,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(BOMB_KEY);
+                    player:delKeyItem(dsp.ki.BOMB_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -1459,7 +1455,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 19) then
-            if (player:hasKeyItem(CHOCOBO_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.CHOCOBO_KEY) == true) then
                 random = math.random(1,1186);
                 if (random >= 1 and random <= 190) then -- Aptus Earring
                     prize = 16008;
@@ -1493,7 +1489,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(CHOCOBO_KEY);
+                    player:delKeyItem(dsp.ki.CHOCOBO_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);
@@ -1502,7 +1498,7 @@ function onEventFinish(player,csid,option)
                 player:showText(player,NO_KEY);
             end
         elseif (option == 20) then
-            if (player:hasKeyItem(TONBERRY_KEY) == true) then
+            if (player:hasKeyItem(dsp.ki.TONBERRY_KEY) == true) then
                 random = math.random(1,997);
                 if (random >= 1 and random <= 291) then -- Esprit Belt
                     prize = 15938;
@@ -1546,7 +1542,7 @@ function onEventFinish(player,csid,option)
 
                 if (player:getFreeSlotsCount() >= 1) then
                     player:addItem(prize,1,a1,v1,a2,v2,a3,v3,a4,v4);
-                    player:delKeyItem(TONBERRY_KEY);
+                    player:delKeyItem(dsp.ki.TONBERRY_KEY);
                     player:messageSpecial(ITEM_OBTAINED,prize);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,prize);

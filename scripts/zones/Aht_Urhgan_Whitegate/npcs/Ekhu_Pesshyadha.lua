@@ -33,18 +33,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 537) then
        player:setVar("gotitallCS",2);
     elseif (csid == 524) then
-       player:addKeyItem(VIAL_OF_LUMINOUS_WATER);
-       player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_LUMINOUS_WATER);
+       player:addKeyItem(dsp.ki.VIAL_OF_LUMINOUS_WATER);
+       player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VIAL_OF_LUMINOUS_WATER);
        player:setVar("gotitallCS",4);
     end
 end;

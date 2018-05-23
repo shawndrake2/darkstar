@@ -34,15 +34,13 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 101) then
         player:setVar("BetterPartOfValProg",3);
     elseif (csid == 103) then
         player:tradeComplete();
         player:setVar("BetterPartOfValProg",4)
-        player:addKeyItem(XHIFHUT);
-        player:messageSpecial(KEYITEM_OBTAINED,XHIFHUT);
+        player:addKeyItem(dsp.ki.XHIFHUT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.XHIFHUT);
     end
 end;

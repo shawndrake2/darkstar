@@ -36,13 +36,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 170) then
         player:addQuest(BASTOK,FEAR_OF_FLYING);
@@ -55,7 +51,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(13113,1);
             player:messageSpecial(ITEM_OBTAINED,13113);
-            player:setTitle(AIRSHIP_DENOUNCER);
+            player:setTitle(dsp.title.AIRSHIP_DENOUNCER);
             player:completeQuest(BASTOK,FEAR_OF_FLYING);
             player:addFame(BASTOK,30);
         end

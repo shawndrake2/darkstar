@@ -17,9 +17,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND) == QUEST_ACCEPTED and player:hasKeyItem(YAGUDO_CREST) == false) then
-        player:addKeyItem(YAGUDO_CREST);
-        player:messageSpecial(KEYITEM_OBTAINED, YAGUDO_CREST);
+    if (player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.YAGUDO_CREST) == false) then
+        player:addKeyItem(dsp.ki.YAGUDO_CREST);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.YAGUDO_CREST);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
@@ -27,11 +27,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

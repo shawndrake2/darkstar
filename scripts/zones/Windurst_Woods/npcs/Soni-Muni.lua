@@ -48,20 +48,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 481) then
         player:addQuest(WINDURST,THE_AMAZIN_SCORPIO);
     elseif (csid == 484) then
         player:completeQuest(WINDURST,THE_AMAZIN_SCORPIO);
         player:addFame(WINDURST,80);
-        player:addTitle(GREAT_GRAPPLER_SCORPIO);
+        player:addTitle(dsp.title.GREAT_GRAPPLER_SCORPIO);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
         player:tradeComplete();

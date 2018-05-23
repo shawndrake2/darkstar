@@ -14,25 +14,23 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(NOTES_FROM_HARIGAORIGA)) then
-        player:startEvent(47,0,NOTES_FROM_HARIGAORIGA);
+    if (player:hasKeyItem(dsp.ki.NOTES_FROM_HARIGAORIGA)) then
+        player:startEvent(47,0,dsp.ki.NOTES_FROM_HARIGAORIGA);
     else
         player:showText(npc,IPUPU_DIALOG);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     if (csid == 47) then
-        player:delKeyItem(NOTES_FROM_HARIGAORIGA);
-        player:addKeyItem(NOTES_FROM_IPUPU);
-        player:messageSpecial(KEYITEM_OBTAINED,NOTES_FROM_IPUPU);
+        player:delKeyItem(dsp.ki.NOTES_FROM_HARIGAORIGA);
+        player:addKeyItem(dsp.ki.NOTES_FROM_IPUPU);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.NOTES_FROM_IPUPU);
     end
 end;

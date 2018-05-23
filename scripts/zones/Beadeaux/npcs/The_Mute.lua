@@ -20,16 +20,12 @@ function onTrigger(player,npc)
         player:setVar("cCollectSilence",1);
     end
 
-    player:addStatusEffect(EFFECT_SILENCE,0,0,duration);
+    player:addStatusEffect(dsp.effect.SILENCE,0,0,duration);
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

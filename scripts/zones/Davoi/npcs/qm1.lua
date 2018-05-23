@@ -20,19 +20,15 @@ function onTrigger(player,npc)
 
     local toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
 
-    if (toCureaCough == QUEST_ACCEPTED and player:hasKeyItem(THYME_MOSS) == false) then
-        player:addKeyItem(THYME_MOSS);
-        player:messageSpecial(KEYITEM_OBTAINED,THYME_MOSS);
+    if (toCureaCough == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.THYME_MOSS) == false) then
+        player:addKeyItem(dsp.ki.THYME_MOSS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.THYME_MOSS);
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

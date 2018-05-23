@@ -17,7 +17,7 @@ end;
 function onTrigger(player,npc)
 
     local runicpass = 0;
-    if (player:hasKeyItem(RUNIC_PORTAL_USE_PERMIT)) then
+    if (player:hasKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT)) then
         runicpass = 1;
     end
 
@@ -36,21 +36,17 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 140 and option == 1) then
-        player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
+        player:addKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RUNIC_PORTAL_USE_PERMIT);
         player:delCurrency("imperial_standing", 200);
     elseif (csid == 140 and option == 2) then
-        player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
+        player:addKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RUNIC_PORTAL_USE_PERMIT);
     end
 
 end;

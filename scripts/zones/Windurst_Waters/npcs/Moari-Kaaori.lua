@@ -48,13 +48,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 514 and option == 1) then
         if (player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS) == QUEST_COMPLETED) then
@@ -72,7 +68,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,16536);
             player:setVar("FLOWER_PROGRESS",0);
             player:needToZone(true);
-            player:setTitle(CUPIDS_FLORIST);
+            player:setTitle(dsp.title.CUPIDS_FLORIST);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16536);
         end
@@ -90,7 +86,7 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE * 400);
         player:setVar("FLOWER_PROGRESS",0);
         player:needToZone(true);
-        player:setTitle(CUPIDS_FLORIST);
+        player:setTitle(dsp.title.CUPIDS_FLORIST);
     elseif (csid == 523) then
         player:setVar("FLOWER_PROGRESS",1);
     end

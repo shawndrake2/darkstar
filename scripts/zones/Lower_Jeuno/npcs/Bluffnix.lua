@@ -80,13 +80,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     local TheGobbieBag = gobQuest(player,player:getContainerSize(0));
 
@@ -96,9 +92,9 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 73) then
         if (gobbieBag == 5) then
-            player:addTitle(GREEDALOX);
+            player:addTitle(dsp.title.GREEDALOX);
         elseif (gobbieBag == 10) then
-            player:addTitle(GRAND_GREEDALOX);
+            player:addTitle(dsp.title.GRAND_GREEDALOX);
         end
 
         player:changeContainerSize(0,5);

@@ -25,13 +25,11 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local npc = player:getEventTarget();
 
     if (csid == 10 and option == 0) then
-        local mainweapon = player:getEquipID(SLOT_MAIN);
-        local subweapon = player:getEquipID(SLOT_SUB);
+        local mainweapon = player:getEquipID(dsp.slot.MAIN);
+        local subweapon = player:getEquipID(dsp.slot.SUB);
 
         if (mainweapon == 0 and subweapon == 0) then
             local freeslots = player:getFreeSlotsCount();

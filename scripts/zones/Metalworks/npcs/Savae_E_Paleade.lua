@@ -41,18 +41,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 204) then
         player:addMission(SANDORIA,JOURNEY_TO_BASTOK);
         player:setVar("MissionStatus",3);
-        player:delKeyItem(LETTER_TO_THE_CONSULS_SANDORIA);
+        player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_SANDORIA);
     elseif (csid == 205) then
         player:tradeComplete();
         player:setVar("MissionStatus",6);
@@ -62,9 +58,9 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",8);
     elseif (csid == 207) then
         player:addMission(SANDORIA,JOURNEY_ABROAD);
-        player:delKeyItem(KINDRED_CREST);
-        player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:delKeyItem(dsp.ki.KINDRED_CREST);
+        player:addKeyItem(dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
     end
 
 end;

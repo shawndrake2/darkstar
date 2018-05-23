@@ -31,20 +31,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 3) then
         player:setVar("sinHunting",2);
     elseif (csid == 5) then
         player:tradeComplete();
-        player:addKeyItem(PERCHONDS_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,PERCHONDS_ENVELOPE);
+        player:addKeyItem(dsp.ki.PERCHONDS_ENVELOPE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PERCHONDS_ENVELOPE);
         player:setVar("sinHunting",3);
     end
 

@@ -27,13 +27,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 68) then
         player:setVar("QueenOfTheDance",1);
     elseif (csid == 70) then
@@ -43,7 +39,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 153) then
         player:completeMission(WOTG, THE_QUEEN_OF_THE_DANCE);
         player:addMission(WOTG, WHILE_THE_CAT_IS_AWAY);
-        player:delKeyItem(MAYAKOV_SHOW_TICKET);
+        player:delKeyItem(dsp.ki.MAYAKOV_SHOW_TICKET);
         player:setVar("QueenOfTheDance",0);
     end
 end;

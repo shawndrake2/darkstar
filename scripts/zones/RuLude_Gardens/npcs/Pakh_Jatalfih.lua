@@ -39,7 +39,7 @@ function onTrigger(player,npc)
             player:startEvent(137);
         elseif (currentMission == MAGICITE and MissionStatus == 6) then
             player:startEvent(37);
-        elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_WINDURST)) then
+        elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(57);
         elseif (player:getRank() >= 5) then
             player:startEvent(57);
@@ -55,13 +55,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 43) then
         player:setVar("MissionStatus",2);

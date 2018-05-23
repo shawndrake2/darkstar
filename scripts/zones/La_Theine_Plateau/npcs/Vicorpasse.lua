@@ -41,19 +41,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 108) then
         player:setVar("MissionStatus",5);
     elseif (csid == 115) then
-        player:addKeyItem(RESCUE_TRAINING_CERTIFICATE);
-        player:messageSpecial(KEYITEM_OBTAINED,RESCUE_TRAINING_CERTIFICATE);
+        player:addKeyItem(dsp.ki.RESCUE_TRAINING_CERTIFICATE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RESCUE_TRAINING_CERTIFICATE);
         player:setVar("theRescueDrillRandomNPC",0);
         player:setVar("MissionStatus",11);
     end

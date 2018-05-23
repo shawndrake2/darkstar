@@ -54,17 +54,13 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 668) then
         prog = player:getVar("QuestMakingHeadlines_var");
-        player:addKeyItem(WINDURST_WATERS_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,WINDURST_WATERS_SCOOP);
+        player:addKeyItem(dsp.ki.WINDURST_WATERS_SCOOP);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WINDURST_WATERS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+1);
     elseif (csid == 60) then  -- Show Off Hat
         player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+16);

@@ -36,8 +36,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local itemid = 0;
     local canEquip = 2; -- Faking it for now.
     -- 0 = Wrong job, 1 = wrong level, 2 = Everything is in order, 3 or greater = menu exits...
@@ -48,8 +46,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local medalRank = getMedalRank(player);
     if (csid == 110) then
         -- Note: the event itself already verifies the player has enough AN, so no check needed here.
@@ -90,10 +86,10 @@ function onEventFinish(player,csid,option)
                 cost = 200;
             end
 
-            player:delStatusEffect(EFFECT_SIGIL);
-            player:delStatusEffect(EFFECT_SANCTION);
-            player:delStatusEffect(EFFECT_SIGNET);
-            player:addStatusEffect(EFFECT_SIGIL, power, 0, duration, 0, subPower, 0);
+            player:delStatusEffect(dsp.effect.SIGIL);
+            player:delStatusEffect(dsp.effect.SANCTION);
+            player:delStatusEffect(dsp.effect.SIGNET);
+            player:addStatusEffect(dsp.effect.SIGIL, power, 0, duration, 0, subPower, 0);
             player:messageSpecial(ALLIED_SIGIL);
 
             if (cost > 0) then

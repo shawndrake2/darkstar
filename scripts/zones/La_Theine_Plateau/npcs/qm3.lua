@@ -28,18 +28,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 124) then
         player:tradeComplete();
         player:completeQuest(WINDURST, I_CAN_HEAR_A_RAINBOW);
-        player:addTitle(RAINBOW_WEAVER);
-        player:unlockJob(JOBS.SMN);
+        player:addTitle(dsp.title.RAINBOW_WEAVER);
+        player:unlockJob(dsp.job.SMN);
         player:addSpell(296);
         player:messageSpecial(UNLOCK_SUMMONER);
         player:messageSpecial(UNLOCK_CARBUNCLE);

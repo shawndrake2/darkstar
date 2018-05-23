@@ -31,20 +31,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 277) then
         player:setVar("AhtUrganStatus",1);
     elseif (csid == 279 and player:getVar("AhtUrganStatus") == 1) then
         player:setVar("AhtUrganStatus",0);
         player:tradeComplete();
-        player:addKeyItem(VIAL_OF_SPECTRAL_SCENT);
-        player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_SPECTRAL_SCENT);
+        player:addKeyItem(dsp.ki.VIAL_OF_SPECTRAL_SCENT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VIAL_OF_SPECTRAL_SCENT);
         player:completeMission(TOAU,ROYAL_PUPPETEER);
         player:addMission(TOAU,LOST_KINGDOM);
     end

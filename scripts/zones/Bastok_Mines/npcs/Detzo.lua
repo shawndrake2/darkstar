@@ -57,8 +57,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 93) then
         player:addQuest(BASTOK,RIVALS);
@@ -66,7 +64,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13571);
         else
-            player:addTitle(CONTEST_RIGGER);
+            player:addTitle(dsp.title.CONTEST_RIGGER);
             player:addItem(13571);
             player:messageSpecial(ITEM_OBTAINED,13571);
             player:addFame(BASTOK,30);

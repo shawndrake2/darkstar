@@ -37,15 +37,10 @@ function onTrigger(player,npc)
     end
 end;
 -- 108  200  201  202  203  204
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 200) then
         player:setVar("MissionStatus",2);
@@ -53,7 +48,7 @@ function onEventFinish(player,csid,option)
         player:setVar("Missionstatus",1);
     elseif (csid == 204) then
         player:setVar("Missionstatus",5);
-        player:delKeyItem(OLD_PIECE_OF_WOOD);
+        player:delKeyItem(dsp.ki.OLD_PIECE_OF_WOOD);
         player:setPos(23,0,4);
     end
 end;

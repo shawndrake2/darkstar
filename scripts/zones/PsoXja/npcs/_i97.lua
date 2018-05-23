@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     local posZ=player:getZPos();
-    if (player:hasKeyItem(PSOXJA_PASS) == true and posZ >= 25) then
+    if (player:hasKeyItem(dsp.ki.PSOXJA_PASS) == true and posZ >= 25) then
         player:startEvent(14);
     elseif (posZ < 25) then
         player:startEvent(17);
@@ -25,8 +25,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)

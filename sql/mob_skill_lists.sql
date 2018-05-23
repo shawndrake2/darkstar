@@ -500,11 +500,14 @@ INSERT INTO `mob_skill_lists` VALUES ('Ghrah',123,1445);
 INSERT INTO `mob_skill_lists` VALUES ('Ghrah',123,1446);
 INSERT INTO `mob_skill_lists` VALUES ('Ghrah',124,1444);
 INSERT INTO `mob_skill_lists` VALUES ('Ghrah',124,1441);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,922);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,923);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,924);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,402);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,926);
+
+-- Non NM Roc type Bird
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,399); -- Scratch
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,400); -- Triple Attack
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,401); -- Gliding Spike
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,402); -- Feather Barrier
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,403); -- Stormwind
+
 INSERT INTO `mob_skill_lists` VALUES ('Gigas',126,662);
 INSERT INTO `mob_skill_lists` VALUES ('Gigas',126,663);
 INSERT INTO `mob_skill_lists` VALUES ('Gigas',126,664);
@@ -1317,18 +1320,18 @@ INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1781);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1782);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1783);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1784);
--- INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2047);
--- INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2043);
--- INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2045);
--- INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2041);
--- INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2064);
--- INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1920);
-INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1921);
-INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1922);
-INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1923);
-INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1924);
--- INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1925);
--- INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1926);
+INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2043);
+INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2044);
+INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2045);
+INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2041);
+INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2053);
+-- INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1920);
+INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1921);
+INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1922);
+INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1923);
+INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1924);
+-- INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1925);
+-- INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1926);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1743);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1744);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1745);
@@ -3623,3 +3626,10 @@ INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armed',1000,2060); -- brainjack
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Battle',1001,2059); -- discoid
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2057); -- mortal revolution
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Bowed',1003,2058); -- homing missle
+
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,922); -- Blind Vortex
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,923); -- Giga Scream
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,924); -- Dread Dive
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,402); -- Feather Barrier
+-- INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,925); -- Feather Barrier (For now using 402. Retail data needed. Diff is likely animation time.)
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,926); -- Stormwind

@@ -41,13 +41,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 4) then
         player:setVar("MissionStatus",2);
@@ -69,8 +65,8 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
     elseif (csid == 8) then
         player:setVar("MissionStatus",3);
-        player:addKeyItem(ANCIENT_SANDORIAN_BOOK);
-        player:messageSpecial(KEYITEM_OBTAINED,ANCIENT_SANDORIAN_BOOK);
+        player:addKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANCIENT_SANDORIAN_BOOK);
     end
 
 end;

@@ -39,13 +39,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 62) then
         player:tradeComplete();
@@ -54,8 +50,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 58) then
         player:tradeComplete();
         player:setVar("EARLY_BIRD_TRACK_BOOK",2);
-        player:addKeyItem(ART_FOR_EVERYONE);
-        player:messageSpecial(KEYITEM_OBTAINED,ART_FOR_EVERYONE);
+        player:addKeyItem(dsp.ki.ART_FOR_EVERYONE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ART_FOR_EVERYONE);
     end
 
 end;

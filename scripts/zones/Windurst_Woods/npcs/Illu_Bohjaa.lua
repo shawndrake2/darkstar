@@ -37,19 +37,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 333 and option == 1) then
         player:addQuest(WINDURST, CREEPY_CRAWLIES);
     elseif (csid == 335) then
         player:tradeComplete();
         player:addGil(600 * GIL_RATE);
         player:completeQuest(WINDURST,CREEPY_CRAWLIES);
-        player:addTitle(CRAWLER_CULLER);
+        player:addTitle(dsp.title.CRAWLER_CULLER);
     end
 end;

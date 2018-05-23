@@ -13,7 +13,7 @@ require("scripts/globals/status");
 
 function onSpawn(npc)
     if (LandKingSystem_NQ < 1 and LandKingSystem_HQ < 1) then
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
@@ -21,21 +21,21 @@ function onTrade(player,npc,trade)
     local Behemoth = GetMobAction(17297440);
     local KingBehemoth = GetMobAction(17297441);
 
-    if ((KingBehemoth == ACTION_NONE or KingBehemoth == ACTION_SPAWN)
-    and (Behemoth == ACTION_NONE or Behemoth == ACTION_SPAWN)) then
+    if ((KingBehemoth == dsp.act.NONE or KingBehemoth == dsp.act.SPAWN)
+    and (Behemoth == dsp.act.NONE or Behemoth == dsp.act.SPAWN)) then
         -- Trade Beastly Shank
         if (trade:hasItemQty(3341,1) and trade:getItemCount() == 1) then
             if (LandKingSystem_NQ ~= 0) then
                 player:tradeComplete();
                 SpawnMob(17297440):updateClaim(player);
-                npc:setStatus(STATUS_DISAPPEAR);
+                npc:setStatus(dsp.status.DISAPPEAR);
             end
         -- Trade Savory Shank
         elseif (trade:hasItemQty(3342,1) and trade:getItemCount() == 1) then
             if (LandKingSystem_HQ ~= 0) then
                 player:tradeComplete();
                 SpawnMob(17297441):updateClaim(player);
-                npc:setStatus(STATUS_DISAPPEAR);
+                npc:setStatus(dsp.status.DISAPPEAR);
             end
         end
     end
@@ -47,11 +47,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

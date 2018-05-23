@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 
     if (player:getVar("darkLegacyCS") == 1) then
         player:startEvent(752);
-    elseif (player:hasKeyItem(DARKSTEEL_FORMULA)) then
+    elseif (player:hasKeyItem(dsp.ki.DARKSTEEL_FORMULA)) then
         player:startEvent(754);
     elseif (player:getQuestStatus(BASTOK,THE_DARKSMITH) == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 3) then
         player:startEvent(565);
@@ -50,8 +50,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 565) then
         player:addQuest(BASTOK,THE_DARKSMITH);
@@ -70,8 +68,8 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 752) then
         player:setVar("darkLegacyCS",2);
-        player:addKeyItem(LETTER_FROM_THE_DARKSTEEL_FORGE);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_THE_DARKSTEEL_FORGE);
+        player:addKeyItem(dsp.ki.LETTER_FROM_THE_DARKSTEEL_FORGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_THE_DARKSTEEL_FORGE);
     end
 
 end;

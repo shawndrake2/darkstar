@@ -41,22 +41,18 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 10024 and option == 1) then                -- player won first dice game
         player:setVar("thickAsThievesGamblingCS",2);
     elseif (csid == 10026) then
         player:tradeComplete();
         player:setVar("thickAsThievesGamblingCS",8);
-        player:delKeyItem(SECOND_FORGED_ENVELOPE);
-        player:addKeyItem(SECOND_SIGNED_FORGED_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,SECOND_SIGNED_FORGED_ENVELOPE);
+        player:delKeyItem(dsp.ki.SECOND_FORGED_ENVELOPE);
+        player:addKeyItem(dsp.ki.SECOND_SIGNED_FORGED_ENVELOPE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SECOND_SIGNED_FORGED_ENVELOPE);
     end
 
 

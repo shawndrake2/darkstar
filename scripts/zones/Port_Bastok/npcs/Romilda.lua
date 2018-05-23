@@ -44,18 +44,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 128) then
         player:addQuest(BASTOK,TILL_DEATH_DO_US_PART);
     elseif (csid == 129) then
-        player:addTitle(QIJIS_RIVAL);
+        player:addTitle(dsp.title.QIJIS_RIVAL);
         player:addGil(GIL_RATE*2000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2000);
         player:addFame(BASTOK,160);

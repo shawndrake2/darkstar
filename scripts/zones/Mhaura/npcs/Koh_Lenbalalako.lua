@@ -45,21 +45,17 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10007) then
         player:startEvent(10032);
         player:setVar("fireAndBrimstone",2);
     elseif (csid == 10009) then
         player:setVar("unbridledPassion",2);
     elseif (csid == 10011) then
-        player:addKeyItem(KOHS_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,KOHS_LETTER);
+        player:addKeyItem(dsp.ki.KOHS_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KOHS_LETTER);
         player:tradeComplete();
         player:setVar("unbridledPassion",3);
     end

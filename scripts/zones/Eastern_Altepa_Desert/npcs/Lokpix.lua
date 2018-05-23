@@ -24,18 +24,16 @@ function onTrigger(player,npc)
         player:startEvent(20);
     elseif (player:getQuestStatus(OUTLANDS,OPEN_SESAME) == QUEST_ACCEPTED) then
         player:startEvent(21);
-    elseif (player:hasCompleteQuest(OUTLANDS,OPEN_SESAME)) then
+    elseif (player:hasCompletedQuest(OUTLANDS,OPEN_SESAME)) then
         player:startEvent(24);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     if (csid == 20 and option == 1) then

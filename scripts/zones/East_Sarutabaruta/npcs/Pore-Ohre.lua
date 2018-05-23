@@ -29,18 +29,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 46) then
         player:setVar("MissionStatus",2);
-        player:addKeyItem(SOUTHEASTERN_STAR_CHARM);
-        player:messageSpecial(KEYITEM_OBTAINED,SOUTHEASTERN_STAR_CHARM);
+        player:addKeyItem(dsp.ki.SOUTHEASTERN_STAR_CHARM);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SOUTHEASTERN_STAR_CHARM);
     end
 
 end;

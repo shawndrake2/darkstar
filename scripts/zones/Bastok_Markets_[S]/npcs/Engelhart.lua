@@ -49,28 +49,24 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 116) then
         player:setVar("BetterPartOfValProg",1);
-        player:delKeyItem(CLUMP_OF_ANIMAL_HAIR);
+        player:delKeyItem(dsp.ki.CLUMP_OF_ANIMAL_HAIR);
     elseif (csid == 118) then
-        player:delKeyItem(XHIFHUT);
+        player:delKeyItem(dsp.ki.XHIFHUT);
         player:completeQuest(CRYSTAL_WAR,BETTER_PART_OF_VALOR);
-        player:addKeyItem(WARNING_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,WARNING_LETTER);
+        player:addKeyItem(dsp.ki.WARNING_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WARNING_LETTER);
         player:addGil(GIL_RATE*10000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000);
         player:setVar("BetterPartOfValProg",0);
         player:needToZone(true);
     elseif (csid == 120) then
         player:addQuest(CRYSTAL_WAR,FIRES_OF_DISCONTENT);
-        player:delKeyItem(WARNING_LETTER);
+        player:delKeyItem(dsp.ki.WARNING_LETTER);
     elseif (csid == 124) then
         player:setVar("FiresOfDiscProg",3);
     elseif (csid == 126) then

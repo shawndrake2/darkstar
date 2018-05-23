@@ -62,13 +62,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 28 and option == 0) then
         local rand = math.random(1,4);
@@ -92,7 +88,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,card);
         end
     elseif (csid == 200) then
-        player:addTitle(CARD_COLLECTOR);
+        player:addTitle(dsp.title.CARD_COLLECTOR);
         player:addFame(JEUNO, 30);
         player:tradeComplete();
         player:completeQuest(JEUNO,COLLECT_TARUT_CARDS);
@@ -101,8 +97,8 @@ function onEventFinish(player,csid,option)
         player:setVar("RubbishDay_day", VanadielDayOfTheYear()); -- new vanadiel day
     elseif (csid == 198 and option == 0) then
         player:addQuest(JEUNO,RUBBISH_DAY);
-        player:addKeyItem(MAGIC_TRASH);
-        player:messageSpecial(KEYITEM_OBTAINED,MAGIC_TRASH);
+        player:addKeyItem(dsp.ki.MAGIC_TRASH);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAGIC_TRASH);
         player:setVar("RubbishDay_prog",0);
         player:setVar("RubbishDay_day",0);
     elseif (csid == 197) then

@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    OldGauntlets = player:hasKeyItem(OLD_GAUNTLETS);
-    ShadowFlames = player:hasKeyItem(SHADOW_FLAMES);
+    OldGauntlets = player:hasKeyItem(dsp.ki.OLD_GAUNTLETS);
+    ShadowFlames = player:hasKeyItem(dsp.ki.SHADOW_FLAMES);
     BorghertzCS = player:getVar("BorghertzCS");
     X = player:getXPos();
     Z = player:getZPos();
@@ -67,12 +67,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

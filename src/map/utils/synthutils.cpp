@@ -712,6 +712,7 @@ int32 doSynthFail(CCharEntity* PChar)
             {
                 PItem->setSubType(ITEM_UNLOCKED);
                 PItem->setReserve(PItem->getReserve() - totalCount);
+                totalCount = 0;
 
                 if(lostCount > 0)
                 {
@@ -807,6 +808,17 @@ int32 startSynth(CCharEntity* PChar)
     if (!isRightRecipe(PChar))
     {
         return 0;
+    }
+
+    // Reserve the items after we know we have the right recipe
+    for (uint8 container_slotID = 0; container_slotID <= 8; ++container_slotID)
+    {
+        auto slotid = PChar->CraftContainer->getInvSlotID(container_slotID);
+        if (slotid != 0xFF)
+        {
+            CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotid);
+            PItem->setReserve(PItem->getReserve() + 1);
+        }
     }
 
     // удаляем кристалл

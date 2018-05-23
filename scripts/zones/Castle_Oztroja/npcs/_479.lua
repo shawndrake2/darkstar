@@ -15,7 +15,7 @@ require("scripts/globals/keyitems");
 function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(1142,1) and trade:getItemCount() == 1) then -- check for Judgment Key
-        if (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION and player:hasKeyItem(BALGA_CHAMPION_CERTIFICATE)) then
+        if (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION and player:hasKeyItem(dsp.ki.BALGA_CHAMPION_CERTIFICATE)) then
             if (player:getZPos() >= 80 and player:getZPos() < 86) then
                 npc:openDoor(2.5);
                 player:tradeComplete();
@@ -37,11 +37,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

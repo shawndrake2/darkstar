@@ -40,18 +40,14 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 100) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12638); -- Fighter's Lorica
         else
-            player:addTitle(PARAGON_OF_WARRIOR_EXCELLENCE);
+            player:addTitle(dsp.title.PARAGON_OF_WARRIOR_EXCELLENCE);
             player:addItem(12638);
             player:messageSpecial(ITEM_OBTAINED, 12638); -- Fighter's Lorica
             player:setVar("theTalekeeperGiftCS",0);

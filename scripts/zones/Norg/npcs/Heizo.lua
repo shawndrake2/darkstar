@@ -52,13 +52,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 127) then
         player:addQuest(OUTLANDS,LIKE_A_SHINING_LEGGINGS);
@@ -67,7 +63,7 @@ function onEventFinish(player,csid,option)
         player:addItem(4958); -- Scroll of Dokumori: Ichi
         player:messageSpecial(ITEM_OBTAINED, 4958); -- Scroll of Dokumori: Ichi
         player:addFame(NORG,100);
-        player:addTitle(LOOKS_GOOD_IN_LEGGINGS);
+        player:addTitle(dsp.title.LOOKS_GOOD_IN_LEGGINGS);
         player:setVar("shiningLeggings_nb",0);
         player:completeQuest(OUTLANDS,LIKE_A_SHINING_LEGGINGS);
     end

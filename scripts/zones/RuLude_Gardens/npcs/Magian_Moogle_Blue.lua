@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(MAGIAN_TRIAL_LOG) == false) then
+    if (player:hasKeyItem(dsp.ki.MAGIAN_TRIAL_LOG) == false) then
         player:startEvent(10141);
     else
         player:startEvent(10142); -- parameters unknown
@@ -36,11 +36,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -40,19 +40,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 85 and option == 1) then
         player:addQuest(SANDORIA,SLEEPLESS_NIGHTS);
     elseif (csid == 84) then
         player:tradeComplete();
-        player:addTitle(SHEEPS_MILK_DELIVERER);
+        player:addTitle(dsp.title.SHEEPS_MILK_DELIVERER);
         player:addGil(GIL_RATE*5000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*5000);
         player:addFame(SANDORIA,30);

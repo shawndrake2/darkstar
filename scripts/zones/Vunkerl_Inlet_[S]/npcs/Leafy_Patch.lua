@@ -31,17 +31,15 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 107) then
         if (option == 1) then
-            player:addKeyItem(VUNKERL_HERB);
-            player:messageSpecial(KEYITEM_OBTAINED, VUNKERL_HERB);
+            player:addKeyItem(dsp.ki.VUNKERL_HERB);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.VUNKERL_HERB);
             player:setVar("BoyAndTheBeast",3);
         else
-            player:addKeyItem(VUNKERL_HERB);
-            player:messageSpecial(KEYITEM_OBTAINED, VUNKERL_HERB);
+            player:addKeyItem(dsp.ki.VUNKERL_HERB);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.VUNKERL_HERB);
             player:setVar("BoyAndTheBeast",4);
         end
     end

@@ -44,13 +44,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 47) then
         player:addQuest(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON);
     elseif (csid == 23) then
@@ -79,8 +75,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 60) then
         player:completeQuest(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON);
         player:setVar("WrathOfTheGriffon",0);
-        player:addKeyItem(MILITARY_SCRIP);
-        player:messageSpecial(KEYITEM_OBTAINED,MILITARY_SCRIP);
+        player:addKeyItem(dsp.ki.MILITARY_SCRIP);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MILITARY_SCRIP);
     end
 
 end;

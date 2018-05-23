@@ -26,9 +26,9 @@ function onTrigger(player,npc)
     elseif (pFame < 2 and momTheAdventurer ~= QUEST_ACCEPTED and questStatus == 0) then
         player:startEvent(230);
     elseif (momTheAdventurer >= QUEST_ACCEPTED and questStatus == 2) then
-        if (player:seenKeyItem(LETTER_FROM_ROH_LATTEH)) then
+        if (player:seenKeyItem(dsp.ki.LETTER_FROM_ROH_LATTEH)) then
             player:startEvent(234);
-        elseif (player:hasKeyItem(LETTER_FROM_ROH_LATTEH)) then
+        elseif (player:hasKeyItem(dsp.ki.LETTER_FROM_ROH_LATTEH)) then
             player:startEvent(233);
         else
             player:startEvent(231);
@@ -42,13 +42,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 230 and option == 0) then
         if (player:getFreeSlotsCount(0) > 0) then
@@ -62,14 +58,14 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4096);
         end
     elseif (csid == 233 or csid == 234) then
-        if (player:seenKeyItem(LETTER_FROM_ROH_LATTEH)) then
+        if (player:seenKeyItem(dsp.ki.LETTER_FROM_ROH_LATTEH)) then
             gilReward = 100;
         else
             gilReward = 200;
         end
         player:needToZone(true);
-        player:delKeyItem(LETTER_FROM_ROH_LATTEH);
-        player:addTitle(RINGBEARER);
+        player:delKeyItem(dsp.ki.LETTER_FROM_ROH_LATTEH);
+        player:addTitle(dsp.title.RINGBEARER);
         player:addGil(GIL_RATE*gilReward);
         player:messageSpecial(GIL_OBTAINED, GIL_RATE*gilReward);
         player:setVar("MomTheAdventurer_Event",0);

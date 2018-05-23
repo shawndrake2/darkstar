@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(EPHRAMADIAN_GOLD_COIN)) then
+    if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN)) then
         player:startEvent(221, 53, -6, 0, 99, 6, 0);
     else
         player:messageSpecial(YOU_NO_REQS);
@@ -23,14 +23,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if(csid == 221) then
         local party = player:getParty();
         if (party ~= nil) then
             for i,v in ipairs(party) do
-                if (not (v:hasKeyItem(EPHRAMADIAN_GOLD_COIN))) then
+                if (not (v:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN))) then
                     player:messageText(target,MEMBER_NO_REQS, false);
                     player:instanceEntry(target,1);
                     return;
@@ -47,8 +45,6 @@ function onEventUpdate(player,csid,option,target)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if(csid == 221 and option == 4) then
         player:setPos(0,0,0,0,60);

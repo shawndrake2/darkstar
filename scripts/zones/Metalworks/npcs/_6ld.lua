@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(BASTOK) == XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(SHADOW_FRAGMENT)) then
+    if (player:getCurrentMission(BASTOK) == XARCABARD_LAND_OF_TRUTHS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
         player:startEvent(603);
     else
         player:startEvent(604);
@@ -25,13 +25,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 603) then
         finishMissionTimeline(player,1,csid,option);

@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(DELKFUTT_KEY)) then
+    if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY)) then
         player:startEvent(16);
     else
         player:startEvent(10); -- door is firmly shut
@@ -32,8 +32,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)
@@ -41,10 +39,10 @@ function onEventFinish(player,csid,option,npc)
 --print("RESULT:",option);
 
     if (csid == 16 and option == 1) then
-        if (player:hasKeyItem(DELKFUTT_KEY) == false) then
+        if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY) == false) then
             player:tradeComplete();
-            player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
-            player:addKeyItem(DELKFUTT_KEY);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DELKFUTT_KEY);
+            player:addKeyItem(dsp.ki.DELKFUTT_KEY);
         end
     end
 

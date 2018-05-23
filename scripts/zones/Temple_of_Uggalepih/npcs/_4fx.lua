@@ -34,18 +34,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 23) then
         player:setPos(340,0,333);
-        player:delKeyItem(BLANK_BOOK_OF_THE_GODS);
-        player:addKeyItem(BOOK_OF_THE_GODS);
-        player:messageSpecial(KEYITEM_OBTAINED,BOOK_OF_THE_GODS);
+        player:delKeyItem(dsp.ki.BLANK_BOOK_OF_THE_GODS);
+        player:addKeyItem(dsp.ki.BOOK_OF_THE_GODS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BOOK_OF_THE_GODS);
         player:setVar("MissionStatus",5);
     end
 end;

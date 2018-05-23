@@ -37,19 +37,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 0) then
         player:addQuest(JEUNO,CHILD_S_PLAY);
     elseif (csid == 1) then
-        player:addTitle(TRADER_OF_MYSTERIES);
-        player:addKeyItem(WONDER_MAGIC_SET);
-        player:messageSpecial(KEYITEM_OBTAINED,WONDER_MAGIC_SET);
+        player:addTitle(dsp.title.TRADER_OF_MYSTERIES);
+        player:addKeyItem(dsp.ki.WONDER_MAGIC_SET);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WONDER_MAGIC_SET);
         player:addFame(JEUNO, 30);
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,CHILD_S_PLAY);

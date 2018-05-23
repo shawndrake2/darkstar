@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(YAGUDO_TORCH)) then
+    if (player:hasKeyItem(dsp.ki.YAGUDO_TORCH)) then
         player:startEvent(11);
     else
         player:messageSpecial(PROBABLY_WORKS_WITH_SOMETHING_ELSE);
@@ -26,11 +26,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

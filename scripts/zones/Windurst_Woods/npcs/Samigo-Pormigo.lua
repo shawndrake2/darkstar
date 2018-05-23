@@ -12,22 +12,22 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 
 local keyitems = {
      [0] = {
-        id = BONE_PURIFICATION,
+        id = dsp.ki.BONE_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = BONE_ENSORCELLMENT,
+        id = dsp.ki.BONE_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = FILING,
+        id = dsp.ki.FILING,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = WAY_OF_THE_BONEWORKER,
+        id = dsp.ki.WAY_OF_THE_BONEWORKER,
         rank = 9,
         cost = 20000
     }
@@ -85,17 +85,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10022) then
         unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecraft", keyitems, items);
     end
 end;
 
 function onEventFinish(player,csid,option,target)
-     -- printf("CSID: %u",csid);
-     -- printf("RESULT: %u",option);
-
     if (csid == 10022) then
         unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecraft", keyitems, items);
     elseif (csid == 10023) then

@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local haveimperialIDtag;
     local tokens = 3;--player:getAssaultPoint(ILRUSI_ASSAULT_POINT);
 
-    if (player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)) then
+    if (player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG)) then
         haveimperialIDtag = 1;
     else
         haveimperialIDtag = 0;
@@ -34,8 +34,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 278) then
         local categorytype = bit.band(option, 0x0F);
@@ -53,16 +51,14 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 278) then
         local selectiontype = bit.band(option, 0xF);
         if (selectiontype == 1) then
             -- taken assault mission
             player:addAssault(bit.rshift(option,4));
-            player:delKeyItem(IMPERIAL_ARMY_ID_TAG);
-            player:addKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
-            player:messageSpecial(KEYITEM_OBTAINED,NYZUL_ISLE_ASSAULT_ORDERS);
+            player:delKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG);
+            player:addKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS);
         end
     end
 end;

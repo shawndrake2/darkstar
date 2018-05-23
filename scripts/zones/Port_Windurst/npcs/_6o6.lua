@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(AIRSHIP_PASS) == true and player:getGil() >= 200) then
+    if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS) == true and player:getGil() >= 200) then
         player:startEvent(181,0,8,0,0,0,0,0,200);
     else
         player:startEvent(183,0,8);
@@ -26,13 +26,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 181) then
         X = player:getXPos();

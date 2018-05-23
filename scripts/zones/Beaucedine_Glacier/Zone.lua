@@ -50,8 +50,6 @@ function onRegionEnter( player, region)
 end;
 
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 114) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 116) then
@@ -60,8 +58,6 @@ function onEventUpdate( player, csid, option)
 end;
 
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 206) then
         player:setVar("PromathiaStatus",10);
     elseif (csid == 114) then
@@ -72,9 +68,9 @@ end;
 function onZoneWeatherChange(weather)
     local mirrorPond = GetNPCByID(17232196); -- Quest: Love And Ice
 
-    if (weather == WEATHER_GLOOM or weather == WEATHER_DARKNESS) then
-        mirrorPond:setStatus(STATUS_NORMAL);
+    if (weather == dsp.weather.GLOOM or weather == dsp.weather.DARKNESS) then
+        mirrorPond:setStatus(dsp.status.NORMAL);
     else
-        mirrorPond:setStatus(STATUS_DISAPPEAR);
+        mirrorPond:setStatus(dsp.status.DISAPPEAR);
     end
 end;

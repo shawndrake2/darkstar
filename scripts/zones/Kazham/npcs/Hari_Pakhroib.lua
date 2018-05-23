@@ -42,13 +42,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 68 and option == 1) then
         player:addQuest(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
         player:setVar("PamamaVar",0);
@@ -58,7 +54,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(GIL_OBTAINED, 5000);
             player:completeQuest(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
             player:addFame(WINDURST,100);
-            player:addTitle(KAZHAM_CALLER);
+            player:addTitle(dsp.title.KAZHAM_CALLER);
             player:setVar("PamamaVar",0);
             player:needToZone(true);
         elseif (Pamamas == 2) then --Repeats of quest; give only gil and less fame

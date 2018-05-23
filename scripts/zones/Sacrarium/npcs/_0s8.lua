@@ -13,9 +13,9 @@ function onTrigger(player,npc)
     if (player:getXPos() > 45) then
         if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 2) then
             player:startEvent(6,0,582);
-        elseif (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 4 and player:hasKeyItem(RELIQUIARIUM_KEY) == true) then
+        elseif (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 4 and player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY) == true) then
             player:startEvent(5);
-        elseif (player:hasKeyItem(RELIQUIARIUM_KEY) == true) then
+        elseif (player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY) == true) then
             player:startEvent(110);
         end
     else
@@ -28,8 +28,6 @@ function onTrade(player,npc,trade)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)

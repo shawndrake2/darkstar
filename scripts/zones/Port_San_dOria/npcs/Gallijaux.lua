@@ -57,13 +57,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 303) then
         if (player:getFreeSlotsCount() == 0) then
@@ -72,9 +68,9 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(17386);
             player:messageSpecial(ITEM_OBTAINED, 17386);
-            player:addTitle(CARP_DIEM);
-            player:addKeyItem(TESTIMONIAL);
-            player:messageSpecial(KEYITEM_OBTAINED,TESTIMONIAL);
+            player:addTitle(dsp.title.CARP_DIEM);
+            player:addKeyItem(dsp.ki.TESTIMONIAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TESTIMONIAL);
             player:setVar("theCompetitionFishCountVar",0);
             player:completeQuest(SANDORIA,THE_RIVALRY);
         end

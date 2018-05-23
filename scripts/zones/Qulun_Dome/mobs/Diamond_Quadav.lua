@@ -5,7 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}; 
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/zones/Qulun_Dome/TextIDs");
 require("scripts/zones/Qulun_Dome/MobIDs");
 require("scripts/globals/status");
@@ -14,7 +14,7 @@ require("scripts/globals/status");
 function onMobInitialize(mob)
     -- the quest version of this NM doesn't drop gil
     if (mob:getID() >= AFFABLE_ADAMANTKING_OFFSET) then
-        mob:setMobMod(MOBMOD_GIL_MAX, -1);
+        mob:setMobMod(dsp.mobMod.GIL_MAX, -1);
     end
 end;
 

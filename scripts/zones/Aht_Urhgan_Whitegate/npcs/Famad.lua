@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local haveimperialIDtag;
     local assaultPoints = player:getAssaultPoint(LEBROS_ASSAULT_POINT);
 
-    if (player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)) then
+    if (player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG)) then
         haveimperialIDtag = 1;
     else
         haveimperialIDtag = 0;
@@ -34,21 +34,17 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 275) then
         local selectiontype = bit.band(option, 0xF);
         if (selectiontype == 1) then
             -- taken assault mission
             player:addAssault(bit.rshift(option,4));
-            player:delKeyItem(IMPERIAL_ARMY_ID_TAG);
-            player:addKeyItem(LEBROS_ASSAULT_ORDERS);
-            player:messageSpecial(KEYITEM_OBTAINED,LEBROS_ASSAULT_ORDERS);
+            player:delKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG);
+            player:addKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LEBROS_ASSAULT_ORDERS);
         elseif (selectiontype == 2) then
             -- purchased an item
             local item = bit.rshift(option,14);

@@ -29,24 +29,20 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 2) then
         player:addQuest(CRYSTAL_WAR,SEEING_SPOTS);
     elseif (csid == 4) then
         player:tradeComplete();
         if (player:getQuestStatus(CRYSTAL_WAR,SEEING_SPOTS) == QUEST_ACCEPTED) then
-            player:addTitle(LADY_KILLER);
+            player:addTitle(dsp.title.LADY_KILLER);
             player:addGil(GIL_RATE*3000);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
             player:completeQuest(CRYSTAL_WAR,SEEING_SPOTS);
         else
-            player:addTitle(LADY_KILLER);
+            player:addTitle(dsp.title.LADY_KILLER);
             player:addGil(GIL_RATE*3000);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
         end

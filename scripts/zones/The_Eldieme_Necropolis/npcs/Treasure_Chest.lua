@@ -40,8 +40,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(GUIDING_BELL);
-                    player:messageSpecial(KEYITEM_OBTAINED,GUIDING_BELL); -- Guiding Bell (KI)
+                    player:addKeyItem(dsp.ki.GUIDING_BELL);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GUIDING_BELL); -- Guiding Bell (KI)
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 
@@ -71,11 +71,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

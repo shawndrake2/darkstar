@@ -34,7 +34,7 @@ function onTrigger(player,npc)
 
     -- "Blackmail" quest status
     blackMail = player:getQuestStatus(SANDORIA, BLACKMAIL);
-    envelope = player:hasKeyItem(SUSPICIOUS_ENVELOPE);
+    envelope = player:hasKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
     sanFame = player:getFameLevel(SANDORIA);
     homeRank = player:getRank(player:getNation());
     questState = player:getVar("BlackMailQuest");
@@ -64,19 +64,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 643) then
         player:addQuest(SANDORIA,BLACKMAIL);
-        player:addKeyItem(SUSPICIOUS_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,SUSPICIOUS_ENVELOPE);
+        player:addKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SUSPICIOUS_ENVELOPE);
     elseif (csid == 646 and option == 1) then
         player:setVar("BlackMailQuest",2);
     elseif (csid == 648) then

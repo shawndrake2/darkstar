@@ -23,7 +23,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local params = {};
     params.numHits = 4;
     params.ftp100 = 1.5; params.ftp200 = 1.5; params.ftp300 = 1.5;
-    params.str_wsc = 0.2; params.dex_wsc = 0.3; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; 
+    params.str_wsc = 0.2; params.dex_wsc = 0.3; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0;
     params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
     params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
     params.canCrit = false;
@@ -37,9 +37,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
 
-    if (damage > 0 and target:hasStatusEffect(EFFECT_EVASION_DOWN) == false) then
-        local duration = (tp/1000 * 60) * applyResistanceAddEffect(player,target,ELE_ICE,0);
-        target:addStatusEffect(EFFECT_EVASION_DOWN, 10, 0, duration);
+    if (damage > 0 and target:hasStatusEffect(dsp.effect.EVASION_DOWN) == false) then
+        local duration = (tp/1000 * 60) * applyResistanceAddEffect(player,target,dsp.magic.ele.ICE,0);
+        target:addStatusEffect(dsp.effect.EVASION_DOWN, 10, 0, duration);
     end
 
     return tpHits, extraHits, criticalHit, damage;

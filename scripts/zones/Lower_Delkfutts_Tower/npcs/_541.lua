@@ -27,9 +27,9 @@ function onTrigger(player,npc)
 
     local currentMission = player:getCurrentMission(SANDORIA);
 
-    if (currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(DELKFUTT_KEY) == false) then
+    if (currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(dsp.ki.DELKFUTT_KEY) == false) then
         player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);
-    elseif (currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(DELKFUTT_KEY)) then
+    elseif (currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(dsp.ki.DELKFUTT_KEY)) then
         player:startEvent(0);
     else
         player:messageSpecial(DOOR_FIRMLY_SHUT);
@@ -40,19 +40,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID:",csid);
-    -- printf("RESULT:",option);
 
     if (csid == 0) then
-        if (player:hasKeyItem(DELKFUTT_KEY) == false) then
+        if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY) == false) then
             player:tradeComplete();
-            player:addKeyItem(DELKFUTT_KEY);
-            player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
+            player:addKeyItem(dsp.ki.DELKFUTT_KEY);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DELKFUTT_KEY);
         end
         player:setVar("MissionStatus",5);
     end

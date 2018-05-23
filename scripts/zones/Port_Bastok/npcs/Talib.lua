@@ -48,8 +48,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 2 and option == 0) then
         player:addQuest(BASTOK,BEAUTY_AND_THE_GALKA);
@@ -57,8 +55,8 @@ function onEventFinish(player,csid,option)
         player:setVar("BeautyAndTheGalkaDenied",1);
     elseif (csid == 3) then
         player:tradeComplete();
-        player:addKeyItem(PALBOROUGH_MINES_LOGS);
-        player:messageSpecial(KEYITEM_OBTAINED,PALBOROUGH_MINES_LOGS);
+        player:addKeyItem(dsp.ki.PALBOROUGH_MINES_LOGS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PALBOROUGH_MINES_LOGS);
     elseif (csid == 90) then
         ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
 

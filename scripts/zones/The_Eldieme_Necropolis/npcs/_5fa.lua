@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     if (npc:getAnimation() == 9) then
-        if (player:hasKeyItem(MAGICKED_ASTROLABE)) then
+        if (player:hasKeyItem(dsp.ki.MAGICKED_ASTROLABE)) then
             npc:openDoor(8);
         else
             player:messageSpecial(SOLID_STONE);
@@ -24,11 +24,7 @@ function onTrigger(player,npc)
 end;
 --
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

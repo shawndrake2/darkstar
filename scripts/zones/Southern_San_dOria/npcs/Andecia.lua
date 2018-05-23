@@ -55,13 +55,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 541 and option == 0) then
         if (player:getFreeSlotsCount() == 0) then
@@ -75,7 +71,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 624) then
         player:tradeComplete();
         player:setVar("OfferingWaterOK",0);
-        player:addTitle(ROYAL_GRAVE_KEEPER);
+        player:addTitle(dsp.title.ROYAL_GRAVE_KEEPER);
         player:addGil(GIL_RATE*560);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*560)
         player:addFame(SANDORIA,30);

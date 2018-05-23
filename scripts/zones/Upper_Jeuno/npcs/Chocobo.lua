@@ -62,10 +62,10 @@ function onTrigger(player,npc)
 
     ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
 
-    if (ChocobosWounds == QUEST_COMPLETED and player:hasKeyItem(CHOCOBO_LICENSE) == false) then
+    if (ChocobosWounds == QUEST_COMPLETED and player:hasKeyItem(dsp.ki.CHOCOBO_LICENSE) == false) then
         -- this is a quick hack to let people get their license if it was lost
-        player:addKeyItem(CHOCOBO_LICENSE);
-        player:messageSpecial(KEYITEM_OBTAINED, CHOCOBO_LICENSE);
+        player:addKeyItem(dsp.ki.CHOCOBO_LICENSE);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.CHOCOBO_LICENSE);
     elseif (ChocobosWounds == QUEST_AVAILABLE) then
         player:startEvent(62);
     elseif (ChocobosWounds == QUEST_ACCEPTED) then
@@ -92,13 +92,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 57) then
         player:setVar("ChocobosWounds_Event", 2);
@@ -120,9 +116,9 @@ function onEventFinish(player,csid,option)
         player:setVar("ChocobosWounds_Min",os.time() + 60);
         player:tradeComplete();
     elseif (csid == 64) then
-        player:addKeyItem(CHOCOBO_LICENSE);
-        player:messageSpecial(KEYITEM_OBTAINED, CHOCOBO_LICENSE);
-        player:addTitle(CHOCOBO_TRAINER);
+        player:addKeyItem(dsp.ki.CHOCOBO_LICENSE);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.CHOCOBO_LICENSE);
+        player:addTitle(dsp.title.CHOCOBO_TRAINER);
         player:setVar("ChocobosWounds_Event", 0);
         player:setVar("ChocobosWounds_Min", 0);
         player:addFame(JEUNO,30);

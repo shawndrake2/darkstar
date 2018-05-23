@@ -48,7 +48,7 @@ local VIRTUE_STONE_POUCH=5410;
 function onTrade(player,npc,trade)
     local reward = 0;
     local item = 0;
-    local NameOfScience = player:getQuestStatus(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
+    local NameOfScience = player:getQuestStatus(OTHER_AREAS_LOG,IN_THE_NAME_OF_SCIENCE);
 
     if (NameOfScience == QUEST_COMPLETED and trade:getItemCount()==1) then
         if (trade:hasItemQty(Sin_of_Indulgence,1)) then
@@ -102,7 +102,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local NameOfScience = player:getQuestStatus(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
+    local NameOfScience = player:getQuestStatus(OTHER_AREAS_LOG,IN_THE_NAME_OF_SCIENCE);
     local rnd= math.random();
     if (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then
         if (NameOfScience == QUEST_COMPLETED) then
@@ -120,13 +120,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 586) then
         if (player:getFreeSlotsCount() == 0 or (option ~= VIRTUE_STONE_POUCH and player:hasItem(option) == true)) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,option);

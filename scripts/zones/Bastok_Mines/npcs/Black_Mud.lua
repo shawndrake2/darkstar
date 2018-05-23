@@ -52,8 +52,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 101) then
         Drachenfall = player:getQuestStatus(BASTOK,DRACHENFALL);
@@ -80,7 +78,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:completeQuest(BASTOK,DRACHENFALL);
         player:addFame(BASTOK,120);
-        player:addTitle(DRACHENFALL_ASCETIC);
+        player:addTitle(dsp.title.DRACHENFALL_ASCETIC);
         player:addGil(GIL_RATE*2000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2000);
     end

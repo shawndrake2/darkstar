@@ -44,13 +44,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 82) then
         player:addQuest(BASTOK,OUT_OF_ONE_S_SHELL);
@@ -60,7 +56,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
     elseif (csid == 86) then
         if (player:getFreeSlotsCount() >= 1) then
-            player:addTitle(SHELL_OUTER);
+            player:addTitle(dsp.title.SHELL_OUTER);
             player:setVar("OutOfOneShell",0);
             player:addItem(12501);
             player:messageSpecial(ITEM_OBTAINED,12501);

@@ -107,7 +107,7 @@ function onGameHour(zone)
     end
 
     -- Ix'DRK spawn randomiser
-    if (VanadielHour % 12 == 0 and qm2:getStatus() ~= STATUS_DISAPPEAR) then -- Change ??? position every 12 hours Vana'diel time (30 mins)
+    if (VanadielHour % 12 == 0 and qm2:getStatus() ~= dsp.status.DISAPPEAR) then -- Change ??? position every 12 hours Vana'diel time (30 mins)
         qm2:hideNPC(30);
         local qm2position = math.random(1,4);
         qm2:setLocalVar("position",qm2position);
@@ -148,7 +148,7 @@ function onRegionEnter(player,region)
             end, --101
 
             [2] = function (x)
-                if (player:hasKeyItem(BRAND_OF_DAWN) and player:hasKeyItem(BRAND_OF_TWILIGHT)) then
+                if (player:hasKeyItem(dsp.ki.BRAND_OF_DAWN) and player:hasKeyItem(dsp.ki.BRAND_OF_TWILIGHT)) then
                     player:startEvent(156);
                 else
                     player:startEvent(183);
@@ -201,8 +201,6 @@ function onRegionLeave(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if ((csid >0x0095 and csid < 0x00B8) or csid == 102 or csid == 103 or csid == 101) then
         player:setVar("Ru-Hmet-TP",1);
@@ -210,8 +208,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 101 and option == 1) then
         player:setPos(540,-1,-499.900,62,0x24);

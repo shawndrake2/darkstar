@@ -77,19 +77,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 164 and option == 0) then
         player:addQuest(JEUNO, SAVE_MY_SON);
     elseif (csid == 163) then
         if (player:getFreeSlotsCount(0) >= 1) then
-            player:addTitle(LIFE_SAVER);
+            player:addTitle(dsp.title.LIFE_SAVER);
             player:addItem(13110);
             player:messageSpecial(ITEM_OBTAINED, 13110);
             player:addGil(GIL_RATE*2100);

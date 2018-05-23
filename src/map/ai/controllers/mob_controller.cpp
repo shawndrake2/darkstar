@@ -69,7 +69,7 @@ bool CMobController::TryDeaggro()
 
     // target is no longer valid, so wipe them from our enmity list
     if (!PTarget || PTarget->isDead() ||
-        PTarget->animation == ANIMATION_CHOCOBO ||
+        PTarget->isMounted() ||
         PTarget->loc.zone->GetID() != PMob->loc.zone->GetID() ||
         PMob->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect() ||
         PMob->allegiance == PTarget->allegiance ||
@@ -185,7 +185,7 @@ void CMobController::TryLink()
 **/
 bool CMobController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
 {
-    if (PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO) return false;
+    if (PTarget->isDead() || PTarget->isMounted()) return false;
 
     float verticalDistance = abs(PMob->loc.p.y - PTarget->loc.p.y);
 
@@ -587,8 +587,8 @@ void CMobController::Move()
         //#TODO: can this be moved to scripts entirely?
         if (PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
         {
-            if (currentDistance >= PMob->GetMeleeRange() * 2)
-                battleutils::DrawIn(PTarget, PMob, PMob->GetMeleeRange() - 0.2f);
+            if (currentDistance >= PMob->GetMeleeRange() * 2 && battleutils::DrawIn(PTarget, PMob, PMob->GetMeleeRange() - 0.2f))
+                FaceTarget();
         }
         if (PMob->speed != 0 && PMob->getMobMod(MOBMOD_NO_MOVE) == 0 && m_Tick >= m_LastSpecialTime)
         {
@@ -622,8 +622,8 @@ void CMobController::Move()
                             if (PSpawnedMob.second != PMob && !PSpawnedMob.second->PAI->PathFind->IsFollowingPath() && distance(PSpawnedMob.second->loc.p, PMob->loc.p) < 1.f)
                             {
                                 auto angle = getangle(PMob->loc.p, PTarget->loc.p) + 64;
-                                position_t new_pos {0, PMob->loc.p.x - (cosf(rotationToRadian(angle)) * 1.5f),
-                                    PTarget->loc.p.y, PMob->loc.p.z + (sinf(rotationToRadian(angle)) * 1.5f), 0};
+                                position_t new_pos {PMob->loc.p.x - (cosf(rotationToRadian(angle)) * 1.5f),
+                                    PTarget->loc.p.y, PMob->loc.p.z + (sinf(rotationToRadian(angle)) * 1.5f), 0, 0};
                                 if (PMob->PAI->PathFind->ValidPosition(new_pos))
                                 {
                                     PMob->PAI->PathFind->PathTo(new_pos, PATHFLAG_WALLHACK | PATHFLAG_RUN);
@@ -974,7 +974,7 @@ bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
         return false;
     }
 
-    if (PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO)
+    if (PTarget->isDead() || PTarget->isMounted())
     {
         return false;
     }

@@ -40,21 +40,17 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- If we just finished the cutscene for Windurst Mission 1-1
     -- The cutscene that we opened the correct Magical Gizmo
     if (csid == 52) then
         player:setVar("MissionStatus",3);
         player:setVar("MissionStatus_rv", 0);
-        player:addKeyItem(CRACKED_MANA_ORBS);
-        player:messageSpecial(KEYITEM_OBTAINED,CRACKED_MANA_ORBS);
+        player:addKeyItem(dsp.ki.CRACKED_MANA_ORBS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CRACKED_MANA_ORBS);
     elseif (csid == 53) then
         -- Opened the wrong one
         player:setVar("MissionStatus_op3", 2);

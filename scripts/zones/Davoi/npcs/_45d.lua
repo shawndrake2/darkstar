@@ -18,7 +18,7 @@ end;
 function onTrigger(player,npc)
 
     if (npc:getAnimation() == 9) then
-        if (player:hasKeyItem(CRIMSON_ORB)) then
+        if (player:hasKeyItem(dsp.ki.CRIMSON_ORB)) then
             player:startEvent(42);
         else
             player:messageSpecial(CAVE_HAS_BEEN_SEALED_OFF);
@@ -29,13 +29,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 42 and option == 0) then
         player:messageSpecial(POWER_OF_THE_ORB_ALLOW_PASS);

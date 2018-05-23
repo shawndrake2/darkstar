@@ -35,13 +35,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 128) then
         player:addQuest(CRYSTAL_WAR, THE_TIGRESS_STIRS);
     elseif (csid == 133) then
@@ -51,7 +47,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED,139);
         player:completeQuest(CRYSTAL_WAR, THE_TIGRESS_STRIKES);
         player:needToZone(true);
-        player:addTitle(AJIDOMARUJIDOS_MINDER);
+        player:addTitle(dsp.title.AJIDOMARUJIDOS_MINDER);
     end
 end;
 

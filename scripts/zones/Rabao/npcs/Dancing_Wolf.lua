@@ -18,7 +18,7 @@ if (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar(
 player:startEvent(102);
 elseif (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 2) then
 player:startEvent(103);
-elseif (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 3 and player:hasKeyItem(MIRACLESALT)) then
+elseif (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 3 and player:hasKeyItem(dsp.ki.MIRACLESALT)) then
 player:startEvent(104);
 elseif (player:getVar("BASTOK91") == 4) then
 player:startEvent(105);
@@ -28,13 +28,9 @@ end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 if (csid == 102) then
 player:setVar("BASTOK91",2);
 elseif (csid == 104) then

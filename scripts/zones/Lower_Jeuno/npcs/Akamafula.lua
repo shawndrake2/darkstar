@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then
+    if (player:hasKeyItem(dsp.ki.TENSHODO_MEMBERS_CARD)) then
         if (player:sendGuild(60417,1,23,1)) then
             player:showText(npc, AKAMAFULA_SHOP_DIALOG);
         end
@@ -26,12 +26,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

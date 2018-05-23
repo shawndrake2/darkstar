@@ -23,18 +23,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 2) then
         player:setVar("LuckOfTheDraw",4);
-        player:addKeyItem(FORGOTTEN_HEXAGUN);
-        player:messageSpecial(KEYITEM_OBTAINED,FORGOTTEN_HEXAGUN);
+        player:addKeyItem(dsp.ki.FORGOTTEN_HEXAGUN);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FORGOTTEN_HEXAGUN);
     end
 
 end;

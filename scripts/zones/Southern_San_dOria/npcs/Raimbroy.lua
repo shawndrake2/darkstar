@@ -61,13 +61,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- "The Sweetest Things" ACCEPTED
     if (csid == 532) then
@@ -84,7 +80,7 @@ function onEventFinish(player,csid,option)
         player:setVar("theSweetestThings", 0);
     elseif (csid == 535) then
         player:tradeComplete();
-        player:addTitle(APIARIST);
+        player:addTitle(dsp.title.APIARIST);
         player:addGil(GIL_RATE*400);
         if (player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,30);

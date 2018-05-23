@@ -73,20 +73,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- Making Headlines
     if (csid == 281 or csid == 283 or csid == 284) then
         prog = player:getVar("QuestMakingHeadlines_var");
-        player:addKeyItem(WINDURST_WALLS_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,WINDURST_WALLS_SCOOP);
+        player:addKeyItem(dsp.ki.WINDURST_WALLS_SCOOP);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WINDURST_WALLS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+4);
 
     -- Curses,Foiled...Again!?

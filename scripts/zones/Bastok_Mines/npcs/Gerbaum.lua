@@ -49,8 +49,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
 
@@ -62,7 +60,7 @@ MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
         if (MineSweep == 1) then
             player:completeQuest(BASTOK,MINESWEEPER);
             player:addFame(BASTOK,75);
-            player:addTitle(ZERUHN_SWEEPER);
+            player:addTitle(dsp.title.ZERUHN_SWEEPER);
         else
             player:addFame(BASTOK,8);
         end

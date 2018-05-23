@@ -56,13 +56,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 477 and option == 1) then
         player:addQuest(WINDURST,PAYING_LIP_SERVICE);
@@ -72,7 +68,7 @@ function onEventFinish(player,csid,option)
         if (PayingLipService == QUEST_ACCEPTED) then
             player:completeQuest(WINDURST,PAYING_LIP_SERVICE);
             player:addFame(WINDURST,60);
-            player:addTitle(KISSER_MAKEUPPER);
+            player:addTitle(dsp.title.KISSER_MAKEUPPER);
         else
             player:addFame(WINDURST,8);
         end

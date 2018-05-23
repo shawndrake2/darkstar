@@ -20,7 +20,7 @@ end;
 function onTrigger(player,npc)
     if (player:getVar("rootProblem") == 2) then
         if (player:getVar("rootProblemQ2") <= 1) then
-            if (player:hasStatusEffect(EFFECT_MANAFONT) == true) then
+            if (player:hasStatusEffect(dsp.effect.MANAFONT) == true) then
                 player:startEvent(47);
             else
                 player:startEvent(46);
@@ -38,8 +38,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 47) then
         player:setVar("rootProblemQ2",2);

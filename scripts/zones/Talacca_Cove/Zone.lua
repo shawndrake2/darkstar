@@ -31,20 +31,16 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 106) then
         player:completeMission(TOAU,TESTING_THE_WATERS);
-        player:delKeyItem(EPHRAMADIAN_GOLD_COIN);
-        player:addKeyItem(PERCIPIENT_EYE);
-        player:messageSpecial(KEYITEM_OBTAINED,PERCIPIENT_EYE);
-        player:setTitle(TREASURE_TROVE_TENDER);
+        player:delKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN);
+        player:addKeyItem(dsp.ki.PERCIPIENT_EYE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PERCIPIENT_EYE);
+        player:setTitle(dsp.title.TREASURE_TROVE_TENDER);
         player:setVar("AhtUrganStatus", 0);
         player:addMission(TOAU,LEGACY_OF_THE_LOST);
     end

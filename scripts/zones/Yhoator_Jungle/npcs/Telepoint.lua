@@ -26,9 +26,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(YHOATOR_GATE_CRYSTAL) == false) then
-        player:addKeyItem(YHOATOR_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,YHOATOR_GATE_CRYSTAL);
+    if (player:hasKeyItem(dsp.ki.YHOATOR_GATE_CRYSTAL) == false) then
+        player:addKeyItem(dsp.ki.YHOATOR_GATE_CRYSTAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.YHOATOR_GATE_CRYSTAL);
     else
         player:messageSpecial(ALREADY_OBTAINED_TELE);
     end
@@ -36,11 +36,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

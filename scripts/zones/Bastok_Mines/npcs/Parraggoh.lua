@@ -47,8 +47,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 7 and option == 0) then
         player:addQuest(BASTOK,BEAUTY_AND_THE_GALKA);
@@ -58,7 +56,7 @@ function onEventFinish(player,csid,option)
         if (FreeSlots >= 1) then
             player:completeQuest(BASTOK,BEAUTY_AND_THE_GALKA);
             player:setVar("BeautyAndTheGalkaDenied",0);
-            player:delKeyItem(PALBOROUGH_MINES_LOGS);
+            player:delKeyItem(dsp.ki.PALBOROUGH_MINES_LOGS);
             player:addFame(BASTOK,75);
             player:addItem(16465);
             player:messageSpecial(ITEM_OBTAINED,16465);

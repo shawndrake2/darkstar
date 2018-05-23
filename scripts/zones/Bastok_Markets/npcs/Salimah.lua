@@ -61,13 +61,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     local Gourmet = player:getQuestStatus(BASTOK,GOURMET);
 
@@ -93,7 +89,7 @@ function onEventFinish(player,csid,option)
         player:addGil(gil*GIL_RATE);
         player:messageSpecial(GIL_OBTAINED,gil*GIL_RATE);
         player:addFame(BASTOK,fame);
-        player:addTitle(MOMMYS_HELPER);
+        player:addTitle(dsp.title.MOMMYS_HELPER);
         player:needToZone(true);
     end
 end;

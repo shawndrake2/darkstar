@@ -56,13 +56,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- "The Pickpocket" recieving Gilt Glasses
     if (csid == 121) then
@@ -70,7 +66,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED, 579);
     elseif (csid == 137) then
         player:setVar("ChasingQuotas_Progress",5);
-        player:delKeyItem(SHINY_EARRING);
+        player:delKeyItem(dsp.ki.SHINY_EARRING);
     end;
 end;
 

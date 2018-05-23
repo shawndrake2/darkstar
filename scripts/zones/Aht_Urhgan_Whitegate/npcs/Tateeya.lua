@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     local tradeStatus = player:getVar('TateeyaTradeStatus');
     local automatonName = player:getAutomatonName();
     if (tradeStatus == 0) then
-        if (player:getMainJob() == JOBS.PUP) then
+        if (player:getMainJob() == dsp.job.PUP) then
             player:startEventString(650, automatonName, automatonName, automatonName, automatonName); --trade me to unlock attachments
         else
             player:startEvent(258); --default no PUP CS
@@ -46,13 +46,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 650) then --unlocking attachments explanation
         player:setVar('TateeyaTradeStatus', 1);
     elseif (csid == 651) then
