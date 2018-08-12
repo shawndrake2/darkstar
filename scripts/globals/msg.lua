@@ -1,8 +1,8 @@
 ------------------------------------------------------------------------
 -- This file holds all global (not zone specific) text references
 ------------------------------------------------------------------------
-dsp = dsp or {};
-dsp.msg = dsp.msg or {};
+dsp = dsp or {}
+dsp.msg = dsp.msg or {}
 
 ------------------------------------
 -- Message Channels
@@ -41,7 +41,17 @@ dsp.msg.channel =
     NS_LINKSHELL3  = 31, -- (assumed as it follows pattern and color)
     UNKNOWN_32     = 32, -- Looks the same as 31
     UNITY          = 33
-};
+}
+
+-- used by PrintToArea
+dsp.msg.area =
+{
+    SYSTEM      = 0, -- Server wide like the purple stuff :)
+    SAY         = 1, -- Will display in small area around player
+    SHOUT       = 2, -- Will display in wide area around player
+    PARTY       = 3, -- Will display to players entire party/alliance
+    YELL        = 4  -- If yell is enabled in zone, will display.
+}
 
 ------------------------------------
 -- Message Basic
@@ -78,6 +88,7 @@ dsp.msg.basic =
     MAGIC_ABSORB_MND       = 334, -- <caster> casts <spell>. <target>'s MND is drained.
     MAGIC_ABSORB_CHR       = 335, -- <caster> casts <spell>. <target>'s CHR is drained.
     MAGIC_ERASE            = 341, -- <caster> casts <spell>. <target>'s <status> effect disappears!
+    MAGIC_STEAL            = 430, -- <caster> casts <spell>. 1 of <target>'s effects is drained.
     MAGIC_TP_REDUCE        = 431, -- <caster> casts <spell>. <target>'s TP is reduced.
     MAGIC_ABSORB_TP        = 454, -- <caster> casts <spell>. <amount> TP drained from <target>.
     MAGIC_ABSORB_ACC       = 533, -- <caster> casts <spell>. <target>'s Accuracy is drained.
@@ -159,6 +170,8 @@ dsp.msg.basic =
     MUG_SUCCESS            = 129, -- <user> uses <ability>. <user> mugs <amount> gil from <target>.
     MUG_FAIL               = 244, -- <user> fails to mug <target>.
     FULL_INVENTORY         = 356, --  Cannot execute command. Your inventory is full.
+    OBTAINED_KEY_ITEM      = 758, -- Obtained key item: <key item>.
+    ALREADY_HAVE_KEY_ITEM  = 759, -- You already have key item: <key item>.
 
     -- Distance
     TARG_OUT_OF_RANGE      = 4,   -- <target> is out of range.
@@ -167,7 +180,7 @@ dsp.msg.basic =
     TOO_FAR_AWAY           = 78,  -- <target> is too far away.
 
     -- Weaponskills
-    READIES_WS              = 43,   -- ${actor} readies ${weapon_skill}.
+    READIES_WS             = 43,  -- ${actor} readies ${weapon_skill}.
     CANNOT_USE_WS          = 190, -- The <player> cannot use that weapon ability.
     NOT_ENOUGH_TP          = 192, -- The <player> does not have enough TP.
 
@@ -178,7 +191,7 @@ dsp.msg.basic =
     NO_EFFECT_ON_PET       = 336, -- No effect on that pet.
     NO_JUG_PET_ITEM        = 337, -- You do not have the necessary item equipped to call a beast.
     MUST_HAVE_FOOD         = 347, -- You must have pet food equipped to use that command.
-    STATUS_INCREASED        = 562,  -- The status parameters of ${target} have increased.
+    STATUS_INCREASED       = 562, -- The status parameters of ${target} have increased.
     PET_CANNOT_DO_ACTION   = 574, -- <player>'s pet is currently unable to perform that action.
     PET_NOT_ENOUGH_TP      = 575, -- <player>'s pet does not have enough TP to perform that action.
 
@@ -191,6 +204,7 @@ dsp.msg.basic =
     -- Items
     ITEM_USES               = 28,   -- ${actor} uses a ${item}.
     ITEM_UNABLE_TO_USE      = 55,   -- Unable to use item.
+    ITEM_UNABLE_TO_USE_2    = 56,   -- Unable to use item.
     ITEM_FAILS_TO_ACTIVATE  = 62,   -- The ${item} fails to activate.
     ITEM_NO_PETRAS          = 65,   -- You are not carrying any Petras.${lb}You cannot use the ${item}.
     ITEM_DOES_NOT_HAVE      = 91,   -- ${actor} does not have any ${item}.
@@ -281,4 +295,4 @@ dsp.msg.basic =
     DESPOIL_EVA_DOWN        = 597,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Evasion Down.
     DESPOIL_ACC_DOWN        = 598,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Accuracy Down.
     DESPOIL_SLOW            = 599,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Slow.
-};
+}

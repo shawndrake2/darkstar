@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Glenne
 -- Starts and Finishes Quest: A Sentry's Peril
--- @zone 230
--- !pos -122 -2 15
+-- !pos -122 -2 15 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -33,12 +32,12 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)

@@ -1127,9 +1127,9 @@ INSERT INTO `mob_skill_lists` VALUES ('CynoprosopiWyrm',261,958);
 INSERT INTO `mob_skill_lists` VALUES ('Wyrm',262,951);
 INSERT INTO `mob_skill_lists` VALUES ('Wyrm',262,952);
 INSERT INTO `mob_skill_lists` VALUES ('Wyrm',262,953);
-INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,951);
+INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1039); -- Outside alliance targeting version of Hurricane Wing
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1040); -- Outside alliance targeting version of Spike Flail
-INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,953);
+INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1041); -- Outside alliance targeting version of Dragon Breath
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,957);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1046);
 INSERT INTO `mob_skill_lists` VALUES ('SimorgWyvern',265,813);
@@ -3633,3 +3633,5 @@ INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,924); -- Dread Dive
 INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,402); -- Feather Barrier
 -- INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,925); -- Feather Barrier (For now using 402. Retail data needed. Diff is likely animation time.)
 INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,926); -- Stormwind
+
+INSERT INTO `mob_skill_lists` VALUES ('Nargun',1005,677); -- Thunder Break

@@ -50,7 +50,9 @@ public:
     int32 showText(lua_State*);             // Displays Dialog for npc
     int32 messageText(lua_State* L);
     int32 PrintToPlayer(lua_State* L);      // for sending debugging messages/command confirmations to the player's client
+    int32 PrintToArea(lua_State* L);        // for sending area messages to multiple players at once
     int32 messageBasic(lua_State*);         // Sends Basic Message
+    int32 messageName(lua_State* L);        // Sends a Message with a Name
     int32 messagePublic(lua_State*);        // Sends a public Basic Message
     int32 messageSpecial(lua_State*);       // Sends Special Message
     int32 messageSystem(lua_State*);        // Sends System Message
@@ -682,6 +684,7 @@ public:
     int32 getDespoilItem(lua_State*);       // gets ItemID of droplist despoil item from mob (steal item if no despoil item)
     int32 getDespoilDebuff(lua_State*);     // gets the status effect id to apply to the mob on successful despoil
     int32 itemStolen(lua_State*);           // sets mob's ItemStolen var = true
+    int32 getTHlevel(lua_State*);           // Returns the Monster's current Treasure Hunter Tier
 };
 
 #endif

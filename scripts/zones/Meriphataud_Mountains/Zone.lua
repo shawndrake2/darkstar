@@ -28,6 +28,7 @@ local itemMap =
                     { 17296, 162, DIGREQ_NONE },
                     { 771, 21, DIGREQ_NONE },
                     { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 1255, 10, DIGREQ_NONE }, -- all ores
                     { 678, 5, DIGREQ_BURROW },
                     { 645, 9, DIGREQ_BURROW },
                     { 737, 5, DIGREQ_BURROW },
@@ -60,7 +61,7 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(COO_KEJA_THE_UNSEEN);
     GetMobByID(COO_KEJA_THE_UNSEEN):setRespawnTime(math.random(900, 10800));
 
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onZoneIn( player, prevZone)
@@ -80,11 +81,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)

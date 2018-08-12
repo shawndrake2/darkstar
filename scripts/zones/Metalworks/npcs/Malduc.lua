@@ -33,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getNation() ~= NATION_BASTOK) then
+    if (player:getNation() ~= dsp.nation.BASTOK) then
         player:startEvent(1003); -- For non-Bastokian
     else
         local CurrentMission = player:getCurrentMission(BASTOK);
@@ -52,8 +52,8 @@ function onTrigger(player,npc)
         elseif (CurrentMission ~= 255) then
             player:startEvent(1002); -- Have mission already activated
         else
-             local flagMission, repeatMission = getMissionMask(player);
-             player:startEvent(1001,flagMission,0,0,0,0,repeatMission); -- Mission List
+            local flagMission, repeatMission = getMissionMask(player);
+            player:startEvent(1001,flagMission,0,0,0,0,repeatMission); -- Mission List
         end
     end
 

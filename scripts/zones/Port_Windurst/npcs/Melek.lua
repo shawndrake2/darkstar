@@ -2,8 +2,7 @@
 -- Area: Port Windurst
 --  NPC: Melek
 -- Involved in Mission 2-3
--- @zone 240
--- !pos -80 -5 158
+-- !pos -80 -5 158 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +21,7 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(BASTOK) ~= 255) then
         currentMission = player:getCurrentMission(pNation);
 
-        if (pNation == NATION_BASTOK) then
+        if (pNation == dsp.nation.BASTOK) then
             missionStatus = player:getVar("MissionStatus");
             if (currentMission == THE_EMISSARY) then
                 -- Bastok Mission 2-3 Part I - Windurst > San d'Oria

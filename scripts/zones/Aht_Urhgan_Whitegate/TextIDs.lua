@@ -20,7 +20,7 @@
            YOU_CAN_BECOME_PUP =  5832; -- You can now become a puppetmaster!
               MUSHAYRA_DIALOG =  4963; -- Sorry for all the trouble. Please ignore Hadahda the next time he asks you to do something.
                HADAHDA_DIALOG =  4914; -- Hey, think you could help me out?
-               PAY_DIVINATION =  8766; -- You pay 1000 gil for the divination.
+               PAY_DIVINATION =  8766; -- ≺Possible Special Code: 1F≻該ou pay 1000 gil for the divination.≺Prompt≻
                ZASSHAL_DIALOG = 10994; -- 'ang about. Looks like the permit you got was the last one I 'ad, so it might take me a bit o' time to scrounge up some more. 'ere, don't gimme that look. I'll be restocked before you know it.
 
  -- Other Dialogs
@@ -47,6 +47,7 @@
 
            WAHNID_SHOP_DIALOG =  9277; -- All the fishing gear you'll ever need, here in one place!
           WAHRAGA_SHOP_DIALOG =  9278; -- Welcome to the Alchemists' Guild.
+        GATHWEEDA_SHOP_DIALOG =  9279; -- Only members of the Alchemists' Guild have the vision to create such fine products... Would you like to purchase something?
 
 -- Automaton
              AUTOMATON_RENAME =  5848; -- Your automaton has a new name.

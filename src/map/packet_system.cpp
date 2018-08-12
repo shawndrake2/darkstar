@@ -131,6 +131,7 @@ This file is part of DarkStar-server source code.
 #include "packets/party_search.h"
 #include "packets/position.h"
 #include "packets/release.h"
+#include "packets/release_special.h"
 #include "packets/server_ip.h"
 #include "packets/server_message.h"
 #include "packets/shop_appraise.h"
@@ -2218,6 +2219,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             !(PItem->isSubType(ITEM_LOCKED)) &&
             !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
         {
+            if (PItem->isSubType(ITEM_CHARGED) && ((CItemUsable*)PItem)->getCurrentCharges() < ((CItemUsable*)PItem)->getMaxCharges())
+            {
+                PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0));
+                return;
+            }
             PItem->setCharPrice(price); // not sure setCharPrice is right
             PChar->pushPacket(new CAuctionHousePacket(action, PItem, quantity, price));
         }
@@ -2276,6 +2282,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             !(PItem->isSubType(ITEM_LOCKED)) &&
             !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
         {
+            if (PItem->isSubType(ITEM_CHARGED) && ((CItemUsable*)PItem)->getCurrentCharges() < ((CItemUsable*)PItem)->getMaxCharges())
+            {
+                PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0));
+                return;
+            }
             uint32 auctionFee = 0;
             if (quantity == 0)
             {
@@ -4898,6 +4909,21 @@ void SmallPacket0x0EA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 /************************************************************************
 *                                                                       *
+*  Special Release Request                                              *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x0EB(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    if (PChar->m_event.EventID == -1)
+        return;
+
+    PChar->pushPacket(new CSpecialReleasePacket(PChar));
+    return;
+}
+
+/************************************************************************
+*                                                                       *
 *  Cancel Status Effect                                                 *
 *                                                                       *
 ************************************************************************/
@@ -5134,14 +5160,21 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 ItemID = data.ref<uint16>(0x04);
 
     if (ItemID == 0)
+    {
         return;
+    }
 
-    uint8  slotID = data.ref<uint8>(0x06);
-    uint8  containerID = data.ref<uint8>(0x07);
-    uint8  col = data.ref<uint8>(0x09);
-    uint8  level = data.ref<uint8>(0x0A);
-    uint8  row = data.ref<uint8>(0x0B);
-    uint8  rotation = data.ref<uint8>(0x0C);
+    uint8 slotID = data.ref<uint8>(0x06);
+    uint8 containerID = data.ref<uint8>(0x07);
+    uint8 col = data.ref<uint8>(0x09);
+    uint8 level = data.ref<uint8>(0x0A);
+    uint8 row = data.ref<uint8>(0x0B);
+    uint8 rotation = data.ref<uint8>(0x0C);
+
+    if (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2)
+    {
+        return;
+    }
 
     CItemFurnishing* PItem = (CItemFurnishing*)PChar->getStorage(containerID)->GetItem(slotID);
 
@@ -5170,9 +5203,9 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             "UPDATE char_inventory "
             "SET "
             "extra = '%s' "
-            "WHERE location = 1 AND slot = %u AND charid = %u";
+            "WHERE location = %u AND slot = %u AND charid = %u";
 
-        if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0 && !wasInstalled)
+        if (Sql_Query(SqlHandle, Query, extra, containerID, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0 && !wasInstalled)
         {
             PChar->getStorage(LOC_STORAGE)->AddBuff(PItem->getStorage());
 
@@ -5199,8 +5232,13 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
     }
 
-    uint8  slotID = data.ref<uint8>(0x06);
+    uint8 slotID = data.ref<uint8>(0x06);
     uint8 containerID = data.ref<uint8>(0x07);
+
+    if (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2)
+    {
+        return;
+    }
 
     CItemContainer* PItemContainer = PChar->getStorage(containerID);
 
@@ -5231,9 +5269,9 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 "UPDATE char_inventory "
                 "SET "
                 "extra = '%s' "
-                "WHERE location = 1 AND slot = %u AND charid = %u";
+                "WHERE location = %u AND slot = %u AND charid = %u";
 
-            if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+            if (Sql_Query(SqlHandle, Query, extra, containerID, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
             {
                 uint8 NewSize = PItemContainer->GetSize() - RemovedSize;
                 for (uint8 SlotID = PItemContainer->GetSize(); SlotID > NewSize; --SlotID)
@@ -5787,6 +5825,44 @@ void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 }
 
 /************************************************************************
+*                                                                       *
+*  /sitchair                                                            *
+*                                                                       *
+************************************************************************/
+void SmallPacket0x113(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    PrintPacket(data);
+
+    if (PChar->status != STATUS_NORMAL)
+        return;
+
+    if (PChar->StatusEffectContainer->HasPreventActionEffect())
+        return;
+    
+    uint8 type = data.ref<uint8>(0x04);
+    if (type == 2)
+    {
+        PChar->animation = ANIMATION_NONE;
+        PChar->updatemask |= UPDATE_HP;
+        return;
+    }
+    
+    uint8 chairId = data.ref<uint8>(0x08) + ANIMATION_SITCHAIR_0;
+    if (chairId < 63 || chairId > 83)
+        return;
+
+    // Validate key item ownership for 64 through 83
+    if (chairId != 63 && !charutils::hasKeyItem(PChar, chairId + 0xACA))
+    {
+        chairId = ANIMATION_SITCHAIR_0;
+    }
+
+    PChar->animation = PChar->animation == chairId ? ANIMATION_NONE : chairId;
+    PChar->updatemask |= UPDATE_HP;
+    return;
+}
+
+/************************************************************************
 *                                                                        *
 *  Request Currency2 tab                                                  *
 *                                                                        *
@@ -5891,6 +5967,7 @@ void PacketParserInitialize()
     PacketSize[0x0E7] = 0x04; PacketParser[0x0E7] = &SmallPacket0x0E7;
     PacketSize[0x0E8] = 0x04; PacketParser[0x0E8] = &SmallPacket0x0E8;
     PacketSize[0x0EA] = 0x00; PacketParser[0x0EA] = &SmallPacket0x0EA;
+    PacketSize[0x0EB] = 0x00; PacketParser[0x0EB] = &SmallPacket0x0EB;
     PacketSize[0x0F1] = 0x00; PacketParser[0x0F1] = &SmallPacket0x0F1;
     PacketSize[0x0F2] = 0x00; PacketParser[0x0F2] = &SmallPacket0x0F2;
     PacketSize[0x0F4] = 0x04; PacketParser[0x0F4] = &SmallPacket0x0F4;
@@ -5910,6 +5987,7 @@ void PacketParserInitialize()
     PacketSize[0x110] = 0x0A; PacketParser[0x110] = &SmallPacket0x110;
     PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
     PacketSize[0x112] = 0x00; PacketParser[0x112] = &SmallPacket0xFFF;
+    PacketSize[0x113] = 0x06; PacketParser[0x113] = &SmallPacket0x113;
     PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0xFFF;
     PacketSize[0x115] = 0x02; PacketParser[0x115] = &SmallPacket0x115;
 }

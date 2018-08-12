@@ -30,11 +30,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -65,7 +61,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",2);
     elseif (csid == 42) then
         -- This cs should only play if you visit Windurst first.
-        if (player:getNation() == NATION_SANDORIA) then
+        if (player:getNation() == dsp.nation.SANDORIA) then
             player:setVar("MissionStatus",4);
         else
             player:setVar("MissionStatus",3);

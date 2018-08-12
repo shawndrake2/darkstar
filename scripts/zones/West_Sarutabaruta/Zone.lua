@@ -5,8 +5,9 @@
 -----------------------------------
 package.loaded[ "scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
-require( "scripts/zones/West_Sarutabaruta/TextIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/zones/West_Sarutabaruta/TextIDs");
+require("scripts/zones/West_Sarutabaruta/MobIDs");
+require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
 require("scripts/globals/zone");
@@ -27,6 +28,7 @@ local itemMap =
                     { 701, 50, DIGREQ_NONE },
                     { 702, 3, DIGREQ_NONE },
                     { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 1255, 10, DIGREQ_NONE }, -- all ores
                     { 617, 50, DIGREQ_BORE },
                     { 4570, 10, DIGREQ_MODIFIER },
                     { 4487, 11, DIGREQ_MODIFIER },
@@ -43,7 +45,7 @@ function onChocoboDig(player, precheck)
 end;
 
 function onInitialize(zone)
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onZoneIn( player, prevZone)
@@ -70,11 +72,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)
