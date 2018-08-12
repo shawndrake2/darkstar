@@ -3,9 +3,9 @@
 -- Item: echad ring
 -- Experience point bonus
 -----------------------------------------
--- Bonus: +150%
+-- Bonus: +300% (original: 150%)
 -- Duration: 720 min
--- Max bonus: 30000 exp
+-- Max bonus: 60000 exp (original: 30000 exp)
 -----------------------------------------
 require("scripts/globals/status");
 -----------------------------------------
@@ -19,5 +19,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-   target:addStatusEffect(dsp.effect.DEDICATION,150,0,43200,0,30000);
+   target:addStatusEffect(dsp.effect.DEDICATION,300,0,43200,0,60000);
 end;
