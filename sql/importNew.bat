@@ -8,7 +8,7 @@ REM ====== the the DB.                                                  ========
 REM ======                                                              =========
 REM ====== File needs to be run from within the \dsp\sql folder (same   =========
 REM ====== folder with all the .sql files. Please edit as needed. By    =========
-REM ====== default it WILL DROP the standard dspdb DB, loosing all      =========
+REM ====== default it WILL DROP the standard dspdb DB, losing all      =========
 REM ====== accounts and characters. If this is not desired, then update =========
 REM ====== the file to load the new DB into a new DB name.              =========
 REM ======                                                              =========
