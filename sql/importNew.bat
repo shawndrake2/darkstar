@@ -28,7 +28,7 @@ REM ======                                                              ========
 REM =============================================================================
 REM =============================================================================
 
-SET MYSQL="C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -proot
+SET MYSQL="C:\Program Files\MySQL\MySQL Server 5.7\bin\mysql.exe" -u root -proot
 
 ECHO Creating Database dspdb
 %MYSQL% -e "DROP DATABASE IF EXISTS dspdb"
