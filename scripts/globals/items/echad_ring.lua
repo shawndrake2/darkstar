@@ -7,16 +7,16 @@
 -- Duration: 720 min
 -- Max bonus: 60000 exp (original: 30000 exp)
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
+    local result = 0
     if (target:hasStatusEffect(dsp.effect.DEDICATION) == true) then
-        result = 56;
+        result = 56
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
    target:addStatusEffect(dsp.effect.DEDICATION,300,0,43200,0,60000);
