@@ -22,26 +22,31 @@ $ignoreTables = [
 	'chars.sql',
 	'accounts.sql',
 	'accounts_banned.sql',
+	'char_blacklist.sql',
 	'char_effects.sql',
 	'char_equip.sql',
 	'char_exp.sql',
 	'char_inventory.sql',
 	'char_jobs.sql',
 	'char_look.sql',
+	'char_merit.sql',
 	'char_pet.sql',
 	'char_pet_name.sql',
 	'char_points.sql',
 	'char_profile.sql',
+	'char_recast.sql',
 	'char_skills.sql',
 	'char_spells.sql',
 	'char_stats.sql',
 	'char_storage.sql',
+	'char_style.sql',
 	'char_vars.sql',
 	'char_weapon_skill_points.sql',
 	'chars.sql',
 	'conquest_system.sql',
 	'delivery_box.sql',
-	'linkshells.sql'
+	'linkshells.sql',
+    'zzz_ryken.sql'
 ];
 
 try {
@@ -51,7 +56,7 @@ try {
     echo "Loading ${dbname} tables into the database" . PHP_EOL;
     $ignoreLines = ['--', '/*', '//', ''];
     foreach ($sqlScripts as $file) {
-        if (preg_match('/\.sql$/', $file) && !in_array($file, $ignoreTables) {
+        if (preg_match('/\.sql$/', $file) && !in_array($file, $ignoreTables)) {
             echo "Importing ${file}" . PHP_EOL;
             $sqlContents = file($file);
             $sql = '';
