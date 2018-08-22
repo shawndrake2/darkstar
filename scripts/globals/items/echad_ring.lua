@@ -19,5 +19,5 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-   target:addStatusEffect(dsp.effect.DEDICATION,300,0,43200,0,60000);
-end;
+   target:addStatusEffect(dsp.effect.DEDICATION,300,0,43200,0,60000)
+end
