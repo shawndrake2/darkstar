@@ -10981,6 +10981,7 @@ INSERT INTO `mob_groups` VALUES (11195,5141,174,1056,128,2983,0,0,60,63,0);
 INSERT INTO `mob_groups` VALUES (11196,1720,12,0,128,1469,0,0,71,73,0);
 -- gnoletrap Jugner S missing group
 INSERT INTO `mob_groups` VALUES (11197,5155,82,300,0,4481,0,0,89,91,0);
+INSERT INTO `mob_groups` VALUES (11198,5846,82,5400,0,4597,0,0,56,57,0);
 
 -- Legion
 -- mul
@@ -12543,6 +12544,7 @@ INSERT INTO `mob_groups` VALUES (14632,5842,122,7200,0,0,0,0,77,79,0); -- Nargun
 INSERT INTO `mob_groups` VALUES (14633,5843,61,0,32,4599,0,0,80,82,0);  -- Ignamoth
 
 INSERT INTO `mob_groups` VALUES (14634,5844,88,0,128,4600,0,0,50,53,0); -- Ankabut
+INSERT INTO `mob_groups` VALUES (14635,5845,141,3600,0,4601,0,0,25,25,0); -- Kegpaunch Doshgnosh
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;
