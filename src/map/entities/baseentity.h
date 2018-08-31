@@ -154,7 +154,7 @@ enum ENTITYFLAGS
     FLAG_UNTARGETABLE  = 0x800,
 };
 
-// TODO: возможо стоит сделать эту структуру частью класса, взамен нынешних id и targid, но уже без метода clean
+// TODO: it is possible to make this structure part of the class, instead of the current id and targid, but without the clean method
 
 struct EntityID_t
 {
@@ -172,12 +172,12 @@ class CZone;
 
 struct location_t
 {
-    position_t	p;              // позиция сущности
-    uint16		destination;    // текущая зона
-    CZone*      zone;           // текущая зона
-    uint16		prevzone;       // предыдущая зона (для монстров и npc не используется)
-    bool		zoning;         // флаг сбрасывается при каждом входе в новую зону. необходим для реализации логики игровых задач ("quests")
-    uint16		boundary;       // определенная область в зоне, в которой находится сущность (используется персонажами и транспортом)
+    position_t	p;              // entity position
+    uint16		destination;    // current zone
+    CZone*      zone;           // current zone
+    uint16		prevzone;       // previous zone (for monsters and npc not used)
+    bool		zoning;         // The flag is reset each time you enter a new zone. It is necessary to implement the logic of gaming tasks ("quests")
+    uint16		boundary;       // a certain area in the zone in which the entity is located (used by characters and transport)
 };
 
 class CAIContainer;
@@ -186,7 +186,7 @@ class CBattlefield;
 
 /************************************************************************
 *																		*
-*  Базовый класс для всех сущностей в игре								*
+*  Base class for all entities in the game								*
 *																		*
 ************************************************************************/
 
@@ -194,16 +194,16 @@ class CBaseEntity
 {
 public:
 
-    CBaseEntity();						// конструктор
-    virtual ~CBaseEntity();				// деструктор
+    CBaseEntity();						// constructor
+    virtual ~CBaseEntity();				// destructor
 
     virtual void    Spawn();
     virtual void    FadeOut();
-    virtual const int8* GetName();      // имя сущности
-    uint16			getZone();			// текущая зона
-    float			GetXPos();			// позиция по координате X
-    float			GetYPos();			// позиция по координате Y
-    float			GetZPos();			// позиция по координате Z
+    virtual const int8* GetName();      // entity name
+    uint16			getZone();			// current zone
+    float			GetXPos();			// position by coordinates X
+    float			GetYPos();			// position by coordinates Y
+    float			GetZPos();			// position by coordinates Z
     uint8			GetRotPos();
     void			HideName(bool hide); // hide / show name
     bool			IsNameHidden();		// checks if name is hidden
@@ -224,19 +224,19 @@ public:
 
     virtual void    HandleErrorMessage(std::unique_ptr<CBasicPacket>&) {};
 
-    uint32			id;					// глобальный идентификатор, уникальный на сервере
-    uint16			targid;				// локалный идентификатор, уникальный в зоне
-    ENTITYTYPE		objtype;			// тип сущности
-    STATUSTYPE		status;				// статус сущности (разные сущности - разные статусы)
+    uint32			id;					// global identifier unique on the server
+    uint16			targid;				// local identifier unique in the zone
+    ENTITYTYPE		objtype;			// entity type
+    STATUSTYPE		status;				// status of the entity (different entities - different statuses)
     uint16			m_TargID;			// targid объекта, на который смотрит сущность
-    string_t		name;				// имя сущности
-    look_t			look;				// внешний вид всех сущностей
+    string_t		name;				// entity name
+    look_t			look;				// Appearance of all entities
     look_t			mainlook;			// only used if mob use changeSkin() or player /lockstyle
-    location_t		loc;				// местоположение сущности
-    uint8			animation;			// анимация
-    uint8			animationsub;		// дополнительный параметры анимации
-    uint8			speed;				// скорость передвижения
-    uint8			speedsub;			// подолнительный параметр скорости передвижения
+    location_t		loc;				// entity location
+    uint8			animation;			// animation
+    uint8			animationsub;		// additional animation options
+    uint8			speed;				// travel speed
+    uint8			speedsub;			// traveling speed parameter
     uint8			namevis;
     uint8			allegiance;			// what types of targets the entity can fight
     uint8           updatemask;         // what to update next server tick to players nearby

@@ -189,6 +189,11 @@ int32 do_init(int32 argc, char** argv)
         map_ip.s_addr, map_port, map_ip.s_addr, map_port);
 
     ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
+
+    ShowStatus("do_init: cleaning out active NM table");
+    Sql_Query(SqlHandle, "TRUNCATE TABLE nm_tracker;");
+    ShowMessage("\t - " CL_GREEN"[OK]" CL_RESET"\n");
+
     ShowStatus("do_init: zlib is reading");
     zlib_init();
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");

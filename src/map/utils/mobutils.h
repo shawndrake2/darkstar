@@ -78,6 +78,9 @@ namespace mobutils
 	void  SetSpellList(CMobEntity*, uint16);
 	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* = nullptr);
     void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level);
+
+    void trackNmSpawn(CMobEntity* PMob);
+    void trackNmDeSpawnOrDie(CMobEntity* PMob);
 };
 
 #endif

@@ -126,6 +126,7 @@ public:
 
     bool      IsFarFromHome();                         // check if mob is too far from spawn
     bool      CanBeNeutral();                          // check if mob can have killing pause
+    bool      isNm();                                  // check if mob is Notorious Monster
 
     uint8     TPUseChance();                           // return % chance to use TP move
 

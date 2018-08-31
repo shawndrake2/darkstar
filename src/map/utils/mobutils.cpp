@@ -1437,6 +1437,45 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
     return PMob;
 }
 
+void trackNmSpawn(CMobEntity* PMob)
+{
+    if (PMob->isNm()) {
+        const char* Query =
+            "INSERT INTO nm_tracker "
+            "(mobId, name, zone, zoneId, locX, locY, locZ, moving) "
+            "VALUES "
+            "('%u', '%s', '%s', '%u', '%f', '%f', '%f', '%d');";
+
+        location_t location = PMob->loc;
+        CZone* zone = location.zone;
+        position_t position = location.p;
+
+        Sql_Query(
+            SqlHandle,
+            Query,
+            PMob->id,
+            PMob->name,
+            zone->GetName(),
+            zone->GetID(),
+            position.x,
+            position.y,
+            position.z,
+            position.moving
+        );
+    }
+}
+
+void trackNmDeSpawnOrDie(CMobEntity* PMob)
+{
+    if (PMob->isNm()) {
+        const char* Query =
+            "DELETE FROM nm_tracker "
+            "WHERE mobId = '%u';";
+
+        Sql_Query(SqlHandle, Query, PMob->id);
+    }
+}
+
 void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level)
 {
     uint16 animationID = 0;

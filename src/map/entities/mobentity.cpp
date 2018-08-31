@@ -138,6 +138,7 @@ void CMobEntity::setEntityFlags(uint32 EntityFlags)
 
 CMobEntity::~CMobEntity()
 {
+    mobutils::trackNmDeSpawnOrDie(this);
     delete PEnmityContainer;
     delete SpellContainer;
 }
@@ -316,6 +317,12 @@ bool CMobEntity::CanLink(position_t* pos, int16 superLink)
 bool CMobEntity::CanDeaggro()
 {
     return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
+}
+
+
+bool CMobEntity::isNm()
+{
+    return m_Type & MOBTYPE_NOTORIOUS;
 }
 
 /************************************************************************
@@ -614,6 +621,7 @@ void CMobEntity::Spawn()
     }
 
     m_DespawnTimer = time_point::min();
+    mobutils::trackNmSpawn(this);
     luautils::OnMobSpawn(this);
 }
 
@@ -979,6 +987,7 @@ void CMobEntity::OnDespawn(CDespawnState&)
     FadeOut();
     PAI->Internal_Respawn(std::chrono::milliseconds(m_RespawnTime));
     luautils::OnMobDespawn(this);
+    mobutils::trackNmDeSpawnOrDie(this);
     //#event despawn
     PAI->EventHandler.triggerListener("DESPAWN", this);
 }
@@ -1004,6 +1013,8 @@ void CMobEntity::Die()
     {
         petutils::DetachPet(PMaster);
     }
+    mobutils::trackNmDeSpawnOrDie(this);
+
 }
 
 void CMobEntity::OnDisengage(CAttackState& state)
