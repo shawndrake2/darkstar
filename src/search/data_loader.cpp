@@ -482,13 +482,19 @@ void CDataLoader::ExpireAHItems()
             uint8  itemStack = (uint8)Sql_GetUIntData(SqlHandle, 2);
             uint8 ahStack = (uint8)Sql_GetUIntData(SqlHandle, 3);
             uint32 seller = (uint32)Sql_GetUIntData(SqlHandle, 4);
-            ret = Sql_Query(sqlH2, "INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
-                "(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, ahStack == 1 ? itemStack : 1 );
-            //      ShowMessage(cC2, seller, seller, itemID);
-            if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+            bool ahbot = seller == search_config.ah_bot_id;
+            if (!ahbot) {
+                ret = Sql_Query(sqlH2, "INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
+                    "(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, ahStack == 1 ? itemStack : 1);
+            }
+            if (ahbot || (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0))
             {
                 // delete the item from the auction house
                 Sql_Query(sqlH2, "DELETE FROM auction_house WHERE id= %u", saleID);
+                if (ahbot) {
+                    expiredAuctions--;
+                    ShowMessage("AH BOT item removed from auction: %u\n", itemID);
+                }
             }
         }
     }
@@ -496,6 +502,8 @@ void CDataLoader::ExpireAHItems()
     {
         //  ShowMessage(CL_RED"SQL ERROR: %s\n\n" CL_RESET, SQL_ERROR);
     }
-    ShowMessage("Sent %u expired auction house items back to sellers\n", expiredAuctions);
+    if (expiredAuctions > 0) {
+        ShowMessage("Sent %u expired auction house items back to sellers\n", expiredAuctions);
+    }
     Sql_Free(sqlH2);
 }

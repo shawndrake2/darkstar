@@ -34,6 +34,8 @@ struct search_config_t
     bool        expire_auctions;    // If true, then start task to expire old auctions off the auction house
     uint8       expire_days;        // Number of days to keep stuff on the auction house
     int16       expire_interval;    // How often the task should run (time * 1000) in seconds
+    uint32      ah_bot_id;          // AH Bot Seller ID
+    int16       server_treasury;    // Gil limit for AH BOT to use/maintain (in millions)
 };
 
 struct login_config_t
