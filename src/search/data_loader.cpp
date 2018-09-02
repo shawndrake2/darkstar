@@ -53,7 +53,7 @@ CDataLoader::~CDataLoader()
 
 /************************************************************************
 *                                                                       *
-*  История продаж предмета                                              *
+*  Sales history of the item                                            *
 *                                                                       *
 ************************************************************************/
 
@@ -90,8 +90,8 @@ std::vector<ahHistory*> CDataLoader::GetAHItemHystory(uint16 ItemID, bool stack)
 
 /************************************************************************
 *                                                                       *
-*  Список продаваемых предметов в указанной категории                   *
 *  The list of items sold in this category                              *
+*                                                                       *
 ************************************************************************/
 
 std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8* OrderByString)
@@ -135,7 +135,7 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8*
 
 /************************************************************************
 *                                                                       *
-*  Количество активных игроков в мире                                   *
+*  Number of active players in the world                                *
 *                                                                       *
 ************************************************************************/
 
@@ -166,8 +166,8 @@ uint32 CDataLoader::GetPlayersCount(search_req sr)
 
 /************************************************************************
 *                                                                       *
-*  Список найденных персонажей в игровом мире                           *
-*          Job ID is 0 for none specified.                              *
+*  Job ID is 0 for none specified.                                      *
+*                                                                       *
 ************************************************************************/
 
 std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
@@ -336,7 +336,7 @@ std::list<SearchEntity*> CDataLoader::GetPlayersList(search_req sr, int* count)
 
 /************************************************************************
 *                                                                       *
-*  Список персонажей, состоящих в одной группе                          *
+*  List of characters in the same group                                 *
 *                                                                       *
 ************************************************************************/
 
@@ -395,7 +395,7 @@ std::list<SearchEntity*> CDataLoader::GetPartyList(uint16 PartyID, uint16 Allian
 
 /************************************************************************
 *                                                                       *
-*  Список персонажей, состоящих в одной linkshell                       *
+*  List of characters consisting in one linkshell                       *
 *                                                                       *
 ************************************************************************/
 
@@ -458,6 +458,13 @@ std::list<SearchEntity*> CDataLoader::GetLinkshellList(uint32 LinkshellID)
 
     return LinkshellList;
 }
+
+/************************************************************************
+*                                                                       *
+*  Expire AH Items                                                      *
+*                                                                       *
+************************************************************************/
+
 void CDataLoader::ExpireAHItems()
 {
     Sql_t* sqlH2 = Sql_Malloc();
@@ -506,4 +513,136 @@ void CDataLoader::ExpireAHItems()
         ShowMessage("Sent %u expired auction house items back to sellers\n", expiredAuctions);
     }
     Sql_Free(sqlH2);
+}
+
+/************************************************************************
+*                                                                       *
+*  Stock Random AH Items                                                *
+*                                                                       *
+************************************************************************/
+
+void CDataLoader::StockAHBotItems() {
+    Sql_t* sqlH2 = Sql_Malloc();
+    Sql_Connect(sqlH2, search_config.mysql_login.c_str(),
+        search_config.mysql_password.c_str(),
+        search_config.mysql_host.c_str(),
+        search_config.mysql_port,
+        search_config.mysql_database.c_str());
+
+    ShowMessage(CL_GREEN"AH BOT stocking items\n");
+
+    std::vector<int> currentAuctionList = this->GetCurrentAuctionItems();
+    std::vector<ahSaleItem*> randomSellList = this->GetRandomItemsToAuction(currentAuctionList);
+
+    for (unsigned int i = 0; i < randomSellList.size(); i++) {
+        std::string seller = randomSellList.at(i)->SellerName;
+        int8* item = randomSellList.at(i)->Name;
+        uint32 price = randomSellList.at(i)->Price;
+        // @TODO Actually insert items into auction_house table
+        ShowMessage(CL_WHITE"   : %s selling '%s' for %u gil\n", seller, item, price);
+    }
+    ShowMessage(CL_GREEN"Done stocking items\n");
+}
+
+std::vector<int> CDataLoader::GetCurrentAuctionItems()
+{
+    std::vector<int> ItemList;
+
+    const char* currentAuctionsQuery = "SELECT * FROM auction_house WHERE sell_date = 0;";
+
+    int32 ret = Sql_Query(SqlHandle, currentAuctionsQuery);
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            int AHItem = Sql_GetIntData(SqlHandle, 1);
+
+            ItemList.push_back(AHItem);
+        }
+    }
+
+    return ItemList;
+}
+
+std::vector<ahSaleItem*> CDataLoader::GetRandomItemsToAuction(std::vector<int> excludes)
+{
+    std::vector<int> randomItemsList;
+    std::string randomIdsString = "";
+    std::vector<int> itemIds = this->GetItemIds();
+
+    int count = 0;
+    int min = itemIds.at(0);
+    int max = itemIds.at(itemIds.size() - 1);
+    srand(clock());
+
+    while (count < 100) {
+        int randomId = rand() % max + min;
+        std::vector<int>::iterator randomItemFound;
+        std::vector<int>::iterator excludeFound;
+
+        randomItemFound = std::find(randomItemsList.begin(), randomItemsList.end(), randomId);
+        excludeFound = std::find(excludes.begin(), excludes.end(), randomId);
+        if (randomItemFound == randomItemsList.end() && excludeFound == excludes.end()) {
+            randomItemsList.push_back(randomId);
+            if (randomIdsString != "") {
+                randomIdsString += ",";
+            }
+            randomIdsString += std::to_string(randomId);
+        }
+        count++;
+    }
+
+    std::vector<ahSaleItem*> ItemList;
+
+    const char* itemIdsQuery = "SELECT itemid, name, stackSize, BaseSell FROM item_basic WHERE aH <> 0 AND itemid IN (%s);";
+
+    int32 ret = Sql_Query(SqlHandle, itemIdsQuery, randomIdsString);
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            ahSaleItem* AHSaleItem = new ahSaleItem;
+            AHSaleItem->AuctionId = 01234; // @TODO
+            AHSaleItem->ItemID = Sql_GetIntData(SqlHandle, 0);
+            AHSaleItem->Name = Sql_GetData(SqlHandle, 1);
+            int StackSize = Sql_GetIntData(SqlHandle, 2);
+            AHSaleItem->Stack = StackSize > 1 ? 1 : 0;
+            AHSaleItem->Seller = search_config.ah_bot_id;
+            AHSaleItem->SellerName = search_config.ah_bot_name;
+            AHSaleItem->AuctionDateTS = time(NULL);
+            int BaseSellPrice = Sql_GetIntData(SqlHandle, 3);
+            AHSaleItem->Price = BaseSellPrice; // @TODO
+            std::string *buyer = &AHSaleItem->BuyerName;
+            buyer = NULL;
+            AHSaleItem->Sold = 0;
+            AHSaleItem->SellDateTS = 0;
+
+            ItemList.push_back(AHSaleItem);
+        }
+    }
+
+    return ItemList;
+}
+
+std::vector<int> CDataLoader::GetItemIds()
+{
+    std::vector<int> ItemList;
+
+    const char* itemIdsQuery = "SELECT * FROM item_basic WHERE aH <> 0;";
+
+    int32 ret = Sql_Query(SqlHandle, itemIdsQuery);
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            int AHItem = Sql_GetIntData(SqlHandle, 0);
+
+            ItemList.push_back(AHItem);
+        }
+    }
+
+    return ItemList;
 }

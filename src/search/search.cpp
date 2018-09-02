@@ -331,6 +331,7 @@ void search_config_default()
     search_config.expire_auctions = 1;
     search_config.expire_days = 3;
     search_config.expire_interval = 3600;
+    search_config.enable_AH_Bot = 0;
     search_config.server_treasury = 100;
 }
 
@@ -398,6 +399,18 @@ void search_config_read(const int8* file)
         else if (strcmp(w1, "expire_interval") == 0)
         {
             search_config.expire_interval = atoi(w2);
+        }
+        else if (strcmp(w1, "ah_bot_id") == 0)
+        {
+            search_config.ah_bot_id = atoi(w2);
+        }
+        else if (strcmp(w1, "ah_bot_name") == 0)
+        {
+            search_config.ah_bot_name = std::string(w2);
+        }
+        else if (strcmp(w1, "enable_AH_Bot") == 0)
+        {
+            search_config.enable_AH_Bot = atoi(w2);
         }
         else if (strcmp(w1, "server_treasury") == 0)
         {
@@ -1008,6 +1021,9 @@ int32 ah_cleanup(time_point tick, CTaskMgr::CTask* PTask)
 
     CDataLoader data;
     data.ExpireAHItems();
+    if (search_config.enable_AH_Bot) {
+        data.StockAHBotItems();
+    }
 
     return 0;
 }
