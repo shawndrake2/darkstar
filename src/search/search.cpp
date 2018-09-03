@@ -54,6 +54,7 @@ typedef u_int SOCKET;
 #include <string.h>
 #include <sstream>
 
+#include "ahbot.h"
 #include "data_loader.h"
 #include "search.h"
 #include "tcp_request.h"
@@ -1022,7 +1023,8 @@ int32 ah_cleanup(time_point tick, CTaskMgr::CTask* PTask)
     CDataLoader data;
     data.ExpireAHItems();
     if (search_config.enable_AH_Bot) {
-        data.StockAHBotItems();
+        AHBot ahbot;
+        ahbot.StockAHBotItems();
     }
 
     return 0;

@@ -26,6 +26,7 @@
     <ClCompile Include="..\..\src\common\taskmgr.cpp" />
     <ClCompile Include="..\..\src\common\timer.cpp" />
     <ClCompile Include="..\..\src\common\utils.cpp" />
+    <ClCompile Include="..\..\src\search\ahbot.cpp" />
     <ClCompile Include="..\..\src\search\data_loader.cpp" />
     <ClCompile Include="..\..\src\search\packets\auction_history.cpp" />
     <ClCompile Include="..\..\src\search\packets\auction_list.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="..\..\src\common\taskmgr.h" />
     <ClInclude Include="..\..\src\common\timer.h" />
     <ClInclude Include="..\..\src\common\utils.h" />
+    <ClInclude Include="..\..\src\search\ahbot.h" />
     <ClInclude Include="..\..\src\search\data_loader.h" />
     <ClInclude Include="..\..\src\search\packets\auction_history.h" />
     <ClInclude Include="..\..\src\search\packets\auction_list.h" />

@@ -65,6 +65,9 @@
     <ClCompile Include="..\..\src\search\packets\search_comment.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\search\ahbot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\search\data_loader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -122,6 +125,9 @@
       <Filter>Header Files\packets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\search\search.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\search\ahbot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\search\data_loader.h">

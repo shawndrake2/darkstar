@@ -41,21 +41,6 @@ struct ahItem
     uint32 StackAmount;
 };
 
-struct ahSaleItem
-{
-    uint32 AuctionId;
-    uint16 ItemID;
-    int8* Name;
-    uint8 Stack;
-    uint8 Seller;
-    std::string SellerName;
-    time_t AuctionDateTS;
-    uint32 Price;
-    std::string BuyerName;
-    uint8 Sold;
-    time_t SellDateTS;
-};
-
 struct ahHistory
 {
     uint32 Price;
@@ -108,10 +93,6 @@ public:
     std::list<SearchEntity*> GetPlayersList(search_req sr, int* count);
     std::vector<ahItem*>     GetAHItemsToCategory(uint8 AHCategoryID, int8* OrderByString);
     void                     ExpireAHItems();
-    void                     StockAHBotItems();
-    std::vector<int>         GetCurrentAuctionItems();
-    std::vector<int>         GetItemIds();
-    std::vector<ahSaleItem*>         GetRandomItemsToAuction(std::vector<int> excludes);
 
 private:
 
