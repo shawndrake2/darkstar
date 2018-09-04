@@ -166,6 +166,7 @@ int32 Sql_Keepalive(Sql_t* self);
 int32 Sql_GetData(Sql_t* self, size_t col, char** out_buf, size_t* out_len);
 
 int8*  Sql_GetData(Sql_t* self, size_t col);
+std::string Sql_GetStringData(Sql_t* self, size_t col);
 int32  Sql_GetIntData(Sql_t *self, size_t col);
 uint32 Sql_GetUIntData(Sql_t *self, size_t col);
 float  Sql_GetFloatData(Sql_t *self, size_t col);

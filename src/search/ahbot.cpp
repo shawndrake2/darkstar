@@ -2,6 +2,8 @@
 #include "../common/showmsg.h"
 #include "../common/sql.h"
 
+#include <algorithm>
+
 #include "ahbot.h"
 #include "search.h"
 
@@ -33,13 +35,6 @@ AHBot::~AHBot()
 
 void AHBot::StockAHBotItems()
 {
-    //Sql_t* sqlH2 = Sql_Malloc();
-    //Sql_Connect(sqlH2, search_config.mysql_login.c_str(),
-    //    search_config.mysql_password.c_str(),
-    //    search_config.mysql_host.c_str(),
-    //    search_config.mysql_port,
-    //    search_config.mysql_database.c_str());
-
     ShowMessage(CL_GREEN"AH BOT stocking items\n");
 
     std::vector<ahSaleItem*> randomSellList = this->GetRandomItemsToAuction();
@@ -48,14 +43,34 @@ void AHBot::StockAHBotItems()
         this->AddToAuction(randomSellList.at(i));
     }
     this->UpdateTreasuryBalance(this->GetTreasuryBalance());
-    ShowMessage(CL_GREEN"Done stocking items\n");
+    ShowMessage(CL_GREEN"Done stocking items: %u items put on auction by AHBot\n", this->itemsSold);
 }
 
 void AHBot::AddToAuction(ahSaleItem* ahSaleItem)
 {
     uint32 treasuryBalance = this->GetTreasuryBalance();
+    int itemId = ahSaleItem->ItemID;
 
-    if (treasuryBalance > ahSaleItem->Price) {
+    // Set item limit for AHBot
+    int itemLimit = search_config.normalItemAhLimit;
+    if (this->IsUseable(itemId)) {
+        itemLimit = search_config.useableItemAhLimit;
+    } else if (this->IsWeapon(itemId)) {
+        itemLimit = search_config.weaponItemAhLimit;
+    } else if (this->IsArmor(itemId)) {
+        itemLimit = search_config.armorItemAhLimit;
+    } else if (this->IsFurnishing(itemId)) {
+        itemLimit = search_config.furnishingItemAhLimit;
+    }
+
+    int numOnAuction = this->GetNumberOfCurrentAuctionItemsById(itemId);
+
+    if (treasuryBalance <= ahSaleItem->Price)
+    {
+        ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Treasury Balance has been exhausted to %u gil\n" CL_RESET, treasuryBalance);
+        return;
+    }
+    if (numOnAuction < itemLimit) {
         const char* fmtQuery = "INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) VALUES(%u,%u,%u,'%s',%u,%u)";
 
         if (Sql_Query(SqlHandle,
@@ -72,17 +87,9 @@ void AHBot::AddToAuction(ahSaleItem* ahSaleItem)
         }
         else
         {
-            ShowMessage(CL_WHITE"   : %s selling '%s' for %u gil\n",
-                ahSaleItem->SellerName,
-                ahSaleItem->Name,
-                ahSaleItem->Price);
+            this->itemsSold++;
             this->treasuryBalance = treasuryBalance - ahSaleItem->Price;
         }
-    }
-    else
-    {
-        ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Treasury Balance has been exhausted to %u gil\n" CL_RESET, treasuryBalance);
-        return;
     }
 }
 
@@ -107,6 +114,24 @@ std::vector<int> AHBot::GetCurrentAuctionItems()
     return ItemList;
 }
 
+int AHBot::GetNumberOfCurrentAuctionItemsById(int itemId)
+{
+    int count = 0;
+    const char* currentAuctionsQuery = "SELECT count(itemid) FROM auction_house WHERE sell_date = 0 AND itemid = %u;";
+
+    int32 ret = Sql_Query(SqlHandle, currentAuctionsQuery, itemId);
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            count = Sql_GetIntData(SqlHandle, 0);
+        }
+    }
+
+    return count;
+}
+
 int AHBot::GetHighLow(int price, time_t auctionTime)
 {
     int highlow = auctionTime % 3;
@@ -121,6 +146,27 @@ int AHBot::GetHighLow(int price, time_t auctionTime)
     }
     // Don't change price if highlow is 1
     return price;
+}
+
+std::vector<int> AHBot::GetItemCategoryIds(std::string tableName, std::string field)
+{
+    std::vector<int> ItemList;
+
+    const char* itemIdsQuery = "SELECT %s FROM %s;";
+
+    int32 ret = Sql_Query(SqlHandle, itemIdsQuery, field, tableName);
+
+    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    {
+        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            int AHItem = Sql_GetIntData(SqlHandle, 0);
+
+            ItemList.push_back(AHItem);
+        }
+    }
+
+    return ItemList;
 }
 
 std::vector<int> AHBot::GetItemIds()
@@ -184,7 +230,7 @@ std::vector<ahSaleItem*> AHBot::GetRandomItemsToAuction()
         {
             ahSaleItem* AHSaleItem = new ahSaleItem;
             AHSaleItem->ItemID = Sql_GetIntData(SqlHandle, 0);
-            AHSaleItem->Name = Sql_GetData(SqlHandle, 1);
+            AHSaleItem->Name = Sql_GetStringData(SqlHandle, 1);
             AHSaleItem->Category = Sql_GetIntData(SqlHandle, 3);
             int StackSize = Sql_GetIntData(SqlHandle, 2);
             AHSaleItem->AuctionDateTS = time(NULL);
@@ -259,6 +305,54 @@ int AHBot::GetTreasuryBalance()
         }
     }
     return this->treasuryBalance;
+}
+
+bool AHBot::IsArmor(int itemId)
+{
+    if (this->armorItems.empty()) {
+        this->armorItems = this->GetItemCategoryIds("item_armor", "itemId");
+    }
+    std::vector<int>::iterator value = std::find(this->armorItems.begin(), this->armorItems.end(), itemId);
+    if (value != this->armorItems.end()) {
+        return true;
+    }
+    return false;
+}
+
+bool AHBot::IsFurnishing(int itemId)
+{
+    if (this->furnishingItems.empty()) {
+        this->furnishingItems = this->GetItemCategoryIds("item_furnishing", "itemid");
+    }
+    std::vector<int>::iterator value = std::find(this->furnishingItems.begin(), this->furnishingItems.end(), itemId);
+    if (value != this->furnishingItems.end()) {
+        return true;
+    }
+    return false;
+}
+
+bool AHBot::IsUseable(int itemId)
+{
+    if (this->useableItems.empty()) {
+        this->useableItems = this->GetItemCategoryIds("item_usable", "itemid");
+    }
+    std::vector<int>::iterator value = std::find(this->useableItems.begin(), this->useableItems.end(), itemId);
+    if (value != this->useableItems.end()) {
+        return true;
+    }
+    return false;
+}
+
+bool AHBot::IsWeapon(int itemId)
+{
+    if (this->weaponItems.empty()) {
+        this->weaponItems = this->GetItemCategoryIds("item_weapon", "itemId");
+    }
+    std::vector<int>::iterator value = std::find(this->weaponItems.begin(), this->weaponItems.end(), itemId);
+    if (value != this->weaponItems.end()) {
+        return true;
+    }
+    return false;
 }
 
 bool AHBot::SellStack(int StackSize, time_t auctionTime)

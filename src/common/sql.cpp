@@ -409,6 +409,25 @@ int8* Sql_GetData(Sql_t* self, size_t col)
 *																		*
 ************************************************************************/
 
+std::string Sql_GetStringData(Sql_t* self, size_t col)
+{
+	if( self && self->row )
+	{
+		if( col < Sql_NumColumns(self) )
+		{
+			return (std::string) self->row[col];
+		}
+	}
+	ShowFatalError("Sql_GetData: SQL_ERROR\n");
+	return NULL;
+}
+
+/************************************************************************
+*																		*
+*				  														*
+*																		*
+************************************************************************/
+
 int32 Sql_GetIntData(Sql_t *self, size_t col)
 {
 	if( self && self->row )

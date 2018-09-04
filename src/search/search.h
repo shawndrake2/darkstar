@@ -26,18 +26,23 @@ This file is part of DarkStar-server source code.
 
 struct search_config_t
 {
-    std::string mysql_host;         // mysql addr     -> localhost
-    uint16      mysql_port;         // mysql port     -> 3306
-    std::string mysql_login;        // mysql login    -> default root
-    std::string mysql_password;     // mysql pass     -> default root
-    std::string mysql_database;     // mysql database -> default dspdb
-    bool        expire_auctions;    // If true, then start task to expire old auctions off the auction house
-    uint8       expire_days;        // Number of days to keep stuff on the auction house
-    int16       expire_interval;    // How often the task should run (time * 1000) in seconds
-    uint32      ah_bot_id;          // AH Bot Seller ID
-    std::string ah_bot_name;        // AH Bot Seller Name
-    bool        enable_AH_Bot;      // enable Auction House Bot for simulating server econonmy on sparsely populated servers
-    int16       server_treasury;    // Gil limit for AH BOT to use/maintain (in millions)
+    std::string mysql_host;             // mysql addr     -> localhost
+    uint16      mysql_port;             // mysql port     -> 3306
+    std::string mysql_login;            // mysql login    -> default root
+    std::string mysql_password;         // mysql pass     -> default root
+    std::string mysql_database;         // mysql database -> default dspdb
+    bool        expire_auctions;        // If true, then start task to expire old auctions off the auction house
+    uint8       expire_days;            // Number of days to keep stuff on the auction house
+    int16       expire_interval;        // How often the task should run (time * 1000) in seconds
+    uint32      ah_bot_id;              // AH Bot Seller ID
+    std::string ah_bot_name;            // AH Bot Seller Name
+    bool        enable_AH_Bot;          // enable Auction House Bot for simulating server econonmy on sparsely populated servers
+    int16       server_treasury;        // Gil limit for AH BOT to use/maintain (in millions)
+    uint8       armorItemAhLimit;       // AH Limits for armor
+    uint8       normalItemAhLimit;      // AH Limits for normal items
+    uint8       furnishingItemAhLimit;  // AH Limits for furnishing items
+    uint8       useableItemAhLimit;     // AH Limits for useable items
+    uint8       weaponItemAhLimit;      // AH Limits for weapons
 };
 
 struct login_config_t
