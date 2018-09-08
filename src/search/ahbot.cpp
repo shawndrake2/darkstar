@@ -37,18 +37,46 @@ void AHBot::StockAHBotItems()
 {
     ShowMessage(CL_GREEN"AH BOT stocking items\n");
 
+    // Initialize items sold just in case
+    this->itemsPutOnAuction = 0;
+
     std::vector<ahSaleItem*> randomSellList = this->GetRandomItemsToAuction();
 
     for (unsigned int i = 0; i < randomSellList.size(); i++) {
         this->AddToAuction(randomSellList.at(i));
     }
-    this->UpdateTreasuryBalance(this->GetTreasuryBalance());
-    ShowMessage(CL_GREEN"Done stocking items: %u items put on auction by AHBot\n", this->itemsSold);
+    ShowMessage(CL_GREEN"Done stocking items: %u items put on auction by AHBot\n", this->itemsPutOnAuction);
+}
+
+/************************************************************************
+*                                                                       *
+*  Buying Random AH Items                                               *
+*                                                                       *
+************************************************************************/
+
+void AHBot::BuyRandomAHItems()
+{
+    ShowMessage(CL_GREEN"AH BOT buying back random items\n");
+
+    // Initialize items bought just in case
+    this->itemsBought = 0;
+
+    std::vector<ahSaleItem*> randomBuyList = this->GetRandomItemsToBuy();
+
+    for (unsigned int i = 0; i < randomBuyList.size(); i++) {
+        if (this->itemsBought < search_config.ah_bot_buy_limit) {
+            this->BuyBackFromAuction(randomBuyList.at(i));
+        }
+        else
+        {
+            break;
+        }
+    }
+    ShowMessage(CL_GREEN"Done buying items: %u items bought from AH by AHBot\n", this->itemsBought);
 }
 
 void AHBot::AddToAuction(ahSaleItem* ahSaleItem)
 {
-    uint32 treasuryBalance = this->GetTreasuryBalance();
     int itemId = ahSaleItem->ItemID;
 
     // Set item limit for AHBot
@@ -65,11 +93,6 @@ void AHBot::AddToAuction(ahSaleItem* ahSaleItem)
 
     int numOnAuction = this->GetNumberOfCurrentAuctionItemsById(itemId);
 
-    if (treasuryBalance <= ahSaleItem->Price)
-    {
-        ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Treasury Balance has been exhausted to %u gil\n" CL_RESET, treasuryBalance);
-        return;
-    }
     if (numOnAuction < itemLimit) {
         const char* fmtQuery = "INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) VALUES(%u,%u,%u,'%s',%u,%u)";
 
@@ -87,15 +110,47 @@ void AHBot::AddToAuction(ahSaleItem* ahSaleItem)
         }
         else
         {
-            this->itemsSold++;
-            this->treasuryBalance = treasuryBalance - ahSaleItem->Price;
+            this->itemsPutOnAuction++;
         }
     }
 }
 
-std::vector<int> AHBot::GetCurrentAuctionItems()
+void AHBot::BuyBackFromAuction(ahSaleItem* ahSaleItem)
 {
-    std::vector<int> ItemList;
+    uint32 treasuryBalance = this->GetTreasuryBalance();
+    if ((int) ahSaleItem->Seller == 0 || treasuryBalance > 0) {
+        const char* fmtQuery = "UPDATE auction_house SET buyer_name='%s', sale=%u, sell_date=%u WHERE id = %u";
+
+        if (Sql_Query(SqlHandle,
+            fmtQuery,
+            search_config.ah_bot_name,
+            ahSaleItem->Price,
+            time(NULL),
+            ahSaleItem->AuctionId) == SQL_ERROR)
+        {
+            ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot update item %s in database\n" CL_RESET, ahSaleItem->AuctionId);
+            return;
+        }
+        this->itemsBought++;
+        if (ahSaleItem->Seller != 0) {
+            this->treasuryBalance = treasuryBalance - ahSaleItem->Price;
+            ShowMessage(CL_GREEN"DEBUG: User %u should be sent %u gil\n", ahSaleItem->Seller, ahSaleItem->Price);
+            // @TODO Send gil to seller
+
+            // Update treasury balance after transactions completed
+            this->UpdateTreasuryBalance(this->treasuryBalance);
+        }
+    }
+    else
+    {
+        ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Treasury Balance has been exhausted\n" CL_RESET);
+        return;
+    }
+}
+
+std::vector<ahSaleItem*> AHBot::GetCurrentAuctionItems()
+{
+    std::vector<ahSaleItem*> ItemList;
 
     const char* currentAuctionsQuery = "SELECT * FROM auction_house WHERE sell_date = 0;";
 
@@ -105,7 +160,14 @@ std::vector<int> AHBot::GetCurrentAuctionItems()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            int AHItem = Sql_GetIntData(SqlHandle, 1);
+            ahSaleItem* AHItem = new ahSaleItem;
+            AHItem->AuctionId = Sql_GetIntData(SqlHandle, 0);
+            AHItem->ItemID = Sql_GetIntData(SqlHandle, 1);
+            AHItem->Stack = Sql_GetIntData(SqlHandle, 2);
+            AHItem->Seller = Sql_GetIntData(SqlHandle, 3);
+            AHItem->SellerName = Sql_GetStringData(SqlHandle, 4);
+            AHItem->AuctionDateTS = Sql_GetIntData(SqlHandle, 5);
+            AHItem->Price = Sql_GetIntData(SqlHandle, 6);
 
             ItemList.push_back(AHItem);
         }
@@ -201,10 +263,9 @@ std::vector<ahSaleItem*> AHBot::GetRandomItemsToAuction()
     int max = itemIds.at(itemIds.size() - 1);
     srand(clock());
 
-    while (count < 100) {
+    while (count < (int) search_config.ah_bot_sell_limit) {
         int randomId = rand() % max + min;
         std::vector<int>::iterator randomItemFound;
-        std::vector<int>::iterator excludeFound;
 
         randomItemFound = std::find(randomItemsList.begin(), randomItemsList.end(), randomId);
         if (randomItemFound == randomItemsList.end()) {
@@ -252,6 +313,31 @@ std::vector<ahSaleItem*> AHBot::GetRandomItemsToAuction()
     }
 
     return ItemList;
+}
+
+std::vector<ahSaleItem*> AHBot::GetRandomItemsToBuy()
+{
+    std::vector<ahSaleItem*> randomItemsList;
+    std::vector<ahSaleItem*> itemsOnAuction = this->GetCurrentAuctionItems();
+
+    int count = 0;
+    int min = 0;
+    int max = itemsOnAuction.size() - 1;
+    srand(clock());
+
+    while (count < (int) search_config.ah_bot_buy_limit) {
+        int randomId = rand() % max + min;
+        std::vector<ahSaleItem*>::iterator randomItemFound;
+
+        ahSaleItem* itemToBuy = itemsOnAuction.at(randomId);
+        randomItemFound = std::find(randomItemsList.begin(), randomItemsList.end(), itemToBuy);
+        if (randomItemFound == randomItemsList.end()) {
+            randomItemsList.push_back(itemToBuy);
+        }
+        count++;
+    }
+
+    return randomItemsList;
 }
 
 int AHBot::GetSellPrice(ahSaleItem* item)

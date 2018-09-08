@@ -332,6 +332,9 @@ void search_config_default()
     search_config.expire_auctions = 1;
     search_config.expire_days = 3;
     search_config.expire_interval = 3600;
+    // AHBOT specific configurations
+    search_config.ah_bot_buy_limit = 50;
+    search_config.ah_bot_sell_limit = 100;
     search_config.enable_AH_Bot = 0;
     search_config.server_treasury = 100;
     search_config.armorItemAhLimit = 2;
@@ -1030,6 +1033,7 @@ int32 ah_cleanup(time_point tick, CTaskMgr::CTask* PTask)
     if (search_config.enable_AH_Bot) {
         AHBot ahbot;
         ahbot.StockAHBotItems();
+        ahbot.BuyRandomAHItems();
     }
 
     return 0;

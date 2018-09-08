@@ -26,25 +26,29 @@ public:
     AHBot();
     ~AHBot();
 
-    void                     StockAHBotItems();
+    void BuyRandomAHItems();
+    void StockAHBotItems();
 
 private:
 
     Sql_t* SqlHandle;
     int treasuryBalance = NULL;
-    int itemsSold = 0;
+    int itemsBought = 0;
+    int itemsPutOnAuction = 0;
     std::vector<int> armorItems;
     std::vector<int> furnishingItems;
     std::vector<int> useableItems;
     std::vector<int> weaponItems;
 
     void                     AddToAuction(ahSaleItem* ahSaleItem);
-    std::vector<int>         GetCurrentAuctionItems();
+    void                     BuyBackFromAuction(ahSaleItem* ahSaleItem);
+    std::vector<ahSaleItem*> GetCurrentAuctionItems();
     int                      GetNumberOfCurrentAuctionItemsById(int itemId);
     int                      GetHighLow(int price, time_t auctionTime);
     std::vector<int>         GetItemCategoryIds(std::string tableName, std::string field);
     std::vector<int>         GetItemIds();
     std::vector<ahSaleItem*> GetRandomItemsToAuction();
+    std::vector<ahSaleItem*> GetRandomItemsToBuy();
     int                      GetSellPrice(ahSaleItem* item);
     int                      GetTreasuryBalance();
     bool                     IsArmor(int itemId);

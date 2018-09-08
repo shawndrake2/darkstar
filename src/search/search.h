@@ -36,6 +36,8 @@ struct search_config_t
     int16       expire_interval;        // How often the task should run (time * 1000) in seconds
     uint32      ah_bot_id;              // AH Bot Seller ID
     std::string ah_bot_name;            // AH Bot Seller Name
+    uint16      ah_bot_buy_limit;       // AH Bot Total Buy Limit
+    uint16      ah_bot_sell_limit;      // AH Bot Total Sell Limit
     bool        enable_AH_Bot;          // enable Auction House Bot for simulating server econonmy on sparsely populated servers
     int16       server_treasury;        // Gil limit for AH BOT to use/maintain (in millions)
     uint8       armorItemAhLimit;       // AH Limits for armor
