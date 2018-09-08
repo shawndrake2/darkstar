@@ -5,17 +5,17 @@ struct Sql_t;
 
 struct ahSaleItem
 {
-    uint32 AuctionId = 0; // Default of 0 is fine for inserting
-    uint16 ItemID;
+    int AuctionId = 0; // Default of 0 is fine for inserting
+    int ItemID;
     std::string Name;
-    uint16 Category;
-    uint8 Stack;
-    uint8 Seller;
+    int Category;
+    int Stack;
+    int Seller;
     std::string SellerName;
     time_t AuctionDateTS;
-    uint32 Price;
+    int Price;
     std::string BuyerName;
-    uint8 Sold;
+    int Sold;
     time_t SellDateTS;
 };
 

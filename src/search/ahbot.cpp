@@ -118,7 +118,7 @@ void AHBot::AddToAuction(ahSaleItem* ahSaleItem)
 void AHBot::BuyBackFromAuction(ahSaleItem* ahSaleItem)
 {
     uint32 treasuryBalance = this->GetTreasuryBalance();
-    if ((int) ahSaleItem->Seller == 0 || treasuryBalance > 0) {
+    if (ahSaleItem->Seller == 0 || treasuryBalance > 0) {
         const char* fmtQuery = "UPDATE auction_house SET buyer_name='%s', sale=%u, sell_date=%u WHERE id = %u";
 
         if (Sql_Query(SqlHandle,
@@ -134,9 +134,19 @@ void AHBot::BuyBackFromAuction(ahSaleItem* ahSaleItem)
         this->itemsBought++;
         if (ahSaleItem->Seller != 0) {
             this->treasuryBalance = treasuryBalance - ahSaleItem->Price;
-            ShowMessage(CL_GREEN"DEBUG: User %u should be sent %u gil\n", ahSaleItem->Seller, ahSaleItem->Price);
-            // @TODO Send gil to seller
 
+            int slot = 0;
+            int32 ret = Sql_Query(SqlHandle, "SELECT MAX(slot) as slot FROM delivery_box WHERE charid = %u AND box = 1;", ahSaleItem->Seller);
+            if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                slot = Sql_GetUIntData(SqlHandle, 0) + 1;
+            }
+            const char* sendGil = "INSERT INTO delivery_box (charid, charname, box, slot, itemid, itemsubid, quantity, extra, senderid, sender, received, sent) VALUES (%u, '%s', 1, %u, 65535, 0, %u, null, 0, 'AH-Jeuno', 0, 0);";
+            if (Sql_Query(SqlHandle, sendGil, ahSaleItem->Seller, ahSaleItem->SellerName, slot, ahSaleItem->Price) == SQL_ERROR) {
+                ShowError(CL_RED"SmallPacket0x04E::AuctionHouse: Cannot send payment to user %s\n" CL_RESET, ahSaleItem->SellerName);
+                return;
+            }
+            ShowMessage(CL_GREEN"DEBUG: User %u should be sent %u gil\n", ahSaleItem->Seller, ahSaleItem->Price);
             // Update treasury balance after transactions completed
             this->UpdateTreasuryBalance(this->treasuryBalance);
         }
