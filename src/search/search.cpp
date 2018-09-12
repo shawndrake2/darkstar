@@ -334,7 +334,7 @@ void search_config_default()
     search_config.expire_interval = 3600;
     // AHBOT specific configurations
     search_config.ah_bot_buy_limit = 50;
-    search_config.ah_bot_sell_limit = 100;
+    search_config.ah_bot_sell_limit = 250;
     search_config.enable_AH_Bot = 0;
     search_config.server_treasury = 100;
     search_config.armorItemAhLimit = 2;
