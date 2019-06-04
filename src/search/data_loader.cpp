@@ -103,7 +103,7 @@ std::vector<ahItem*> CDataLoader::GetAHItemsToCategory(uint8 AHCategoryID, int8*
     const char* fmtQuery = "SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack) "
         "FROM item_basic "
         "LEFT JOIN auction_house ON item_basic.itemId = auction_house.itemid AND auction_house.buyer_name IS NULL "
-        "LEFT JOIN item_armor ON item_basic.itemid = item_armor.itemid "
+        "LEFT JOIN item_equipment ON item_basic.itemid = item_equipment.itemid "
         "LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid "
         "WHERE aH = %u "
         "GROUP BY item_basic.itemid "
@@ -482,7 +482,6 @@ void CDataLoader::ExpireAHItems()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            std::string qStr2;
             // iterate through the expired auctions and return them to the seller
             uint32 saleID = (uint32)Sql_GetUIntData(SqlHandle, 0);
             uint32 itemID = (uint32)Sql_GetUIntData(SqlHandle, 1);

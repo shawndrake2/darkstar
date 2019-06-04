@@ -3,12 +3,11 @@
 -- Zone: Chamber_of_Oracles (168)
 --
 -----------------------------------
-package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Chamber_of_Oracles/TextIDs");
-require("scripts/globals/missions");
-require("scripts/globals/keyitems");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/Chamber_of_Oracles/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -27,7 +26,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-177.804,-2.765,-37.893,179);
     end
 
-    if (prevZone == 208 and CurrentMission == MOON_READING and MissionStatus >= 1) then
+    if (prevZone == dsp.zone.QUICKSAND_CAVES and CurrentMission == dsp.mission.id.windurst.MOON_READING and MissionStatus >= 1) then
         cs = 3;
     end
 
@@ -43,6 +42,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 3) then
         player:addKeyItem(dsp.ki.ANCIENT_VERSE_OF_ALTEPA);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANCIENT_VERSE_OF_ALTEPA);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ANCIENT_VERSE_OF_ALTEPA);
     end
 end;

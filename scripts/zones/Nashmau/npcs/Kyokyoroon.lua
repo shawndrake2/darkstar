@@ -4,16 +4,13 @@
 -- Standard Info NPC
 -- !pos 18.020 -6.000 10.467 53
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Nashmau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_ACCEPTED and player:getVar("ratraceCS") == 5) then
+    if (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.RAT_RACE) == QUEST_ACCEPTED and player:getVar("ratraceCS") == 5) then
         if (trade:hasItemQty(5595,1) and trade:getItemCount() == 1) then
             player:startEvent(311);
         end
@@ -27,7 +24,7 @@ function onTrigger(player,npc)
         player:startEvent(263);
     elseif (ratRaceProg == 6) then
         player:startEvent(316);
-    elseif (player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_COMPLETED) then
+    elseif (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.RAT_RACE) == QUEST_COMPLETED) then
         player:startEvent(317);
     else
         player:startEvent(263);
@@ -44,4 +41,3 @@ function onEventFinish(player,csid,option)
         player:setVar("ratraceCS",6);
     end
 end;
-

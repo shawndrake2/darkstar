@@ -3,10 +3,9 @@
 -- Zone: Stellar_Fulcrum
 --
 -----------------------------------
-package.loaded["scripts/zones/Stellar_Fulcrum/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/missions");
-require("scripts/zones/Stellar_Fulcrum/TextIDs");
+local ID = require("scripts/zones/Stellar_Fulcrum/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)
@@ -24,7 +23,7 @@ function onZoneIn(player,prevZone)
 
     local cs = -1;
 
-    if (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 2) then
+    if (player:getCurrentMission(ZILART) == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 2) then
         cs = 0;
     end
 

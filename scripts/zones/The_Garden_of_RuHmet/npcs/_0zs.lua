@@ -2,10 +2,7 @@
 -- Area: The_Garden_of_RuHmet
 --  NPC: _0zs
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -13,7 +10,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasCompletedMission(COP,WHEN_ANGELS_FALL)) then
+    if (player:hasCompletedMission(COP,dsp.mission.id.cop.WHEN_ANGELS_FALL)) then
         player:startEvent(112);
     end
     return 1;

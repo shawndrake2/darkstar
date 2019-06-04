@@ -32,11 +32,13 @@
 
 enum ENTITYTYPE
 {
+    TYPE_NONE   = 0x00,
     TYPE_PC     = 0x01,
     TYPE_NPC    = 0x02,
     TYPE_MOB    = 0x04,
     TYPE_PET    = 0x08,
-    TYPE_SHIP   = 0x10
+    TYPE_SHIP   = 0x10,
+    TYPE_TRUST  = 0x20
 };
 
 enum STATUSTYPE
@@ -149,7 +151,6 @@ enum ENTITYFLAGS
     FLAG_NONE          = 0x000,
     FLAG_HIDE_NAME     = 0x008,
     FLAG_CALL_FOR_HELP = 0x020,
-    FLAG_HIDE_MODEL    = 0x080,
     FLAG_HIDE_HP       = 0x100,
     FLAG_UNTARGETABLE  = 0x800,
 };
@@ -188,6 +189,7 @@ class CBattlefield;
 *																		*
 *  Base class for all entities in the game								*
 *																		*
+*                                                                       *
 ************************************************************************/
 
 class CBaseEntity
@@ -208,7 +210,7 @@ public:
     void			HideName(bool hide); // hide / show name
     bool			IsNameHidden();		// checks if name is hidden
 
-    CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1);
+    CBaseEntity*    GetEntity(uint16 targid, uint8 filter = -1);
 
     void            ResetLocalVars();
     uint32          GetLocalVar(const char* var);
@@ -242,7 +244,7 @@ public:
     uint8           updatemask;         // what to update next server tick to players nearby
 
     std::unique_ptr<CAIContainer> PAI;       // AI container
-    CBattlefield*	PBCNM;              // pointer to bcnm (if in one)
+    CBattlefield* PBattlefield;            // pointer to battlefield (if in one)
     CInstance*		PInstance;
 protected:
     std::map<std::string, uint32> m_localVars;

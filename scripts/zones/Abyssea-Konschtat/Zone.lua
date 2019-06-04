@@ -9,6 +9,7 @@
 -- EventID 2180 Teleport?
 -- EventID 2181 DEBUG Menu
 -----------------------------------
+local ID = require("scripts/zones/Abyssea-Konschtat/IDs")
 require("scripts/globals/quests")
 -----------------------------------
 
@@ -22,7 +23,7 @@ function onZoneIn(player,prevZone)
         player:setPos(153,-72,-840,140)
     end
 
-    if player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getVar("1stTimeAbyssea") == 0 then
+    if player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getVar("1stTimeAbyssea") == 0 then
         player:setVar("1stTimeAbyssea",1)
     end
 

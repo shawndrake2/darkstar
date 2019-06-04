@@ -5,22 +5,20 @@
 -- !pos 72 -1 60 230
 
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 end;
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
 --    player:startEvent(19)  -- thanks for your help i have to tell trion -- under oath
 --     player:startEvent(77)    -- a boys dream
 -- "Father and Son" Event Dialogs
-    if (player:getQuestStatus(SANDORIA,FATHER_AND_SON) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FATHER_AND_SON) == QUEST_ACCEPTED) then
         player:startEvent(542);
     elseif (player:getVar("aBoysDreamCS") == 2) then
         player:startEvent(50);

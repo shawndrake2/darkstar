@@ -6,18 +6,16 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-if (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 1) then
+if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 1) then
 player:startEvent(102);
-elseif (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 2) then
+elseif (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 2) then
 player:startEvent(103);
-elseif (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 3 and player:hasKeyItem(dsp.ki.MIRACLESALT)) then
+elseif (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 3 and player:hasKeyItem(dsp.ki.MIRACLESALT)) then
 player:startEvent(104);
 elseif (player:getVar("BASTOK91") == 4) then
 player:startEvent(105);
@@ -36,4 +34,3 @@ elseif (csid == 104) then
 player:setVar("BASTOK91",4);
 end
 end;
-

@@ -3,13 +3,12 @@
 -- Zone: The_Shrine_of_RuAvitau (178)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/The_Shrine_of_RuAvitau/IDs");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/zone");
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
@@ -57,7 +56,7 @@ function onZoneIn(player,prevZone)
     end
 
     -- ZM 15 -> ZM 16
-    if (ZilartMission == THE_SEALED_SHRINE and player:getVar("ZilartStatus") == 1 and
+    if (ZilartMission == dsp.mission.id.zilart.THE_SEALED_SHRINE and player:getVar("ZilartStatus") == 1 and
     xPos >= -45 and yPos >= -4 and zPos >= -240 and
     xPos <= -33 and yPos <= 0 and zPos <= -226 and DMEarrings <= NUMBER_OF_DM_EARRINGS) then -- Entered through main gate
         cs = 51;
@@ -139,8 +138,8 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 51) then
-        player:completeMission(ZILART,THE_SEALED_SHRINE);
-        player:addMission(ZILART,THE_CELESTIAL_NEXUS);
+        player:completeMission(ZILART,dsp.mission.id.zilart.THE_SEALED_SHRINE);
+        player:addMission(ZILART,dsp.mission.id.zilart.THE_CELESTIAL_NEXUS);
         player:setVar("ZilartStatus",0);
     end
 end;

@@ -3,18 +3,14 @@
 --  NPC: Anoki
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Anoki") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Anoki") == 0) then
         player:startEvent(724);
-    elseif (player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Anoki") == 1) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Anoki") == 1) then
         player:startEvent(728);
     else
         player:startEvent(519);
@@ -31,4 +27,3 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_optional_CS_Anoki",2);
     end
 end;
-

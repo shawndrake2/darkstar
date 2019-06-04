@@ -4,9 +4,7 @@
 -- Type: Leathercraft Guild Master
 -- !pos -178.882 -2 9.891 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/crafting");
 require("scripts/globals/missions");
 require("scripts/globals/status");
@@ -29,7 +27,7 @@ function onTrigger(player,npc)
     if (guildMember == 1) then guildMember = 150995375; end
     if (canGetNewRank(player,craftSkill,dsp.skill.LEATHERCRAFT) == 1) then getNewRank = 100; end
 
-    if (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and
+    if (player:getCurrentMission(ASA) == dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and
         getNewRank ~= 100) then
         local item = 0;
         local asaStatus = player:getVar("ASA_Status");
@@ -57,10 +55,10 @@ function onEventFinish(player,csid,option)
         local crystal = 4103; -- dark crystal
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,crystal);
         else
             player:addItem(crystal);
-            player:messageSpecial(ITEM_OBTAINED,crystal);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,crystal);
             signupGuild(player, guild.leathercraft);
         end
     end

@@ -3,10 +3,13 @@
 -- Zone: Abyssea - Grauberg
 --
 -----------------------------------
+local ID = require("scripts/zones/Abyssea-Grauberg/IDs")
 require("scripts/globals/quests")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
 end
 
 function onZoneIn(player,prevZone)
@@ -16,7 +19,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-555,31,-760,0)
     end
 
-    if player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getVar("1stTimeAbyssea") == 0 then
+    if player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getVar("1stTimeAbyssea") == 0 then
         player:setVar("1stTimeAbyssea",1)
     end
 

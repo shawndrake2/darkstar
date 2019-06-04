@@ -4,9 +4,6 @@
 -- Involved In Quest: REQUIEM_FOR_THE_DEPARTED
 -- !pos -163 -68 -155 96
 -----------------------------------
-package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
@@ -16,7 +13,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(CRYSTAL_WAR, REQUIEM_FOR_THE_DEPARTED) == QUEST_ACCEPTED then
+    if player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.REQUIEM_FOR_THE_DEPARTED) == QUEST_ACCEPTED then
         if player:hasKeyItem(dsp.ki.SHEAF_OF_HANDMADE_INCENSE) then
             player:startEvent(233) -- standard dialogue after receiving KI
         else

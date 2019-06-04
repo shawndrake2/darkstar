@@ -3,48 +3,33 @@
 --  NPC: ??? Used to spawn Edacious Opo-opo
 -- !pos 545.7346 0.1819 -433.2258
 -----------------------------------
-package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil
------------------------------------
-require("scripts/globals/keyitems")
-require("scripts/globals/quests")
-require("scripts/zones/Yhoator_Jungle/TextIDs")
-require("scripts/zones/Yhoator_Jungle/MobIDs")
+local ID = require("scripts/zones/Yhoator_Jungle/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local spawnChance = math.random(100)
-    local nm = GetMobByID(EDACIOUS_OPO_OPO)
-    if npcUtil.tradeHas(trade, 4468) and not nm:isSpawned() then -- Pamamas
-        if spawnChance <= 5 then
-            player:confirmTrade()
-            player:messageSpecial(FAINT_CRY)
-            SpawnMob(EDACIOUS_OPO_OPO):updateClaim(player)
-            npc:setStatus(dsp.status.DISAPPEAR)
+    local spawnChance = 0
+    if npcUtil.tradeHas(trade, 4468) then -- pamamas
+        spawnChance = 5
+    elseif npcUtil.tradeHas(trade, 4596) then -- wild pamamas
+        spawnChance = 50
+    end
+
+    if spawnChance > 0 then
+        player:confirmTrade()
+        if math.random(100) <= spawnChance and npcUtil.popFromQM(player, npc, ID.mob.EDACIOUS_OPO_OPO) then
+            player:messageSpecial(ID.text.FAINT_CRY)
         else
-            player:confirmTrade()
-            player:messageSpecial(PAMAMAS)
-        end
-     elseif npcUtil.tradeHas(trade, 4596) and not nm:isSpawned() then -- Wild Pamamas
-        if spawnChance <= 50 then
-            player:confirmTrade()
-            player:messageSpecial(FAINT_CRY)
-            SpawnMob(EDACIOUS_OPO_OPO):updateClaim(player)
-            npc:setStatus(dsp.status.DISAPPEAR)
-        else
-            player:confirmTrade()
-            player:messageSpecial(PAMAMAS)
+            player:messageSpecial(ID.text.PAMAMAS)
         end
     end
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(WATER_HOLE)
+    player:messageSpecial(ID.text.WATER_HOLE)
 end
 
 function onEventUpdate(player,csid,option)
-
 end
 
 function onEventFinish(player,csid,option)
-
 end

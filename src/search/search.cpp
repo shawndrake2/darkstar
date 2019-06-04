@@ -122,7 +122,7 @@ void PrintPacket(char* data, int size)
     {
         char msgtmp[50];
         memset(&msgtmp, 0, 50);
-        sprintf(msgtmp, "%s %02hx", message, (uint8)data[y]);
+        sprintf(msgtmp, "%s %02x", message, (uint8)data[y]);
         strncpy(message, msgtmp, 50);
         if (((y + 1) % 16) == 0)
         {
@@ -673,7 +673,7 @@ void HandleAuctionHouseRequest(CTCPRequestPacket& PTCPRequest)
         ShowMessage(" Param%u: %u\n", i, param);
         switch (param) {
         case 2:
-            OrderByString.append(" item_armor.level DESC,");
+            OrderByString.append(" item_equipment.level DESC,");
         case 5:
             OrderByString.append(" item_weapon.dmg DESC,");
         case 6:
