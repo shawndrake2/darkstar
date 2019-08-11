@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis San d'Oria
---  Mob: Battlechoir_Gitchfotch
+-- Area: Dynamis - San d'Oria
+--  Mob: Battlechoir Gitchfotch
 -----------------------------------
 mixins =
 {
@@ -8,6 +8,10 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
+
+function onMobSpawn(mob)
+    mob:setLocalVar("dynamis_currency", 1452)
+end
 
 function onMobDeath(mob, player, isKiller)
 end

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Beaucedine
---  MOB: Vanguard_Ronin
+-- Area: Dynamis - Beaucedine
+--  Mob: Vanguard Ronin
 -----------------------------------
 mixins =
 {
@@ -8,9 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

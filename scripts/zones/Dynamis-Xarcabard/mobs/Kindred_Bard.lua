@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Dynamis Xarcabard
---  MOB: Kindred_Bard
+-- Area: Dynamis - Xarcabard
+--  Mob: Kindred Bard
 -----------------------------------
 mixins =
 {
@@ -8,9 +8,6 @@ mixins =
     require("scripts/mixins/job_special")
 }
 -----------------------------------
-
-function onMobSpawn(mob)
-end
 
 function onMobDeath(mob, player, isKiller)
 end

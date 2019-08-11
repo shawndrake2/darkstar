@@ -16,23 +16,21 @@
 require("scripts/globals/common");
 
 -- Enable Expansion (1= yes 0= no)
-ENABLE_COP     = 1;
-ENABLE_TOAU    = 1;
-ENABLE_WOTG    = 1;
-ENABLE_ACP     = 1;
-ENABLE_AMK     = 1;
-ENABLE_ASA     = 1;
-ENABLE_ABYSSEA = 1;
-ENABLE_SOA     = 1;
-ENABLE_ROV     = 1;
-
-ENABLE_VOIDWATCH = 1; -- Not an expansion, but has its own storyline.
+ENABLE_COP     = 0;
+ENABLE_TOAU    = 0;
+ENABLE_WOTG    = 0;
+ENABLE_ACP     = 0;
+ENABLE_AMK     = 0;
+ENABLE_ASA     = 0;
+ENABLE_ABYSSEA = 0;
+ENABLE_SOA     = 0;
+ENABLE_ROV     = 0;
+ENABLE_VOIDWATCH = 0; -- Not an expansion, but has its own storyline.
 
 -- FIELDS OF VALOR/Grounds of Valor settings
 ENABLE_FIELD_MANUALS  = 1; -- Enables Fields of Valor
 ENABLE_GROUNDS_TOMES  = 1; -- Enables Grounds of Valor
 REGIME_WAIT = 0; -- Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
-LOW_LEVEL_REGIME = 0; -- Allow people to kill regime targets even if they give no exp, allowing people to farm regime targets at 75 in low level areas.
 
 -- Setting to lock content more accurately to the content you have defined above
 -- This generally results in a more accurate presentation of your selected expansions
@@ -107,9 +105,6 @@ FREE_COP_DYNAMIS = 0 ; -- Authorize player to entering inside COP Dynamis withou
 AF1_QUEST_LEVEL = 40; -- Minimum level to start AF1 quest
 AF2_QUEST_LEVEL = 50; -- Minimum level to start AF2 quest
 AF3_QUEST_LEVEL = 50; -- Minimum level to start AF3 quest
-AF1_FAME = 20; -- base fame for completing an AF1 quest
-AF2_FAME = 40; -- base fame for completing an AF2 quest
-AF3_FAME = 60; -- base fame for completing an AF3 quest
 OldSchoolG1 = false; -- Set to true to require farming Exoray Mold, Bombd Coal, and Ancient Papyrus drops instead of allowing key item method.
 OldSchoolG2 = false; -- Set true to require the NMs for "Atop the Highest Mountains" be dead to get KI like before SE changed it.
 FrigiciteDuration = 30; -- When OldSChoolG2 is enabled, this is the time (in seconds) you have from killing Boreal NMs to click the "???" target.
@@ -129,16 +124,7 @@ USE_OLD_CURE_FORMULA = false; -- true/false. if true, uses older cure formula (3
 USE_OLD_MAGIC_DAMAGE = false; -- true/false. if true, uses older magic damage formulas
 
 -- CELEBRATIONS
-EXPLORER_MOOGLE = 1; -- Enables Explorer Moogle teleports
-EXPLORER_MOOGLE_LEVELCAP = 10;
-JINX_MODE_2005 = 0; -- Set to 1 to give starting characters swimsuits from 2005.  Ex: Hume Top
-JINX_MODE_2008 = 0; -- Set to 1 to give starting characters swimsuits from 2008.  Ex: Custom Top
-JINX_MODE_2012 = 0; -- Set to 1 to give starting characters swimsuits from 2012.  Ex: Marine Top
-SUMMERFEST_2004 = 0; -- Set to 1 to give starting characters Far East dress from 2004.  Ex: Onoko Yukata
-SUNBREEZE_2009 = 0; -- Set to 1 to give starting characters Far East dress from 2009.  Ex: Otokogusa Yukata
-SUNBREEZE_2011 = 0; -- Set to 1 to give starting characters Far East dress from 2011.  Ex: Hikogami Yukata
-CHRISTMAS = 1; -- Set to 1 to give starting characters Christmas dress.
-HALLOWEEN = 0; -- Set to 1 to give starting characters Halloween items (Does not start event).
+EXPLORER_MOOGLE_LV = 10; -- Enables Explorer Moogle teleports and sets required level. Zero to disable.
 HALLOWEEN_2005 = 0; -- Set to 1 to Enable the 2005 version of Harvest Festival, will start on Oct. 20 and end Nov. 1.
 HALLOWEEN_YEAR_ROUND = 0; -- Set to 1 to have Harvest Festival initialize outside of normal times.
 
@@ -163,4 +149,5 @@ FORCE_SPAWN_QM_RESET_TIME = 30; -- Number of seconds the ??? remains hidden for 
 BETWEEN_2COSMOCLEANSE_WAIT_TIME = 1; -- day between 2 limbus keyitem  (default 3 days)
 
 -- ABYSSEA
+-- @TODO This may have been removed from server code
 VISITANT_BONUS = 3.00; -- Default: 1.00 - (retail) - Multiplies the base time value of each Traverser Stone.
